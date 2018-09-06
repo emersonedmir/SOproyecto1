@@ -14,11 +14,15 @@ namespace proyecto1SO
     public partial class Form1 : Form
     {
         public config configuraccion;
+        public List<Log> log;
+        
 
         public Form1()
         {
+            log = new List<Log>();
             configuraccion = new config();
             InitializeComponent();
+
             
         }
 

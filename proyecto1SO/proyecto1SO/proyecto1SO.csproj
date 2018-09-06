@@ -61,6 +61,7 @@
     <Compile Include="utilidades\Largo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="utilidades\Log.cs" />
     <Compile Include="utilidades\Receive.cs" />
     <Compile Include="utilidades\Send.cs" />
     <Compile Include="utilidades\Sincronizacion.cs" />
