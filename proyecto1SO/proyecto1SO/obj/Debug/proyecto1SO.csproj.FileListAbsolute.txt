@@ -1,0 +1,2 @@
+C:\Users\Emerson\AppData\Local\Temporary Projects\proyecto1SO\bin\Debug\proyecto1SO.exe.config
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.exe.config
