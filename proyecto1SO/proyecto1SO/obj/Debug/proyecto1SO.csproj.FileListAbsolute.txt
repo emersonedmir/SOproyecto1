@@ -1,2 +1,10 @@
 C:\Users\Emerson\AppData\Local\Temporary Projects\proyecto1SO\bin\Debug\proyecto1SO.exe.config
 C:\Users\Emerson\Documents\gitKraken\SOproyecto1\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.exe.config
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.exe
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.pdb
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.csprojResolveAssemblyReference.cache
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.Properties.Resources.resources
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.csproj.GenerateResource.Cache
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.exe
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.pdb
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.Form1.resources

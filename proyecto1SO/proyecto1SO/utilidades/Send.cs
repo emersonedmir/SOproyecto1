@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace proyecto1SO.utilidades
+{
+    public class Send
+    {
+        private bool Blocking;
+        private bool Nonblocking;
+
+        public Send()
+        {
+            Blocking = false;
+            Nonblocking = false;
+        }
+
+        public bool blocking
+        {
+            get
+            {
+                return Blocking;
+            }
+            set
+            {
+                Blocking = value;
+            }
+        }
+
+        public bool nonblocking
+        {
+            get
+            {
+                return Nonblocking;
+            }
+            set
+            {
+                Nonblocking = value;
+            }
+        }
+    }
+}
