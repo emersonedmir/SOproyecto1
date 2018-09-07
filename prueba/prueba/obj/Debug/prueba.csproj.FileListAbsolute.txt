@@ -1,0 +1,9 @@
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\prueba\prueba\bin\Debug\prueba.exe.config
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\prueba\prueba\bin\Debug\prueba.exe
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\prueba\prueba\bin\Debug\prueba.pdb
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\prueba\prueba\obj\Debug\prueba.csprojResolveAssemblyReference.cache
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\prueba\prueba\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\prueba\prueba\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\prueba\prueba\obj\Debug\prueba.csproj.GenerateResource.Cache
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\prueba\prueba\obj\Debug\prueba.exe
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\prueba\prueba\obj\Debug\prueba.pdb

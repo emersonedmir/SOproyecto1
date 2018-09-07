@@ -1,0 +1,7 @@
+C:\Users\Emerson\AppData\Local\Temporary Projects\Example\bin\Debug\Example.exe.config
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\Example\Example\bin\Debug\Example.exe.config
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\Example\Example\bin\Debug\Example.exe
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\Example\Example\bin\Debug\Example.pdb
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\Example\Example\obj\Debug\Example.csprojResolveAssemblyReference.cache
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\Example\Example\obj\Debug\Example.exe
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\Example\Example\obj\Debug\Example.pdb
