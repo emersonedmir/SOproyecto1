@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FParamConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FParamConfig.Designer.cs">
+      <DependentUpon>FParamConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="utilidades\config.cs" />
     <Compile Include="utilidades\Direccionamiento.cs" />
     <Compile Include="utilidades\Directo.cs" />
