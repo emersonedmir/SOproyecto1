@@ -121,7 +121,10 @@ namespace proyecto1SO
             }
 
             /* formato */
-            config.formato.contenido = (string)cbFomtC.SelectedItem;
+            if (cbFomtC.SelectedIndex >=0)
+                config.formato.contenido = (string)cbFomtC.SelectedItem;
+            else
+                config.formato.contenido = "";
             switch (cbFomtL.SelectedIndex){
                 case 0: config.formato.largo.fijo = true; break;
                 case 1: config.formato.largo.variable = true; break;
