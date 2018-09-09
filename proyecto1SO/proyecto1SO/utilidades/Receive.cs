@@ -20,6 +20,8 @@ namespace proyecto1SO.utilidades
             Blocking = false;
             Nonblocking = false;
             PruebaLlegada = false;
+            Explicito = false;
+            Implicito = false;
         }
 
         public bool blocking
@@ -31,6 +33,13 @@ namespace proyecto1SO.utilidades
             set
             {
                 Blocking = value;
+                if (value)
+                {
+                    Nonblocking = false;
+                    PruebaLlegada = false;
+                    Explicito = false;
+                    Implicito = false;
+                }
             }
         }
 
@@ -43,6 +52,13 @@ namespace proyecto1SO.utilidades
             set
             {
                 Nonblocking = value;
+                if (value)
+                {
+                    Blocking = false;                    
+                    PruebaLlegada = false;
+                    Explicito = false;
+                    Implicito = false;
+                }
             }
         }
 
@@ -55,6 +71,13 @@ namespace proyecto1SO.utilidades
             set
             {
                 PruebaLlegada = value;
+                if (value)
+                {
+                    Blocking = false;
+                    Nonblocking = false;                    
+                    Explicito = false;
+                    Implicito = false;
+                }
             }
         }
 
@@ -67,6 +90,13 @@ namespace proyecto1SO.utilidades
             set
             {
                 Explicito = value;
+                if (value)
+                {
+                    Blocking = false;
+                    Nonblocking = false;
+                    PruebaLlegada = false;                    
+                    Implicito = false;
+                }
             }
         }
 
@@ -79,6 +109,13 @@ namespace proyecto1SO.utilidades
             set
             {
                 Implicito = value;
+                if (value)
+                {
+                    Blocking = false;
+                    Nonblocking = false;
+                    PruebaLlegada = false;
+                    Explicito = false;                    
+                }
             }
         }
 

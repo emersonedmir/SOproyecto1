@@ -8,16 +8,16 @@ namespace proyecto1SO.utilidades
 {
     public class Formato
     {
-        private bool Contenido;
+        private string Contenido;
         public Largo largo;
 
         public Formato()
         {
-            Contenido = false;
+            Contenido = "";
             largo = new Largo();
         }
 
-        public bool contenido
+        public string contenido
         {
             get
             {

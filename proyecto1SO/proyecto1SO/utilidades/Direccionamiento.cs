@@ -10,11 +10,13 @@ namespace proyecto1SO.utilidades
     {
         public Directo directo;
         public Indirecto indirecto;
+        public byte tipo;
 
         public Direccionamiento()
         {
             directo = new Directo();
             indirecto = new Indirecto();
+            tipo = 0;
         }
     }
 }

@@ -18,3 +18,14 @@ D:\TEC\2018\Semestre II\Git\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyec
 D:\TEC\2018\Semestre II\Git\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.csproj.CoreCompileInputs.cache
 D:\TEC\2018\Semestre II\Git\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.exe
 D:\TEC\2018\Semestre II\Git\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.pdb
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.exe.config
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.exe
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.pdb
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.csprojAssemblyReference.cache
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.Form1.resources
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.Properties.Resources.resources
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.csproj.GenerateResource.cache
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.csproj.CoreCompileInputs.cache
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.exe
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.pdb
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.FParamConfig.resources

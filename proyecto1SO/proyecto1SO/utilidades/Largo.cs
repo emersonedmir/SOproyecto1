@@ -13,7 +13,7 @@ namespace proyecto1SO.utilidades
 
         public Largo()
         {
-            Fijo = false;
+            Fijo = true;
             Variable = false;
         }
 
@@ -26,6 +26,8 @@ namespace proyecto1SO.utilidades
             set
             {
                 Fijo = value;
+                if (value)
+                    Variable = false;
             }
         }
 
@@ -38,6 +40,8 @@ namespace proyecto1SO.utilidades
             set
             {
                 Variable = value;
+                if (value)
+                    Fijo = false;
             }
         }
     }

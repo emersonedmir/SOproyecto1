@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace proyecto1SO.utilidades
 {
-    public class config
+    public class Config
     {
         public Sincronizacion sincronizacion;
         public Direccionamiento direccionamiento;
         public Formato formato;
         public DisciplinaColas colas;
 
-        public config()
+        public Config()
         {
             sincronizacion = new Sincronizacion();
             direccionamiento = new Direccionamiento();

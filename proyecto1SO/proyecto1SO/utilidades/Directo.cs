@@ -8,12 +8,12 @@ namespace proyecto1SO.utilidades
 {
     public class Directo
     {
-        public bool Send;
-        public Receive receive;
+        //public bool Send;
+        public Receive receive;        
 
         public Directo()
         {
-            Send = false;
+            //Send = false;
             receive = new Receive();
         }
 
