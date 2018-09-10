@@ -13,7 +13,7 @@ namespace proyecto1SO.utilidades
 
         public Send()
         {
-            Blocking = false;
+            Blocking = true;
             Nonblocking = false;
         }
 
@@ -26,6 +26,8 @@ namespace proyecto1SO.utilidades
             set
             {
                 Blocking = value;
+                if (value)
+                { Nonblocking = false; }
             }
         }
 
@@ -38,7 +40,9 @@ namespace proyecto1SO.utilidades
             set
             {
                 Nonblocking = value;
+                if (value)
+                { Blocking = false; }
             }
-        }
+        }    
     }
 }
