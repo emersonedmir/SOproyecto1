@@ -31,7 +31,7 @@ namespace WindowsFormsApplication1
             {
                 listanum.Add(nm);
             }
-            // Create the threads that will use the protected resource.
+            
             for (int i = 0; i < numThreads; i++)
             {
                 Thread newThread = new Thread(new ThreadStart(ThreadProc));
