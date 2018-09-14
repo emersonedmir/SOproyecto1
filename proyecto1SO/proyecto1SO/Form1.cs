@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using proyecto1SO.utilidades;
@@ -13,30 +14,32 @@ namespace proyecto1SO
 {
     public partial class Form1 : Form
     {
-        public Config configuracion;
+        public Config configuracion;        
+        private List<Thread> hilos;
         public List<Log> log;
         
 
         public Form1()
         {
-            log = new List<Log>();            
+            hilos = new List<Thread>();
+            log = new List<Log>();
             InitializeComponent();            
         }
         private bool modificar_config(Config pConfig)
-        {
+        {            
             FParamConfig fConfig = new FParamConfig(pConfig);
             fConfig.ShowDialog();
             bool actualizado = fConfig.actualizado;
             if (actualizado)
-                configuracion = fConfig.config;
+                configuracion = fConfig.config;                        
             fConfig = null;
             return actualizado;
-        }
+        }        
 
         private void Form1_Load(object sender, EventArgs e)
         {
             configuracion = new Config();
-            modificar_config(configuracion);
+            btConfig_Click(btConfig, new EventArgs());
             //configuraccion.sincronizacion.send.blocking = true;
             //configuraccion.sincronizacion.send.nonblocking = true;
             //configuraccion.sincronizacion.receive.blocking = true;
@@ -61,7 +64,47 @@ namespace proyecto1SO
 
         private void btConfig_Click(object sender, EventArgs e)
         {
-            modificar_config(configuracion);
+            bool actualizado = modificar_config(configuracion);
+            if (actualizado)
+            {
+                inicializar_Sistema();
+                preparar_Sistema();
+                iniciar_Hilos();
+            }
+        }
+        
+        private void inicializar_Sistema()
+        {
+            listPids.Items.Clear();
+            for (int i = 0; i < (hilos.Count - 1); i++)
+                hilos[i].Abort();
+            hilos.Clear();
+        }
+
+        private void preparar_Sistema()
+        {
+            for (int i = 0; i < configuracion.numHilos; i++)
+            {
+                hilos.Add(crear_Hilo(i));
+                listPids.Items.Add(hilos[i].ManagedThreadId);
+            }
+        }
+        private Thread crear_Hilo(int i)
+        {
+            Thread newThread = new Thread(new ThreadStart(funcion_Hilo));
+            newThread.Name = String.Format("Thread{0}", i + 1);
+            return newThread;
+        }
+        private void iniciar_Hilos()
+        {
+            for (int i = 0; i < (hilos.Count - 1); i++)
+                hilos[i].Start();
+        }
+
+        private void funcion_Hilo()  //solicitar y ejecutar instruccion
+        {
+            //solicitar elemento del recurso compartido (cola de intrucciones send y recive)
+            //ejecutar
         }
     }
 }

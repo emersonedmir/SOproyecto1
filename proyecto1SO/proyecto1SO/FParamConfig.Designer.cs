@@ -52,12 +52,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbSincr = new System.Windows.Forms.Label();
             this.btAplicar = new System.Windows.Forms.Button();
+            this.lbNHilos = new System.Windows.Forms.Label();
+            this.NHilos = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.pnColas.SuspendLayout();
             this.pnFormt.SuspendLayout();
             this.pnDirec.SuspendLayout();
             this.rgDirec.SuspendLayout();
             this.pnSincr.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NHilos)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -76,6 +79,8 @@
             // pnColas
             // 
             this.pnColas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnColas.Controls.Add(this.NHilos);
+            this.pnColas.Controls.Add(this.lbNHilos);
             this.pnColas.Controls.Add(this.cbColas);
             this.pnColas.Controls.Add(this.lbColas);
             this.pnColas.Location = new System.Drawing.Point(239, 142);
@@ -93,7 +98,7 @@
             this.cbColas.Location = new System.Drawing.Point(21, 29);
             this.cbColas.Name = "cbColas";
             this.cbColas.Size = new System.Drawing.Size(173, 21);
-            this.cbColas.TabIndex = 4;
+            this.cbColas.TabIndex = 8;
             // 
             // lbColas
             // 
@@ -128,7 +133,7 @@
             this.cbFomtL.Location = new System.Drawing.Point(74, 68);
             this.cbFomtL.Name = "cbFomtL";
             this.cbFomtL.Size = new System.Drawing.Size(121, 21);
-            this.cbFomtL.TabIndex = 5;
+            this.cbFomtL.TabIndex = 7;
             // 
             // cbFomtC
             // 
@@ -141,7 +146,7 @@
             this.cbFomtC.Location = new System.Drawing.Point(74, 34);
             this.cbFomtC.Name = "cbFomtC";
             this.cbFomtC.Size = new System.Drawing.Size(121, 21);
-            this.cbFomtC.TabIndex = 4;
+            this.cbFomtC.TabIndex = 6;
             // 
             // label5
             // 
@@ -190,7 +195,7 @@
             this.cbDirec.Location = new System.Drawing.Point(74, 82);
             this.cbDirec.Name = "cbDirec";
             this.cbDirec.Size = new System.Drawing.Size(121, 21);
-            this.cbDirec.TabIndex = 4;
+            this.cbDirec.TabIndex = 5;
             // 
             // lbDire2
             // 
@@ -219,7 +224,7 @@
             this.rbDirDi.Location = new System.Drawing.Point(3, 16);
             this.rbDirDi.Name = "rbDirDi";
             this.rbDirDi.Size = new System.Drawing.Size(59, 19);
-            this.rbDirDi.TabIndex = 1;
+            this.rbDirDi.TabIndex = 3;
             this.rbDirDi.TabStop = true;
             this.rbDirDi.Text = "Directo";
             this.rbDirDi.UseVisualStyleBackColor = true;
@@ -232,7 +237,7 @@
             this.rbDirIn.Location = new System.Drawing.Point(123, 16);
             this.rbDirIn.Name = "rbDirIn";
             this.rbDirIn.Size = new System.Drawing.Size(66, 19);
-            this.rbDirIn.TabIndex = 0;
+            this.rbDirIn.TabIndex = 4;
             this.rbDirIn.TabStop = true;
             this.rbDirIn.Text = "Indirecto";
             this.rbDirIn.UseVisualStyleBackColor = true;
@@ -272,7 +277,7 @@
             this.cbSincR.Location = new System.Drawing.Point(74, 68);
             this.cbSincR.Name = "cbSincR";
             this.cbSincR.Size = new System.Drawing.Size(121, 21);
-            this.cbSincR.TabIndex = 4;
+            this.cbSincR.TabIndex = 2;
             // 
             // cbSincS
             // 
@@ -284,7 +289,7 @@
             this.cbSincS.Location = new System.Drawing.Point(74, 34);
             this.cbSincS.Name = "cbSincS";
             this.cbSincS.Size = new System.Drawing.Size(121, 21);
-            this.cbSincS.TabIndex = 3;
+            this.cbSincS.TabIndex = 1;
             // 
             // label2
             // 
@@ -320,10 +325,31 @@
             this.btAplicar.Location = new System.Drawing.Point(0, 291);
             this.btAplicar.Name = "btAplicar";
             this.btAplicar.Size = new System.Drawing.Size(474, 28);
-            this.btAplicar.TabIndex = 0;
+            this.btAplicar.TabIndex = 10;
             this.btAplicar.Text = "Aplicar";
             this.btAplicar.UseVisualStyleBackColor = true;
             this.btAplicar.Click += new System.EventHandler(this.btAplicar_Click);
+            // 
+            // lbNHilos
+            // 
+            this.lbNHilos.AutoSize = true;
+            this.lbNHilos.Location = new System.Drawing.Point(18, 82);
+            this.lbNHilos.Name = "lbNHilos";
+            this.lbNHilos.Size = new System.Drawing.Size(58, 13);
+            this.lbNHilos.TabIndex = 5;
+            this.lbNHilos.Text = "Num. Hilos";
+            // 
+            // NHilos
+            // 
+            this.NHilos.Location = new System.Drawing.Point(82, 82);
+            this.NHilos.Name = "NHilos";
+            this.NHilos.Size = new System.Drawing.Size(36, 20);
+            this.NHilos.TabIndex = 9;
+            this.NHilos.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             // 
             // FParamConfig
             // 
@@ -350,6 +376,7 @@
             this.rgDirec.PerformLayout();
             this.pnSincr.ResumeLayout(false);
             this.pnSincr.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NHilos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -380,5 +407,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbSincr;
+        private System.Windows.Forms.Label lbNHilos;
+        private System.Windows.Forms.NumericUpDown NHilos;
     }
 }

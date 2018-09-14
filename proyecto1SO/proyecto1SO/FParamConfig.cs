@@ -63,6 +63,8 @@ namespace proyecto1SO
 
             /* formato */
             cbFomtC.SelectedIndex = cbFomtC.Items.IndexOf(config.formato.contenido);
+            if (cbFomtC.SelectedIndex == -1)
+                cbFomtC.SelectedIndex = 0;
             if (config.formato.largo.fijo)
                 cbFomtL.SelectedIndex = 0;
             else
@@ -73,6 +75,7 @@ namespace proyecto1SO
                 cbColas.SelectedIndex = 0;
             else
                 cbColas.SelectedIndex = 1;
+            NHilos.Value = config.numHilos;
         }
         private void rbDirDi_Click(object sender, EventArgs e)
         {            
@@ -136,7 +139,8 @@ namespace proyecto1SO
             switch (cbColas.SelectedIndex){
                 case 0: config.colas.FIFO = true; break;
                 case 1: config.colas.Prioridad = true; break;
-            }            
+            }
+            config.numHilos = (int)NHilos.Value;
         }
         private void btAplicar_Click(object sender, EventArgs e)
         {
