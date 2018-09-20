@@ -10,9 +10,11 @@ namespace proyecto1SO.utilidades
     {
         private bool Fijo;
         private bool Variable;
+        private int TamMax;
 
         public Largo()
         {
+            TamMax = 10;
             Fijo = true;
             Variable = false;
         }
@@ -44,5 +46,7 @@ namespace proyecto1SO.utilidades
                     Fijo = false;
             }
         }
+
+        public int tamMax { get => TamMax; set => TamMax = value; }
     }
 }

@@ -12,7 +12,7 @@ namespace proyecto1SO.utilidades
         public Direccionamiento direccionamiento;
         public Formato formato;
         public DisciplinaColas colas;
-        public int numHilos = 0;
+        public int numHilos = 1;
 
         public Config()
         {

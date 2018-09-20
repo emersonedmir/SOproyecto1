@@ -17,12 +17,15 @@ namespace proyecto1SO
         public Config configuracion;        
         private List<Thread> hilos;
         public List<Log> log;
-        
+        private List<Operacion> operaciones;
+        private static Mutex mutexOper = new Mutex();
+
 
         public Form1()
         {
             hilos = new List<Thread>();
             log = new List<Log>();
+            operaciones = new List<Operacion>();
             InitializeComponent();            
         }
         private bool modificar_config(Config pConfig)
@@ -72,22 +75,28 @@ namespace proyecto1SO
                 iniciar_Hilos();
             }
         }
-        
-        private void inicializar_Sistema()
+
+        private void inicializar_Sistema() // Regresa el sistema al estado inicial
         {
-            listPids.Items.Clear();
+            listPids.Items.Clear();            
             for (int i = 0; i < (hilos.Count - 1); i++)
                 hilos[i].Abort();
             hilos.Clear();
+            operaciones.Clear();
         }
 
-        private void preparar_Sistema()
+        private void preparar_Sistema() // Aplica configuraciones visuales de los parametros
         {
             for (int i = 0; i < configuracion.numHilos; i++)
             {
                 hilos.Add(crear_Hilo(i));
-                listPids.Items.Add(hilos[i].ManagedThreadId);
+                listPids.Items.Add(hilos[i].ManagedThreadId.ToString());
             }
+            if (configuracion.formato.largo.fijo)
+                tbMens.MaxLength = configuracion.formato.largo.tamMax;
+            else
+                tbMens.MaxLength = 0;
+            pnPrio.Visible = configuracion.colas.Prioridad;
         }
         private Thread crear_Hilo(int i)
         {
@@ -103,8 +112,82 @@ namespace proyecto1SO
 
         private void funcion_Hilo()  //solicitar y ejecutar instruccion
         {
-            //solicitar elemento del recurso compartido (cola de intrucciones send y recive)
-            //ejecutar
+            Operacion operacionActual;
+            while (true)
+            {
+                operacionActual = null;
+                mutexOper.WaitOne();
+                if (operaciones.Count > 0)
+                {
+                    operacionActual = operaciones[0];
+                    operaciones.Remove(operacionActual);
+                }                    
+                mutexOper.ReleaseMutex();
+                if (operacionActual != null)
+                {
+                    //realizar accion 
+                    switch (operacionActual.comando)
+                    {
+                        case Comando.Send:
+                            //Rrealizar send
+                            break;
+                        case Comando.Receive:
+                            //Rrealizar Receive
+                            break;
+                    }
+                }
+            }
+            
+        }
+
+        private Operacion Crear_Operacion() {
+            float tamanio = float.Parse(tbTamanio.Text, System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+            Mensaje mensaje = new Mensaje(tamanio, configuracion.formato.contenido, tbMens.Text);
+            Comando comando = Comando.None;
+            if (rbSend.Checked)
+                comando = Comando.Send;
+            if (rbReceive.Checked)
+                comando = Comando.Receive;
+            Operacion operacion = new Operacion(comando, tbEmis.Text, tbRece.Text, mensaje);
+            return operacion;
+        }
+        private void add_Operacion()
+        {
+            Operacion operacion = Crear_Operacion();
+            if (configuracion.colas.FIFO)
+                operaciones.Add(operacion);
+            else
+            {
+                int i = 0;
+                while (i < operaciones.Count - 1) {
+                    if (operaciones[i].prioridad < (int)nuPrio.Value)
+                        break;
+                    else
+                        i++;
+                }
+                operaciones.Insert(i, operacion);
+            }
+        }
+
+
+        private void btProcesar_Click(object sender, EventArgs e)
+        {
+            mutexOper.WaitOne();
+            add_Operacion();
+            mutexOper.ReleaseMutex();
+        }
+
+        private void tbMens_TextChanged(object sender, EventArgs e)
+        {
+            tbTamanio.Text = tbMens.TextLength.ToString();
+        }
+
+        private void tbRece_Validating(object sender, CancelEventArgs e)
+        {            
+            if (listPids.Items.IndexOf(((TextBox)sender).Text) == -1)
+            {
+                ((TextBox)sender).Text = "";
+            }
         }
     }
 }

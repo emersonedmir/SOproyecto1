@@ -65,10 +65,16 @@ namespace proyecto1SO
             cbFomtC.SelectedIndex = cbFomtC.Items.IndexOf(config.formato.contenido);
             if (cbFomtC.SelectedIndex == -1)
                 cbFomtC.SelectedIndex = 0;
-            if (config.formato.largo.fijo)
+            if (config.formato.largo.fijo){
                 cbFomtL.SelectedIndex = 0;
-            else
+                pnTamFijo.Visible = true;
+                nuTamMax.Value = config.formato.largo.tamMax;
+            }             
+            else{
                 cbFomtL.SelectedIndex = 1;
+                pnTamFijo.Visible = false;
+                nuTamMax.Value = 0;
+            }               
 
             /* colas */
             if (config.colas.FIFO)
@@ -132,6 +138,7 @@ namespace proyecto1SO
                 case 0: config.formato.largo.fijo = true; break;
                 case 1: config.formato.largo.variable = true; break;
             }
+            config.formato.largo.tamMax = (int)nuTamMax.Value;
 
             /* colas */
             config.colas.FIFO = false;
@@ -147,6 +154,11 @@ namespace proyecto1SO
             actualizado = true;
             actualizar_config();
             this.Close();
+        }
+
+        private void cbFomtL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pnTamFijo.Visible = (cbFomtL.SelectedIndex == 0);
         }
     }
 }
