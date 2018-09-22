@@ -63,16 +63,25 @@ namespace proyecto1SO
 
             /* formato */
             cbFomtC.SelectedIndex = cbFomtC.Items.IndexOf(config.formato.contenido);
-            if (config.formato.largo.fijo)
+            if (cbFomtC.SelectedIndex == -1)
+                cbFomtC.SelectedIndex = 0;
+            if (config.formato.largo.fijo){
                 cbFomtL.SelectedIndex = 0;
-            else
+                pnTamFijo.Visible = true;
+                nuTamMax.Value = config.formato.largo.tamMax;
+            }             
+            else{
                 cbFomtL.SelectedIndex = 1;
+                pnTamFijo.Visible = false;
+                nuTamMax.Value = 0;
+            }               
 
             /* colas */
             if (config.colas.FIFO)
                 cbColas.SelectedIndex = 0;
             else
                 cbColas.SelectedIndex = 1;
+            NHilos.Value = config.numHilos;
         }
         private void rbDirDi_Click(object sender, EventArgs e)
         {            
@@ -129,6 +138,7 @@ namespace proyecto1SO
                 case 0: config.formato.largo.fijo = true; break;
                 case 1: config.formato.largo.variable = true; break;
             }
+            config.formato.largo.tamMax = (int)nuTamMax.Value;
 
             /* colas */
             config.colas.FIFO = false;
@@ -136,13 +146,19 @@ namespace proyecto1SO
             switch (cbColas.SelectedIndex){
                 case 0: config.colas.FIFO = true; break;
                 case 1: config.colas.Prioridad = true; break;
-            }            
+            }
+            config.numHilos = (int)NHilos.Value;
         }
         private void btAplicar_Click(object sender, EventArgs e)
         {
             actualizado = true;
             actualizar_config();
             this.Close();
+        }
+
+        private void cbFomtL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pnTamFijo.Visible = (cbFomtL.SelectedIndex == 0);
         }
     }
 }
