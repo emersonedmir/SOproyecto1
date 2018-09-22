@@ -12,7 +12,7 @@ using proyecto1SO.utilidades;
 
 namespace proyecto1SO
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         public Config configuracion;        
         private List<Thread> hilos;
@@ -22,7 +22,7 @@ namespace proyecto1SO
         private static Mutex mutexOper = new Mutex();
 
 
-        public Form1()
+        public MainForm()
         {
             hilos = new List<Thread>();
             log = new List<Log>();
@@ -83,7 +83,7 @@ namespace proyecto1SO
         }
         private Thread crear_Hilo(int i)
         {
-            Thread newThread = new Thread(new ThreadStart(funcion_Hilo));
+            Thread newThread = new Thread(new ParameterizedThreadStart(funcion_Hilo));
             newThread.Name = String.Format("Thread{0}", i + 1);
             return newThread;
         }
@@ -97,15 +97,26 @@ namespace proyecto1SO
         }
         private void iniciar_Hilos()
         {
-            for (int i = 0; i < (hilos.Count - 1); i++)
-                hilos[i].Start();
+            for (int i = 0; i < (hilos.Count); i++) {               
+                string[] parametros = { i.ToString() , hilos[i].Name, hilos[i].ManagedThreadId.ToString() };
+                hilos[i].Start(parametros);
+            }                            
         }
 
-        private void funcion_Hilo()  //solicitar y ejecutar instruccion
+        private void funcion_Hilo(object pParametros)  //solicitar y ejecutar instruccion
         {
+            string[] parametros = (string[])pParametros;
+            int idx_hilo = Convert.ToInt32(parametros[0]);
+            string t_id = parametros[1];
+            string t_name = parametros[2];
+            MessageBox.Show(
+                "Index array: " + idx_hilo.ToString() + '\n' +
+                "ThreadId: " + t_name + '\n' +
+                "ThreadName: " + t_id + '\n' +
+                "Hilo en curso");
             Operacion operacionActual;
             while (true)
-            {
+            {                
                 operacionActual = null;
                 mutexOper.WaitOne();
                 if (operaciones.Count > 0)
@@ -200,6 +211,16 @@ namespace proyecto1SO
             {
                 ((TextBox)sender).Text = "";
             }
+        }
+
+        private void btSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            inicializar_Sistema();
         }
     }
 }

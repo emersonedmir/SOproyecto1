@@ -22,7 +22,6 @@ D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\bin\Debug\
 D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.exe
 D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.pdb
 D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.csprojAssemblyReference.cache
-D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.Form1.resources
 D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.Properties.Resources.resources
 D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.csproj.GenerateResource.cache
 D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.csproj.CoreCompileInputs.cache
@@ -30,3 +29,4 @@ D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\
 D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.pdb
 D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.FParamConfig.resources
 C:\Users\Emerson\Documents\gitKraken\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.FParamConfig.resources
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.MainForm.resources
