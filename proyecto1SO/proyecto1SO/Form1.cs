@@ -152,6 +152,9 @@ namespace proyecto1SO
         private Operacion Crear_Operacion() {
             float tamanio = float.Parse(tbTamanio.Text, System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
             Mensaje mensaje = new Mensaje(tamanio, configuracion.formato.contenido, tbMens.Text);
+            mensaje.idOrigen = int.Parse(tbEmis.Text);
+            mensaje.idDestino = int.Parse(tbRece.Text);
+            mensaje.prioridad = 0;
             Comando comando = Comando.None;
             if (rbSend.Checked)
                 comando = Comando.Send;
