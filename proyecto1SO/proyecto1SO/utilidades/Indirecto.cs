@@ -10,11 +10,24 @@ namespace proyecto1SO.utilidades
     {
         private bool Estatico;
         private bool Dinamico;
+        private bool Propiedad;
 
         public Indirecto()
         {
             Estatico = false;
             Dinamico = false;
+        }
+
+        public bool propiedad
+        {
+            get
+            {
+                return Propiedad;
+            }
+            set
+            {
+                Propiedad = value;
+            }
         }
 
         public bool estatico

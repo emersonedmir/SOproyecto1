@@ -12,6 +12,7 @@ namespace proyecto1SO.utilidades
         public Indirecto indirecto;
         public byte tipo;
 
+
         public Direccionamiento()
         {
             directo = new Directo();

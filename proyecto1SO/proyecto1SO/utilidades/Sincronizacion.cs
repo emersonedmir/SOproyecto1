@@ -14,9 +14,7 @@ namespace proyecto1SO.utilidades
         public Sincronizacion()
         {
             send = new Send();
-            send.blocking = true;
             receive = new Receive();
-            receive.blocking = true;
         }        
     }
 }

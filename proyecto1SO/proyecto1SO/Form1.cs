@@ -16,6 +16,7 @@ namespace proyecto1SO
     {
         public Config configuracion;        
         private List<Thread> hilos;
+        private List<controlBlock> lstControlBlock;
         public List<Log> log;
         private List<Operacion> operaciones;
         private static Mutex mutexOper = new Mutex();
@@ -26,6 +27,7 @@ namespace proyecto1SO
             hilos = new List<Thread>();
             log = new List<Log>();
             operaciones = new List<Operacion>();
+            lstControlBlock = new List<controlBlock>();
             InitializeComponent();            
         }
         private bool modificar_config(Config pConfig)
@@ -43,26 +45,6 @@ namespace proyecto1SO
         {
             configuracion = new Config();
             btConfig_Click(btConfig, new EventArgs());
-            //configuraccion.sincronizacion.send.blocking = true;
-            //configuraccion.sincronizacion.send.nonblocking = true;
-            //configuraccion.sincronizacion.receive.blocking = true;
-            //configuraccion.sincronizacion.receive.nonblocking = true;
-            //configuraccion.sincronizacion.receive.pruebaLlegada = true;
-
-            //configuraccion.direccionamiento.directo.Send = true;
-            //configuraccion.direccionamiento.directo.receive.explicito = true;
-            //configuraccion.direccionamiento.directo.receive.implicito = true;
-            //configuraccion.direccionamiento.indirecto.estatico = true;
-            //configuraccion.direccionamiento.indirecto.dinamico = true;
-
-            //configuraccion.formato.contenido = true;
-            //configuraccion.formato.largo.fijo = true;
-            //configuraccion.formato.largo.variable = true;
-
-            //configuraccion.colas.FIFO = true;
-            //configuraccion.colas.Prioridad = true;
-
-
         }
 
         private void btConfig_Click(object sender, EventArgs e)
@@ -90,6 +72,7 @@ namespace proyecto1SO
             for (int i = 0; i < configuracion.numHilos; i++)
             {
                 hilos.Add(crear_Hilo(i));
+                lstControlBlock.Add(crear_controlBlock(i));
                 listPids.Items.Add(hilos[i].ManagedThreadId.ToString());
             }
             if (configuracion.formato.largo.fijo)
@@ -103,6 +86,14 @@ namespace proyecto1SO
             Thread newThread = new Thread(new ThreadStart(funcion_Hilo));
             newThread.Name = String.Format("Thread{0}", i + 1);
             return newThread;
+        }
+
+        private controlBlock crear_controlBlock(int i)
+        {
+            controlBlock newControlBlock = new controlBlock();
+            newControlBlock.puerto = i + 1;
+            return newControlBlock;
+
         }
         private void iniciar_Hilos()
         {
@@ -129,7 +120,25 @@ namespace proyecto1SO
                     switch (operacionActual.comando)
                     {
                         case Comando.Send:
-                            //Rrealizar send
+                            //verificar si hay que bloquearlo
+                            if(configuracion.sincronizacion.send.blocking)
+                            {
+                                //verificar si es un send directo
+                                if(configuracion.direccionamiento.directo.Send)
+                                {
+
+                                }
+                                else
+                                {
+                                    //es un send indirecto
+                                }
+
+                            }
+                            //No se debe bloquear
+                            else
+                            {
+
+                            }
                             break;
                         case Comando.Receive:
                             //Rrealizar Receive

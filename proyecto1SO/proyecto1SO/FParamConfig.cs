@@ -116,6 +116,7 @@ namespace proyecto1SO
             /* direccionamiento */
             if (rbDirDi.Checked) {
                 config.direccionamiento.tipo = 0;
+                config.direccionamiento.directo.Send=true;
                 switch (cbDirec.SelectedIndex){
                     case 0: config.direccionamiento.directo.receive.explicito = true; break;
                     case 1: config.direccionamiento.directo.receive.implicito = true; break;

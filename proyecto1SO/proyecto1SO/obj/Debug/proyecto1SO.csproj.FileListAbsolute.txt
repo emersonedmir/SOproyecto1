@@ -29,3 +29,4 @@ D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\
 D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.exe
 D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.pdb
 D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.FParamConfig.resources
+C:\Users\Emerson\Documents\gitKraken\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.FParamConfig.resources

@@ -47,6 +47,18 @@ namespace proyecto1SO.utilidades
             }
         }
 
-        public int tamMax { get => TamMax; set => TamMax = value; }
+        public int tamMax
+        {
+            get
+            {
+                return TamMax;
+
+            }
+            set
+            {
+                TamMax = value;
+
+            }
+        }
     }
 }

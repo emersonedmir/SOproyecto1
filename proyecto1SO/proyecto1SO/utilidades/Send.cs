@@ -13,7 +13,7 @@ namespace proyecto1SO.utilidades
 
         public Send()
         {
-            Blocking = true;
+            Blocking = false;
             Nonblocking = false;
         }
 
