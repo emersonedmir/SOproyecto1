@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -58,69 +59,109 @@ namespace proyecto1SO.utilidades
             while(true)
             {
                 Thread.Sleep(2000);
-                mutexOper.WaitOne();
-                //seccion critica
-                // verificar si hay mensajes y no esta bloqueado
-                if (lstMensajes.Count>0 && estado == estadoProceso.noBloqueado)
-                {//verificar disciplina de la cola
-                    if(configuracion.colas.FIFO)
-                    {//disciplina fifo
-                        if(lstMensajes[0].TipoMsg == tipoMensaje.send)
-                        {//es un send
-                            if(configuracion.direccionamiento.Directo)
-                            {//direcionamiento directo
-                                if(configuracion.sincronizacion.send.blocking)
-                                {// blocking
-                                    bloquear();
-                                    procesos.lstProcesos[lstMensajes[0].idDestino].lstMensajesRecibidos.Add(lstMensajes[0]);
-                                    lstMensajes.RemoveAt(0);
-                                    using (System.IO.StreamWriter escritor = new System.IO.StreamWriter("Prueba.txt"))//para ver si lo hizo, se puede quitar
-                                    {
-                                        escritor.WriteLine("origen: "+ lstMensajes[0].idOrigen +" destino "+ lstMensajes[0].idDestino +" contenido: " + lstMensajes[0].Contenido);
+                if(this.estado== estadoProceso.noBloqueado)
+                {
+                    if (configuracion.direccionamiento.Directo)
+                    {//direccionamiento directo
+                       
+                        if (configuracion.colas.FIFO)
+                        {//direccionamiento directo, disciplina fifo
+                            if(lstMensajes.Count>0)
+                            {
+                                if(lstMensajes[0].TipoMsg== tipoMensaje.send)
+                                {//direccionamiento directo, disciplina fifo, send
+                                    if (configuracion.sincronizacion.send.blocking)
+                                    {// blocking
+                                        bloquear();
+                                        mutexOper.WaitOne();
+                                        procesos.lstProcesos[lstMensajes[0].idDestino].lstMensajesRecibidos.Add(lstMensajes[0]);
+
+                                        StreamWriter WriteReportFile = File.AppendText("Prueba.txt");
+                                        WriteReportFile.WriteLine("send directo blocking origen: " + lstMensajes[0].idOrigen + " destino " + lstMensajes[0].idDestino + " contenido: " + lstMensajes[0].Contenido);
+                                        WriteReportFile.Close();
+
+                                        
+                                        lstMensajes.RemoveAt(0);
+                                        desbloquear();
+                                        mutexOper.ReleaseMutex();
                                     }
-                                    desbloquear();
+                                    else
+                                    {//no blocking
+                                        mutexOper.WaitOne();
+                                        procesos.lstProcesos[lstMensajes[0].idDestino].lstMensajesRecibidos.Add(lstMensajes[0]);
+
+                                        StreamWriter WriteReportFile = File.AppendText("Prueba.txt");
+                                        WriteReportFile.WriteLine("send directo no bloquing origen: " + lstMensajes[0].idOrigen + " destino " + lstMensajes[0].idDestino + " contenido: " + lstMensajes[0].Contenido);
+                                        WriteReportFile.Close();
+
+                                        
+                                        lstMensajes.RemoveAt(0);
+                                        mutexOper.ReleaseMutex();
+                                    }
                                 }
                                 else
-                                {//no blocking
-                                    procesos.lstProcesos[lstMensajes[0].idDestino].lstMensajesRecibidos.Add(lstMensajes[0]);
-                                    using (System.IO.StreamWriter escritor = new System.IO.StreamWriter("Prueba.txt"))
-                                    {
-                                        escritor.WriteLine("origen: " + lstMensajes[0].idOrigen + " destino " + lstMensajes[0].idDestino + " contenido: " + lstMensajes[0].Contenido);
-                                    }
+                                {//direccionamiento directo, disciplina fifo, receive
+                                        
                                 }
-                            }
-                            else
-                            {//send direccionamiento indirecto
-                                if (configuracion.sincronizacion.send.blocking)
-                                {//bloking
-                                    bloquear();
-                                    //buscar en buzon
-                                    if(procesos.MailBox[this.idProceso].lstMensajes.Count>0)
-                                    {//han llegado mensajes
-                                        //procesos.lstProcesos[procesos.MailBox[this.idProceso].lstMensajes[0].idDestino].lstMensajes
-                                    }
-                                    desbloquear();
-
-                                }
-                                else
-                                {//no bloking
-
-                                }
-
                             }
                         }
                         else
-                        {//es un receive
+                        {//direccionamiento directo, disciplina prioridad
 
                         }
-
                     }
                     else
-                    {//disciplina por prioridad
+                    {//direccionamiento indirecto
+                       
+                        if (configuracion.colas.FIFO)
+                        {//direccionamiento indirecto, disciplina fifo                       
 
+                            mutexOper.WaitOne();
+                            if(procesos.MailBox[this.idProceso].lstMensajes.Count>0)
+                            {
+                                if(procesos.MailBox[this.idProceso].lstMensajes[0].TipoMsg== tipoMensaje.send)
+                                {//direccionamiento indirecto, disciplina fifo, tipo send
+                            mutexOper.ReleaseMutex();
+                                    if (configuracion.sincronizacion.send.blocking)
+                                    {//direcionamiento indirecto, disciplina fifo, blocking
+                                        bloquear();
+                                        mutexOper.WaitOne();
+                                        Mensaje msg = procesos.MailBox[this.idProceso].lstMensajes[0];
+                                        procesos.MailBox[this.idProceso].lstMensajes.RemoveAt(0);
+                                        procesos.lstProcesos[msg.idDestino].lstMensajesRecibidos.Add(msg);
+                                        desbloquear();
+
+                                        StreamWriter WriteReportFile = File.AppendText("Prueba.txt");
+                                        WriteReportFile.WriteLine("send indirecto blocking origen: " + msg.idOrigen + " destino " + msg.idDestino + " contenido: " + msg.Contenido);
+                                        WriteReportFile.Close();
+
+                                        mutexOper.ReleaseMutex();
+                                    }
+                                    else
+                                    {
+                                        mutexOper.WaitOne();
+                                        Mensaje msg = procesos.MailBox[this.idProceso].lstMensajes[0];
+                                        procesos.MailBox[this.idProceso].lstMensajes.RemoveAt(0);
+                                        procesos.lstProcesos[msg.idDestino].lstMensajesRecibidos.Add(msg);
+                                        StreamWriter WriteReportFile = File.AppendText("Prueba.txt");
+                                        WriteReportFile.WriteLine("send indirecto no blocking origen: " + msg.idOrigen + " destino " + msg.idDestino + " contenido: " + msg.Contenido);
+                                        WriteReportFile.Close();
+                                        mutexOper.ReleaseMutex();
+                                    }
+                                }
+                                else
+                                {//direccionamiento indirecto, disciplina fifo, tipo receive
+
+                                }
+                            } 
+                        }
+                        else
+                        {//direccionamiento indirecto, disciplina prioridad
+
+                        }
                     }
-                }
-                mutexOper.ReleaseMutex();
+                }              
+                
             }
         }
 

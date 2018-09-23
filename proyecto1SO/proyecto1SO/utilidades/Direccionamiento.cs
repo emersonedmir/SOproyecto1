@@ -12,7 +12,7 @@ namespace proyecto1SO.utilidades
         public Indirecto indirecto;
         public byte tipo;
         public bool Directo;
-
+        public bool Indirecto;
 
         public Direccionamiento()
         {
@@ -20,6 +20,7 @@ namespace proyecto1SO.utilidades
             directo = new Directo();
             indirecto = new Indirecto();
             tipo = 0;
+            Indirecto = false;
         }
     }
 }

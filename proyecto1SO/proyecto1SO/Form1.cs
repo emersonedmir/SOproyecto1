@@ -115,9 +115,16 @@ namespace proyecto1SO
             {
                 msg.Tamanio = float.Parse(tbTamanio.Text);
             }
-            
+            if(configuracion.direccionamiento.Directo)
+            {
+                procesos.lstProcesos[msg.idOrigen].lstMensajes.Add(msg);
+            }
+            else
+            {
+                procesos.MailBox[msg.idOrigen].lstMensajes.Add(msg);
+            }
 
-            procesos.lstProcesos[msg.idOrigen].lstMensajes.Add(msg);
+            
             mutexOper.ReleaseMutex();
         }
 
