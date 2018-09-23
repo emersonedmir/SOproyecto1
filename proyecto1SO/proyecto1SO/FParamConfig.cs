@@ -68,7 +68,7 @@ namespace proyecto1SO
             if (config.formato.largo.fijo){
                 cbFomtL.SelectedIndex = 0;
                 pnTamFijo.Visible = true;
-                nuTamMax.Value = config.formato.largo.tamMax;
+                config.formato.largo.tamMax= int.Parse(nuTamMax.Value.ToString());
             }             
             else{
                 cbFomtL.SelectedIndex = 1;
@@ -116,7 +116,7 @@ namespace proyecto1SO
             /* direccionamiento */
             if (rbDirDi.Checked) {
                 config.direccionamiento.tipo = 0;
-                config.direccionamiento.directo.Send=true;
+                config.direccionamiento.Directo=true;
                 switch (cbDirec.SelectedIndex){
                     case 0: config.direccionamiento.directo.receive.explicito = true; break;
                     case 1: config.direccionamiento.directo.receive.implicito = true; break;
@@ -160,6 +160,11 @@ namespace proyecto1SO
         private void cbFomtL_SelectedIndexChanged(object sender, EventArgs e)
         {
             pnTamFijo.Visible = (cbFomtL.SelectedIndex == 0);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

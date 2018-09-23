@@ -247,7 +247,7 @@
             this.tbRece.Name = "tbRece";
             this.tbRece.Size = new System.Drawing.Size(178, 26);
             this.tbRece.TabIndex = 5;
-            this.tbRece.Validating += new System.ComponentModel.CancelEventHandler(this.tbRece_Validating);
+            
             // 
             // label2
             // 
@@ -274,7 +274,7 @@
             this.tbEmis.Name = "tbEmis";
             this.tbEmis.Size = new System.Drawing.Size(178, 26);
             this.tbEmis.TabIndex = 5;
-            this.tbEmis.Validating += new System.ComponentModel.CancelEventHandler(this.tbRece_Validating);
+            
             // 
             // label1
             // 
