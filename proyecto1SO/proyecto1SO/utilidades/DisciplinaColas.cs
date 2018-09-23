@@ -10,11 +10,13 @@ namespace proyecto1SO.utilidades
     {
         public bool FIFO;
         public bool Prioridad;
+        public int TamColasMen;
 
         public DisciplinaColas()
         {
             FIFO = true;
             Prioridad = true;
+            TamColasMen = 10;
         }
     }
 }

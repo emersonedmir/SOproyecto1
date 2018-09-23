@@ -54,6 +54,7 @@
       <DependentUpon>FParamConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="utilidades\config.cs" />
+    <Compile Include="utilidades\ConfProceso.cs" />
     <Compile Include="utilidades\controlBlock.cs" />
     <Compile Include="utilidades\Direccionamiento.cs" />
     <Compile Include="utilidades\Directo.cs" />

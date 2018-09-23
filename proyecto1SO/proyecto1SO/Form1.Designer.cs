@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btConfig = new System.Windows.Forms.Button();
             this.listPids = new System.Windows.Forms.ListBox();
             this.lbPids = new System.Windows.Forms.Label();
@@ -53,6 +56,10 @@
             this.btProcesar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btSalir = new System.Windows.Forms.Button();
+            this.Grid = new System.Windows.Forms.DataGridView();
+            this.cNuProc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cPuertoE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cPuertoR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnMen.SuspendLayout();
@@ -61,6 +68,7 @@
             this.cnEmis.SuspendLayout();
             this.pnPrio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuPrio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.SuspendLayout();
             // 
             // btConfig
@@ -68,7 +76,7 @@
             this.btConfig.BackgroundImage = global::proyecto1SO.Properties.Resources.config2;
             this.btConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btConfig.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btConfig.Location = new System.Drawing.Point(439, 9);
+            this.btConfig.Location = new System.Drawing.Point(505, 9);
             this.btConfig.Name = "btConfig";
             this.btConfig.Size = new System.Drawing.Size(72, 34);
             this.btConfig.TabIndex = 0;
@@ -79,7 +87,7 @@
             // listPids
             // 
             this.listPids.FormattingEnabled = true;
-            this.listPids.Location = new System.Drawing.Point(358, 23);
+            this.listPids.Location = new System.Drawing.Point(442, 22);
             this.listPids.Name = "listPids";
             this.listPids.ScrollAlwaysVisible = true;
             this.listPids.Size = new System.Drawing.Size(120, 108);
@@ -88,7 +96,7 @@
             // lbPids
             // 
             this.lbPids.AutoSize = true;
-            this.lbPids.Location = new System.Drawing.Point(355, 6);
+            this.lbPids.Location = new System.Drawing.Point(511, 8);
             this.lbPids.Name = "lbPids";
             this.lbPids.Size = new System.Drawing.Size(51, 13);
             this.lbPids.TabIndex = 2;
@@ -97,15 +105,16 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.listPids);
+            this.panel3.Controls.Add(this.Grid);
             this.panel3.Controls.Add(this.btSalir);
             this.panel3.Controls.Add(this.panel1);
             this.panel3.Controls.Add(this.btProcesar);
-            this.panel3.Controls.Add(this.listPids);
             this.panel3.Controls.Add(this.lbPids);
             this.panel3.Location = new System.Drawing.Point(8, 48);
             this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(505, 261);
+            this.panel3.Size = new System.Drawing.Size(569, 261);
             this.panel3.TabIndex = 7;
             // 
             // panel1
@@ -325,7 +334,7 @@
             // btSalir
             // 
             this.btSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSalir.Location = new System.Drawing.Point(387, 210);
+            this.btSalir.Location = new System.Drawing.Point(471, 210);
             this.btSalir.Margin = new System.Windows.Forms.Padding(2);
             this.btSalir.Name = "btSalir";
             this.btSalir.Size = new System.Drawing.Size(91, 40);
@@ -334,11 +343,86 @@
             this.btSalir.UseVisualStyleBackColor = true;
             this.btSalir.Click += new System.EventHandler(this.btSalir_Click);
             // 
+            // Grid
+            // 
+            this.Grid.AllowUserToAddRows = false;
+            this.Grid.AllowUserToDeleteRows = false;
+            this.Grid.AllowUserToResizeColumns = false;
+            this.Grid.AllowUserToResizeRows = false;
+            this.Grid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = "0";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cNuProc,
+            this.cPuertoE,
+            this.cPuertoR});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = "0";
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Grid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Grid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Grid.Location = new System.Drawing.Point(355, 22);
+            this.Grid.MultiSelect = false;
+            this.Grid.Name = "Grid";
+            this.Grid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = "0";
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Gray;
+            this.Grid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.Grid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.Grid.ShowCellToolTips = false;
+            this.Grid.Size = new System.Drawing.Size(207, 124);
+            this.Grid.TabIndex = 15;
+            this.Grid.Visible = false;
+            // 
+            // cNuProc
+            // 
+            this.cNuProc.Frozen = true;
+            this.cNuProc.HeaderText = "Num. Proc";
+            this.cNuProc.Name = "cNuProc";
+            this.cNuProc.ReadOnly = true;
+            this.cNuProc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cNuProc.Width = 50;
+            // 
+            // cPuertoE
+            // 
+            this.cPuertoE.Frozen = true;
+            this.cPuertoE.HeaderText = "Puerto emisor";
+            this.cPuertoE.Name = "cPuertoE";
+            this.cPuertoE.ReadOnly = true;
+            this.cPuertoE.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cPuertoE.Width = 50;
+            // 
+            // cPuertoR
+            // 
+            this.cPuertoR.Frozen = true;
+            this.cPuertoR.HeaderText = "Puerto receptor";
+            this.cPuertoR.Name = "cPuertoR";
+            this.cPuertoR.ReadOnly = true;
+            this.cPuertoR.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cPuertoR.Width = 50;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 324);
+            this.ClientSize = new System.Drawing.Size(588, 324);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btConfig);
             this.Controls.Add(this.panel3);
@@ -362,6 +446,7 @@
             this.pnPrio.ResumeLayout(false);
             this.pnPrio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuPrio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -394,6 +479,10 @@
         private System.Windows.Forms.NumericUpDown nuPrio;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btSalir;
+        private System.Windows.Forms.DataGridView Grid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cNuProc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cPuertoE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cPuertoR;
     }
 }
 

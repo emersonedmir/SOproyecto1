@@ -65,16 +65,28 @@ namespace proyecto1SO
                 hilos[i].Abort();
             hilos.Clear();
             operaciones.Clear();
+            Grid.Rows.Clear();
+            Grid.Visible = false;            
+            listPids.Visible = false;
         }
 
         private void preparar_Sistema() // Aplica configuraciones visuales de los parametros
         {
-            for (int i = 0; i < configuracion.numHilos; i++)
+            Grid.RowCount = configuracion.confProceso.numProcesos;
+            for (int i = 0; i < configuracion.confProceso.numProcesos; i++)
             {
                 hilos.Add(crear_Hilo(i));
-                lstControlBlock.Add(crear_controlBlock(i));
-                listPids.Items.Add(hilos[i].ManagedThreadId.ToString());
-            }
+                lstControlBlock.Add(crear_controlBlock(i));                
+                if ((configuracion.direccionamiento.tipo == 1) && (configuracion.direccionamiento.indirecto.estatico)){
+                    Grid.Visible = true;
+                    Grid.Rows[i].Cells[1].Value = configuracion.confProceso.puertosEmisor[i];
+                    Grid.Rows[i].Cells[2].Value = configuracion.confProceso.puertosReceptor[i];
+                }
+                else {
+                    listPids.Visible = true;
+                    listPids.Items.Add(hilos[i].ManagedThreadId.ToString());
+                }                        
+            }            
             if (configuracion.formato.largo.fijo)
                 tbMens.MaxLength = configuracion.formato.largo.tamMax;
             else
