@@ -98,7 +98,7 @@ namespace proyecto1SO
         private void iniciar_Hilos()
         {
             for (int i = 0; i < (hilos.Count); i++) {               
-                string[] parametros = { i.ToString() , hilos[i].Name, hilos[i].ManagedThreadId.ToString() };
+                string[] parametros = { i.ToString(), hilos[i].ManagedThreadId.ToString(), hilos[i].Name };
                 hilos[i].Start(parametros);
             }                            
         }
@@ -107,12 +107,12 @@ namespace proyecto1SO
         {
             string[] parametros = (string[])pParametros;
             int idx_hilo = Convert.ToInt32(parametros[0]);
-            string t_id = parametros[1];
+            int t_id = Convert.ToInt32(parametros[1]);
             string t_name = parametros[2];
             MessageBox.Show(
                 "Index array: " + idx_hilo.ToString() + '\n' +
                 "ThreadId: " + t_name + '\n' +
-                "ThreadName: " + t_id + '\n' +
+                "ThreadName: " + t_id.ToString() + '\n' +
                 "Hilo en curso");
             Operacion operacionActual;
             while (true)
@@ -120,9 +120,34 @@ namespace proyecto1SO
                 operacionActual = null;
                 mutexOper.WaitOne();
                 if (operaciones.Count > 0)
-                {
-                    operacionActual = operaciones[0];
-                    operaciones.Remove(operacionActual);
+                {                    
+                    foreach (Operacion ope in operaciones)
+                    {
+                        if (ope.comando == Comando.Send)
+                        {
+                            if (configuracion.direccionamiento.tipo == 0)       // DIRECTO
+                            {
+                                if (ope.mensaje.idOrigen == t_id)
+                                {
+                                    operacionActual = ope;
+                                    operaciones.Remove(ope);
+                                    break;
+                                }
+                            }
+                        }
+                        else if (ope.comando == Comando.Receive)
+                        {
+                            if (configuracion.direccionamiento.tipo == 0)       // DIRECTO
+                            {
+                                if (ope.mensaje.idOrigen == t_id)
+                                {
+                                    operacionActual = ope;
+                                    operaciones.Remove(operacionActual);
+                                    break;
+                                }
+                            }
+                        }
+                    }                    
                 }                    
                 mutexOper.ReleaseMutex();
                 if (operacionActual != null)
