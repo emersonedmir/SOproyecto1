@@ -124,6 +124,7 @@ namespace proyecto1SO
             }
             else{
                 config.direccionamiento.tipo = 1;
+                config.direccionamiento.Indirecto = true;
                 switch (cbDirec.SelectedIndex){
                     case 0: config.direccionamiento.indirecto.estatico = true; break;
                     case 1: config.direccionamiento.indirecto.dinamico = true; break;

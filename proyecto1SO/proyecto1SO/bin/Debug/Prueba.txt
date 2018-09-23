@@ -1,0 +1,4 @@
+
+send directo no bloquing origen: 0 destino 1 contenido: prueba1
+send directo no bloquing origen: 2 destino 3 contenido: prueba2
+send directo blocking origen: 2 destino 3 contenido: prueba3
