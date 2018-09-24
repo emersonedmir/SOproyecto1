@@ -66,13 +66,16 @@
     </Compile>
     <Compile Include="utilidades\DisciplinaColas.cs" />
     <Compile Include="utilidades\Formato.cs" />
+    <Compile Include="utilidades\hilo.cs" />
     <Compile Include="utilidades\Indirecto.cs" />
     <Compile Include="utilidades\Largo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="utilidades\Log.cs" />
+    <Compile Include="utilidades\mailBox.cs" />
     <Compile Include="utilidades\Mensaje.cs" />
     <Compile Include="utilidades\Operacion.cs" />
+    <Compile Include="utilidades\procesos.cs" />
     <Compile Include="utilidades\Receive.cs" />
     <Compile Include="utilidades\Send.cs" />
     <Compile Include="utilidades\Sincronizacion.cs" />
