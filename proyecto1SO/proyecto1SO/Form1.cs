@@ -61,7 +61,7 @@ namespace proyecto1SO
         private void inicializar_Sistema() // Regresa el sistema al estado inicial
         {
             listPids.Items.Clear();            
-            for (int i = 0; i < (hilos.Count - 1); i++)
+            for (int i = 0; i < (hilos.Count); i++)
                 hilos[i].Abort();
             hilos.Clear();
             operaciones.Clear();
