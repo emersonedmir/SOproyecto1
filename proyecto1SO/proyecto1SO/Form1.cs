@@ -60,11 +60,16 @@ namespace proyecto1SO
 
         private void inicializar_Sistema() // Regresa el sistema al estado inicial
         {
-            listPids.Items.Clear();            
+            listPids.Items.Clear();
             for (int i = 0; i < (hilos.Count); i++)
-                hilos[i].Abort();
+            {
+                hilos[i].Abort();                
+            }
+            procesos.lstProcesos.Clear();
+            procesos.MailBox.Clear();
             hilos.Clear();
             operaciones.Clear();
+            
             Grid.Rows.Clear();
             Grid.Visible = false;            
             listPids.Visible = false;
@@ -77,16 +82,26 @@ namespace proyecto1SO
             {
                 hilos.Add(crear_Hilo(i));
                 //lstControlBlock.Add(crear_controlBlock(i));                
-                if ((configuracion.direccionamiento.tipo == 1) && (configuracion.direccionamiento.indirecto.estatico)){
-                    Grid.Visible = true;
-                    Grid.Rows[i].Cells[1].Value = configuracion.confProceso.puertosEmisor[i];
-                    Grid.Rows[i].Cells[2].Value = configuracion.confProceso.puertosReceptor[i];
+                if (configuracion.direccionamiento.tipo == 1) {
+                    lbPids.Text = "Puertos";
+                    if (configuracion.direccionamiento.indirecto.estatico) {                        
+                        Grid.Visible = true;
+                        Grid.Rows[i].Cells[1].Value = configuracion.confProceso.puertosEmisor[i];
+                        Grid.Rows[i].Cells[2].Value = configuracion.confProceso.puertosReceptor[i];
+                    }
                 }
                 else {
+                    lbPids.Text = "Procesos";
                     listPids.Visible = true;
                     listPids.Items.Add(hilos[i].ManagedThreadId.ToString());
                 }                        
-            }            
+            }
+            if ((configuracion.direccionamiento.tipo == 1) && (configuracion.direccionamiento.indirecto.dinamico))
+            {
+                listPids.Visible = true;                        
+                for (int i = 0; i < configuracion.direccionamiento.indirecto.Puertos.Count(); i++)
+                    listPids.Items.Add(configuracion.direccionamiento.indirecto.Puertos[i]);
+            }
             if (configuracion.formato.largo.fijo)
                 tbMens.MaxLength = configuracion.formato.largo.tamMax;
             else
@@ -295,11 +310,15 @@ namespace proyecto1SO
         }
 
         private void tbRece_Validating(object sender, CancelEventArgs e)
-        {            
-            if (listPids.Items.IndexOf(((TextBox)sender).Text) == -1)
+        {
+            if ((configuracion.direccionamiento.tipo == 0) || ((configuracion.direccionamiento.tipo == 1) && (configuracion.direccionamiento.indirecto.dinamico)))
             {
-                ((TextBox)sender).Text = "";
+                if (listPids.Items.IndexOf(((TextBox)sender).Text) == -1)
+                {
+                    ((TextBox)sender).Text = "";
+                }
             }
+
         }
 
         private void btSalir_Click(object sender, EventArgs e)

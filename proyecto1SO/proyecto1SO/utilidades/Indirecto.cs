@@ -11,11 +11,13 @@ namespace proyecto1SO.utilidades
         private bool Estatico;
         private bool Dinamico;
         private bool Propiedad;
+        public List<int> Puertos;
 
         public Indirecto()
         {
-            Estatico = false;
+            Estatico = true;
             Dinamico = false;
+            Puertos = new List<int>();
         }
 
         public bool propiedad
@@ -39,6 +41,9 @@ namespace proyecto1SO.utilidades
             set
             {
                 Estatico = value;
+                if (value)
+                    Dinamico = false;
+
             }
         }
 
@@ -51,6 +56,8 @@ namespace proyecto1SO.utilidades
             set
             {
                 Dinamico = value;
+                if (value)
+                    Estatico = false;
             }
         }
 
