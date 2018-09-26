@@ -1,1 +1,3 @@
-send directo no bloquing origen: 0 destino 1 contenido: prueba
+Mensaje no encontrado
+Mensaje no encontrado
+direccionamiento: directo , Tipo mensaje: send Tipo cola: FIFO , Origen:0 destino 1 contenido: sdsds, procesado

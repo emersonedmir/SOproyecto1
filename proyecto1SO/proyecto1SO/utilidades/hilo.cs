@@ -22,7 +22,7 @@ namespace proyecto1SO.utilidades
         public int idProceso;
         public bool send;
         public bool receive;
-        public List<string> log;
+        public List<string> log; //para guardar los logs
         public hilo(int idProceso, Config configuracion)
         {
             this.idProceso = idProceso;
@@ -80,7 +80,38 @@ namespace proyecto1SO.utilidades
             mutexOper.ReleaseMutex();
             return msg;
         }
+        public void documentar(Mensaje msg)
+        {
+            string direccionamiento= string.Empty;
+            string tipoDireccionamiento = string.Empty;
+            string colaPrioridad = string.Empty;
+            string bloqueo = string.Empty;
 
+            if (configuracion.direccionamiento.tipo==0){direccionamiento = "directo ";}else{direccionamiento = "indirecto ";}
+            if(msg.TipoMsg== tipoMensaje.send){tipoDireccionamiento = "send ";}else{tipoDireccionamiento = "receive ";}
+            if (configuracion.colas.FIFO) { colaPrioridad = "FIFO "; }else { colaPrioridad = "Prioridad "; }
+            if (configuracion.sincronizacion.send.blocking || configuracion.sincronizacion.receive.blocking)
+            { bloqueo = " blocking"; }
+            else if(configuracion.sincronizacion.send.nonblocking || configuracion.sincronizacion.receive.nonblocking)
+            { bloqueo = " no bloking"; }
+          
+            StreamWriter WriteReportFile = File.AppendText("Prueba.txt");
+            string historia = "direccionamiento: " + direccionamiento + ", Tipo mensaje: " + tipoDireccionamiento + "Tipo cola: " + colaPrioridad +", Origen:"+ msg.idOrigen + " destino " + msg.idDestino + " contenido: " + msg.Contenido + ", procesado";
+            WriteReportFile.WriteLine(historia);
+            WriteReportFile.Close();
+            lstMensajes.Remove(msg);
+            log.Add(historia);
+        }
+
+        public void verificarBuzon()
+        {
+            mutexOper.WaitOne();
+            if (procesos.MailBox[idProceso].lstMensajes.Count > 0)
+            {
+                procesos.MailBox[idProceso].lstMensajes.Clear();
+            }
+            mutexOper.ReleaseMutex();
+        }
         public void ejecutar(object pParametros)
         {
             
@@ -103,11 +134,7 @@ namespace proyecto1SO.utilidades
                                         bloquear();
                                         mutexOper.WaitOne();
                                         procesos.lstProcesos[lstMensajes[0].idDestino].lstMensajesRecibidos.Add(lstMensajes[0]);
-                                        StreamWriter WriteReportFile = File.AppendText("Prueba.txt");
-                                        WriteReportFile.WriteLine("send directo, blocking, fifo, origen: " + lstMensajes[0].idOrigen + " destino " + lstMensajes[0].idDestino + " contenido: " + lstMensajes[0].Contenido);
-                                        WriteReportFile.Close();
-
-                                        lstMensajes.RemoveAt(0);
+                                        documentar(lstMensajes[0]);
                                         desbloquear();
                                         mutexOper.ReleaseMutex();
                                     }
@@ -115,26 +142,121 @@ namespace proyecto1SO.utilidades
                                     {//no blocking
                                         mutexOper.WaitOne();
                                         procesos.lstProcesos[lstMensajes[0].idDestino].lstMensajesRecibidos.Add(lstMensajes[0]);
-                                        StreamWriter WriteReportFile = File.AppendText("Prueba.txt");
-                                        WriteReportFile.WriteLine("send directo, no bloquing, fifo, origen: " + lstMensajes[0].idOrigen + " destino " + lstMensajes[0].idDestino + " contenido: " + lstMensajes[0].Contenido);
-                                        WriteReportFile.Close();
-
-                                        lstMensajes.RemoveAt(0);
+                                        documentar(lstMensajes[0]);
                                         mutexOper.ReleaseMutex();
                                     }
                                 }
                                 else
                                 {//direccionamiento directo, disciplina fifo, receive
-                                    bloquear();
-                                    mutexOper.WaitOne();
-                                    procesos.lstProcesos[lstMensajes[0].idDestino].lstMensajesRecibidos.Add(lstMensajes[0]);
-                                    StreamWriter WriteReportFile = File.AppendText("Prueba.txt");
-                                    WriteReportFile.WriteLine("send directo, blocking, fifo origen: " + lstMensajes[0].idOrigen + " destino " + lstMensajes[0].idDestino + " contenido: " + lstMensajes[0].Contenido);
-                                    WriteReportFile.Close();
-                                    lstMensajes.RemoveAt(0);
-                                    desbloquear();
-                                    mutexOper.ReleaseMutex();
+
+
+                                    
+
+                                    if (configuracion.sincronizacion.receive.blocking)
+                                    {
+                                        mutexOper.WaitOne();
+                                        Mensaje msg = lstMensajes[0];
+                                        
+                                        bool encontrar = false;
+                                        bloquear();
+                                        foreach(var item in lstMensajes)
+                                        {
+                                            if(item.TipoMsg== tipoMensaje.send && item.idOrigen == msg.idOrigen)
+                                            {
+                                                lstMensajesRecibidos.Add(msg);
+                                                
+                                                encontrar = true;
+                                               
+                                            }
+                                           
+                                        }
+                                        lstMensajes.Remove(msg);
+                                        mutexOper.ReleaseMutex();
+                                        if (encontrar)
+                                        {
+                                            documentar(msg);
+                                        }
+                                       
+                                        else
+                                        {
+                                            mutexOper.WaitOne();
+                                            StreamWriter WriteReportFile1 = File.AppendText("Prueba.txt");
+                                            string historia3 = "Mensaje no encontrado";
+                                            WriteReportFile1.WriteLine(historia3);
+                                            WriteReportFile1.Close();
+                                            mutexOper.ReleaseMutex();
+                                        }
+
+                                        desbloquear();
+
+                                    }
+                                    else if(configuracion.sincronizacion.receive.nonblocking)
+                                    {
+                                        mutexOper.WaitOne();
+                                        Mensaje msg = lstMensajes[0];
+                                        bool encontrar = false;
+                                       
+                                        foreach (var item in lstMensajes)
+                                        {
+                                            if (item.TipoMsg == tipoMensaje.send && item.idOrigen == msg.idOrigen)
+                                            {
+                                                lstMensajesRecibidos.Add(msg);
+                                                
+                                                encontrar = true;
+                                               
+                                            }
+
+                                        }
+                                        lstMensajes.Remove(msg);
+                                        mutexOper.ReleaseMutex();
+                                        if (encontrar)
+                                        {
+                                            documentar(msg);
+                                        }
+                                        else
+                                        {
+                                            StreamWriter WriteReportFile2 = File.AppendText("Prueba.txt");
+                                            string historia = "Mensaje no encontrado";
+                                            WriteReportFile2.WriteLine(historia);
+                                            WriteReportFile2.Close();
+                                        }
+
+                                        
+                                    }
+                                    else
+                                    {//prueba de llegada
+                                        
+
+                                       
+                                        Mensaje msg = lstMensajes[0];
+                                       
+                                        //bloquear();
+                                        bool esperar = true;
+                                        while(esperar) //esperando a recivir el mensaje
+                                        { 
+                                            foreach (var item in lstMensajes)
+                                            {  
+                                                if (item.TipoMsg == tipoMensaje.send && item.idOrigen == msg.idOrigen)
+                                                {
+                                                    
+                                                    lstMensajesRecibidos.Add(msg);
+                                                    esperar = false;
+                                                    StreamWriter WriteReportFile1 = File.AppendText("Prueba.txt");
+                                                    string historia3 = "aqui2";
+                                                    WriteReportFile1.WriteLine(historia3);
+                                                    WriteReportFile1.Close();
+                                                   
+                                                }
+                                            }
+                                            
+                                        }
+                                        lstMensajes.Remove(msg);
+                                        //desbloquear();
+                                        documentar(msg);
+                                        
+                                    }
                                 }
+                                
                             }
                         }
                         else
@@ -146,6 +268,7 @@ namespace proyecto1SO.utilidades
                                 Mensaje msg = obtenerPrioridad();
                                 if(msg.idDestino !=idProceso)
                                 {
+                                    
                                     if (msg.TipoMsg == tipoMensaje.send)
                                     {
                                         if (configuracion.sincronizacion.send.blocking)
@@ -153,10 +276,7 @@ namespace proyecto1SO.utilidades
                                             bloquear();
                                             mutexOper.WaitOne();
                                             procesos.lstProcesos[msg.idDestino].lstMensajesRecibidos.Add(msg);
-                                            StreamWriter WriteReportFile = File.AppendText("Prueba.txt");
-                                            WriteReportFile.WriteLine("send directo, modo blocking, por prioridad, origen: " + msg.idOrigen + " destino " + msg.idDestino + " contenido: " + msg.Contenido);
-                                            WriteReportFile.Close();
-                                            lstMensajes.RemoveAt(0);
+                                            documentar(lstMensajes[0]);
                                             desbloquear();
                                             mutexOper.ReleaseMutex();
                                         }
@@ -164,16 +284,106 @@ namespace proyecto1SO.utilidades
                                         {
                                             mutexOper.WaitOne();
                                             procesos.lstProcesos[msg.idDestino].lstMensajesRecibidos.Add(msg);
-                                            StreamWriter WriteReportFile = File.AppendText("Prueba.txt");
-                                            WriteReportFile.WriteLine("send directo, blocking, por prioridad origen: " + msg.idOrigen + " destino " + msg.idDestino + " contenido: " + msg.Contenido);
-                                            WriteReportFile.Close();
-                                            lstMensajes.RemoveAt(0);
+                                            documentar(lstMensajes[0]);
                                             mutexOper.ReleaseMutex();
                                         }
                                     }
                                     else
-                                    {
-                                        
+                                    {//direccionamiento directo, receive por prioridad
+                                        if (configuracion.sincronizacion.receive.blocking)
+                                        {
+                                            msg = obtenerPrioridad();
+                                            bool encontrar = false;
+                                            bloquear();
+                                            mutexOper.WaitOne();
+                                            foreach (var item in lstMensajes)
+                                            {
+                                                if (item.TipoMsg == tipoMensaje.send && item.idOrigen == msg.idOrigen)
+                                                {
+                                                    lstMensajesRecibidos.Add(msg);
+                                                    
+                                                    encontrar = true;
+                                                   
+                                                }
+
+                                            }
+                                            lstMensajes.Remove(msg);
+                                            mutexOper.ReleaseMutex();
+                                            if (encontrar)
+                                            {
+                                                documentar(msg);
+                                            }
+
+                                            else
+                                            {
+                                                mutexOper.WaitOne();
+                                                StreamWriter WriteReportFile1 = File.AppendText("Prueba.txt");
+                                                string historia3 = "Mensaje no encontrado";
+                                                WriteReportFile1.WriteLine(historia3);
+                                                WriteReportFile1.Close();
+                                                mutexOper.ReleaseMutex();
+                                            }
+
+                                            desbloquear();
+                                        }
+                                        else if (configuracion.sincronizacion.receive.nonblocking)
+                                        {
+                                            msg = obtenerPrioridad();
+                                            bool encontrar = false;
+                                            mutexOper.WaitOne();
+                                            foreach (var item in lstMensajes)
+                                            {
+                                                if (item.TipoMsg == tipoMensaje.send && item.idOrigen == msg.idOrigen)
+                                                {
+                                                    lstMensajesRecibidos.Add(msg);
+                                                   
+                                                    encontrar = true;
+                                                   
+                                                }
+
+                                            }
+                                            lstMensajes.Remove(msg);
+                                            mutexOper.ReleaseMutex();
+                                            if (encontrar)
+                                            {
+                                                documentar(msg);
+                                            }
+                                            else
+                                            {
+                                                mutexOper.WaitOne();
+                                                StreamWriter WriteReportFile2 = File.AppendText("Prueba.txt");
+                                                string historia = "Mensaje no encontrado";
+                                                WriteReportFile2.WriteLine(historia);
+                                                WriteReportFile2.Close();
+                                                mutexOper.ReleaseMutex();
+                                            }
+                                        }
+                                        else
+                                        {//prueba de llegada
+
+                                            mutexOper.WaitOne();
+                                            msg = lstMensajes[0];
+                                            mutexOper.ReleaseMutex();
+                                            bloquear();
+                                            bool esperar = true;
+                                            while (esperar) //esperando a recivir el mensaje
+                                            {
+                                                mutexOper.WaitOne();
+                                                foreach (var item in lstMensajes)
+                                                {
+                                                    if (item.TipoMsg == tipoMensaje.send && item.idOrigen == msg.idOrigen)
+                                                    {
+                                                        lstMensajesRecibidos.Add(msg);
+                                                        
+                                                        esperar = false;
+                                                    }
+                                                }
+                                                lstMensajes.Remove(msg);
+                                                mutexOper.ReleaseMutex();
+                                            }
+                                            desbloquear();
+                                            documentar(msg);
+                                        }
                                     }
                                 }
                                 else
@@ -190,54 +400,51 @@ namespace proyecto1SO.utilidades
                     }
                     else
                     {//direccionamiento indirecto
+                        verificarBuzon();
 
-                        if (configuracion.colas.FIFO)
+                        if (configuracion.colas.FIFO && lstMensajes.Count>0)
                         {//direccionamiento indirecto, disciplina fifo                             
-                            mutexOper.WaitOne();
-                            if (procesos.MailBox[this.idProceso].lstMensajes.Count > 0)
-                            {
-                                if (procesos.MailBox[this.idProceso].lstMensajes[0].TipoMsg == tipoMensaje.send)
+                            Mensaje msg = lstMensajes[0];
+                            if (msg.TipoMsg == tipoMensaje.send)
                                 {//direccionamiento indirecto, disciplina fifo, tipo send
-                                    mutexOper.ReleaseMutex();
                                     if (configuracion.sincronizacion.send.blocking)
                                     {//direcionamiento indirecto, disciplina fifo, blocking
                                         bloquear();
+                                        lstMensajes.Remove(msg);
                                         mutexOper.WaitOne();
-                                        Mensaje msg = procesos.MailBox[this.idProceso].lstMensajes[0];
-                                        procesos.MailBox[this.idProceso].lstMensajes.RemoveAt(0);
-                                        procesos.lstProcesos[msg.idDestino].lstMensajesRecibidos.Add(msg);
-                                        desbloquear();
-                                        StreamWriter WriteReportFile = File.AppendText("Prueba.txt");
-                                        WriteReportFile.WriteLine("send indirecto blocking origen: " + msg.idOrigen + " destino " + msg.idDestino + " contenido: " + msg.Contenido);
-                                        WriteReportFile.Close();
+                                        procesos.MailBox[msg.idDestino].lstMensajes.Add(msg);
                                         mutexOper.ReleaseMutex();
+                                        bool esperar = true;
+                                        while(esperar)
+                                        {
+                                            mutexOper.WaitOne();
+                                            if (procesos.MailBox[msg.idDestino].lstMensajes.Count == 0) { esperar = false; }
+                                            mutexOper.ReleaseMutex();
+                                        }
+                                        desbloquear();
+                                        documentar(msg);                                         
                                     }
                                     else
                                     {
                                         mutexOper.WaitOne();
-                                        Mensaje msg = procesos.MailBox[this.idProceso].lstMensajes[0];
-                                        procesos.MailBox[this.idProceso].lstMensajes.RemoveAt(0);
-                                        procesos.lstProcesos[msg.idDestino].lstMensajesRecibidos.Add(msg);
-                                        StreamWriter WriteReportFile = File.AppendText("Prueba.txt");
-                                        WriteReportFile.WriteLine("send indirecto no blocking origen: " + msg.idOrigen + " destino " + msg.idDestino + " contenido: " + msg.Contenido);
-                                        WriteReportFile.Close();
+                                        documentar(msg);
                                         mutexOper.ReleaseMutex();
                                     }
                                 }
                                 else
                                 {//direccionamiento indirecto, disciplina fifo, tipo receive
+
                                 }
                             }
-                        }
+                        
                         else
                         {//direccionamiento indirecto, disciplina prioridad
-                            mutexOper.WaitOne();
-                            if (procesos.MailBox[this.idProceso].lstMensajes.Count > 0)
+                            
+                            if (lstMensajes.Count>0)
                             {
-                                mutexOper.ReleaseMutex();
+                                
                                 Mensaje msg = obtenerPrioridad();
-                                if(msg.idDestino!=idProceso)
-                                {
+                                
                                     if (msg.TipoMsg == tipoMensaje.send)
                                     {//direccionamiento indirecto, tipo prioridad, send
                                         if (configuracion.sincronizacion.send.blocking)
@@ -255,38 +462,35 @@ namespace proyecto1SO.utilidades
                                                 mutexOper.ReleaseMutex();
                                             }
                                             desbloquear();
+                                        documentar(msg);
                                         }
                                         else
                                         {//no blocking
                                             mutexOper.WaitOne();
                                             procesos.MailBox[msg.idDestino].lstMensajes.Add(msg);//se envia al buzon
                                             mutexOper.ReleaseMutex();
-                                        }
+                                        documentar(msg);
+                                    }
                                     }
                                     else
                                     {//direccionamiento indirecto, tipo prioridad, receive
                                         if (configuracion.sincronizacion.send.blocking)
-                                        {
+                                        {//blocking
                                             bloquear();
 
                                             desbloquear();
                                         }
                                         else
-                                        {
+                                        {//no blocking
 
                                         }
                                     }
                                 }
-                                else
-                                {
-                                    mutexOper.WaitOne();
-                                    procesos.lstProcesos[idProceso].lstMensajesRecibidos.Add(msg);
-                                    procesos.MailBox[idProceso].lstMensajes.Remove(msg);
-                                    mutexOper.ReleaseMutex();
-                                }
+                               
 
                                 
                             }
+                           
                         }
                     }
                 }
@@ -294,4 +498,4 @@ namespace proyecto1SO.utilidades
             }
         }
     }
-}
+

@@ -81,7 +81,7 @@ namespace proyecto1SO
             for (int i = 0; i < configuracion.confProceso.numProcesos; i++)
             {
                 hilos.Add(crear_Hilo(i));
-                //lstControlBlock.Add(crear_controlBlock(i));                
+                          
                 if (configuracion.direccionamiento.tipo == 1) {
                     lbPids.Text = "Puertos";
                     if (configuracion.direccionamiento.indirecto.estatico) {                        
@@ -110,9 +110,7 @@ namespace proyecto1SO
         }
         private Thread crear_Hilo(int i)
         {
-            //Thread newThread = new Thread(new ParameterizedThreadStart(funcion_Hilo));
-            //newThread.Name = String.Format("Thread{0}", i + 1);
-            //return newThread;
+           
             mailBox buzon;
             buzon = new mailBox();
             hilo newProceso;
@@ -120,20 +118,14 @@ namespace proyecto1SO
             procesos.lstProcesos.Add(newProceso);
             procesos.MailBox.Add(buzon);
 
-            //Thread newThread = new Thread(new ThreadStart(newProceso.ejecutar));
+ 
             Thread newThread = new Thread(new ParameterizedThreadStart(newProceso.ejecutar));
             newThread.Name = String.Format("Thread{0}", i);
-            //newThread.Start();
+       
             return newThread;
         }
 
-        //private controlBlock crear_controlBlock(int i)
-        //{
-        //    controlBlock newControlBlock = new controlBlock();
-        //    newControlBlock.puerto = i + 1;
-        //    return newControlBlock;
-
-        //}
+       
         private void iniciar_Hilos()
         {
             for (int i = 0; i < (hilos.Count); i++)
@@ -143,127 +135,7 @@ namespace proyecto1SO
             }
         }
 
-        //private void funcion_Hilo(object pParametros)  //solicitar y ejecutar instruccion
-        //{
-        //    string[] parametros = (string[])pParametros;
-        //    int idx_hilo = Convert.ToInt32(parametros[0]);
-        //    int t_id = Convert.ToInt32(parametros[1]);
-        //    string t_name = parametros[2];
-        //    MessageBox.Show(
-        //        "Index array: " + idx_hilo.ToString() + '\n' +
-        //        "ThreadId: " + t_name + '\n' +
-        //        "ThreadName: " + t_id.ToString() + '\n' +
-        //        "Hilo en curso");
-        //    Operacion operacionActual;
-        //    while (true)
-        //    {                
-        //        operacionActual = null;
-        //        mutexOper.WaitOne();
-        //        if (operaciones.Count > 0)
-        //        {                    
-        //            foreach (Operacion ope in operaciones)
-        //            {
-        //                if (ope.comando == Comando.Send)
-        //                {
-        //                    if (configuracion.direccionamiento.tipo == 0)       // DIRECTO
-        //                    {
-        //                        if (ope.mensaje.idOrigen == t_id)
-        //                        {
-        //                            operacionActual = ope;
-        //                            operaciones.Remove(ope);
-        //                            break;
-        //                        }
-        //                    }
-        //                }
-        //                else if (ope.comando == Comando.Receive)
-        //                {
-        //                    if (configuracion.direccionamiento.tipo == 0)       // DIRECTO
-        //                    {
-        //                        if (ope.mensaje.idOrigen == t_id)
-        //                        {
-        //                            operacionActual = ope;
-        //                            operaciones.Remove(operacionActual);
-        //                            break;
-        //                        }
-        //                    }
-        //                }
-        //            }                    
-        //        }                    
-        //        mutexOper.ReleaseMutex();
-        //        if (operacionActual != null)
-        //        {
-        //            //realizar accion 
-        //            switch (operacionActual.comando)
-        //            {
-        //                case Comando.Send:
-        //                    //verificar si hay que bloquearlo
-        //                    if(configuracion.sincronizacion.send.blocking)
-        //                    {
-        //                        //verificar si es un send directo
-        //                        if(configuracion.direccionamiento.directo.Send)
-        //                        {
-
-        //                        }
-        //                        else
-        //                        {
-        //                            //es un send indirecto
-        //                        }
-
-        //                    }
-        //                    //No se debe bloquear
-        //                    else
-        //                    {
-
-        //                    }
-        //                    break;
-        //                case Comando.Receive:
-        //                    //Rrealizar Receive
-        //                    break;
-        //            }
-        //        }
-        //    }
-
-        //}
-
-        //private Operacion Crear_Operacion() {
-        //    float tamanio = float.Parse(tbTamanio.Text, System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
-        //    Mensaje mensaje = new Mensaje(tamanio, configuracion.formato.contenido, tbMens.Text, );
-        //    mensaje.idOrigen = int.Parse(tbEmis.Text);
-        //    mensaje.idDestino = int.Parse(tbRece.Text);
-        //    mensaje.prioridad = 0;
-        //    Comando comando = Comando.None;
-        //    if (rbSend.Checked)
-        //        comando = Comando.Send;
-        //    if (rbReceive.Checked)
-        //        comando = Comando.Receive;
-        //    Operacion operacion = new Operacion(comando, tbEmis.Text, tbRece.Text, mensaje);
-        //    return operacion;
-        //}
-        //private void add_Operacion()
-        //{
-        //    Operacion operacion = Crear_Operacion();
-        //    if (configuracion.colas.FIFO)
-        //        operaciones.Add(operacion);
-        //    else
-        //    {
-        //        int i = 0;
-        //        while (i < operaciones.Count - 1) {
-        //            if (operaciones[i].prioridad < (int)nuPrio.Value)
-        //                break;
-        //            else
-        //                i++;
-        //        }
-        //        operaciones.Insert(i, operacion);
-        //    }
-        //}
-
-
-        //private void btProcesar_Click(object sender, EventArgs e)
-        //{
-        //    mutexOper.WaitOne();
-        //    add_Operacion();
-        //    mutexOper.ReleaseMutex();
-        //}
+        
 
         private void btProcesar_Click(object sender, EventArgs e)
         {
@@ -291,14 +163,16 @@ namespace proyecto1SO
             {
                 msg.Tamanio = float.Parse(tbTamanio.Text);
             }
-            if (configuracion.direccionamiento.tipo == 0) // tipo: 0=directo, 1=indirecto
+            if(msg.TipoMsg == tipoMensaje.send)
             {
                 procesos.lstProcesos[msg.idOrigen].lstMensajes.Add(msg);
             }
             else
             {
-                procesos.lstProcesos[msg.idOrigen].lstMensajes.Add(msg);
+                procesos.lstProcesos[msg.idDestino].lstMensajes.Add(msg);
             }
+            
+            
 
 
             mutexOper.ReleaseMutex();
