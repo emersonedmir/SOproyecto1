@@ -31,7 +31,7 @@ namespace proyecto1SO.utilidades
 
         public Mensaje(float pTamanio, tipoMensaje pTipoMen, string pContenido, int origen, int destino)
         {
-            Tamanio = pTamanio;            
+            Tamanio = pTamanio;
             TipoMsg = pTipoMen;
             Contenido = pContenido;
             idOrigen = origen;

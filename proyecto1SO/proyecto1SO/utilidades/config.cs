@@ -10,15 +10,16 @@ namespace proyecto1SO.utilidades
     {
         public Sincronizacion sincronizacion;
         public Direccionamiento direccionamiento;
-        public Formato formato;
-        public DisciplinaColas colas;
-        public int numHilos = 1;
+        public Formato formato;       
+        public DisciplinaColas colas;        
+        public ConfProceso confProceso;
 
         public Config()
         {
             sincronizacion = new Sincronizacion();
             direccionamiento = new Direccionamiento();
             formato = new Formato();
+            confProceso = new ConfProceso();
             colas = new DisciplinaColas();
         }
 

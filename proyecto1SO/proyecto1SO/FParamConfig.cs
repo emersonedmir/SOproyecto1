@@ -60,7 +60,17 @@ namespace proyecto1SO
                 else
                     cbDirec.SelectedIndex = 1;
             }
-
+            if (habilitarGridPuertosDin()) {
+                nuPuertos_ValueChanged(nuPuertos, new EventArgs());
+                int nPuertos = config.direccionamiento.indirecto.Puertos.Count();
+                if (nPuertos > 0) {                    
+                    nuPuertos.Value = nPuertos;
+                    for (int i = 0; i < nPuertos; i++)
+                        GridPuertos.Rows[i].Cells[0].Value = config.direccionamiento.indirecto.Puertos[i];
+                }
+                else
+                    nuPuertos.Value = 1;                
+            }
             /* formato */
             cbFomtC.SelectedIndex = cbFomtC.Items.IndexOf(config.formato.contenido);
             if (cbFomtC.SelectedIndex == -1)
@@ -68,7 +78,7 @@ namespace proyecto1SO
             if (config.formato.largo.fijo){
                 cbFomtL.SelectedIndex = 0;
                 pnTamFijo.Visible = true;
-                config.formato.largo.tamMax= int.Parse(nuTamMax.Value.ToString());
+                nuTamMax.Value = config.formato.largo.tamMax;
             }             
             else{
                 cbFomtL.SelectedIndex = 1;
@@ -81,7 +91,19 @@ namespace proyecto1SO
                 cbColas.SelectedIndex = 0;
             else
                 cbColas.SelectedIndex = 1;
-            NHilos.Value = config.numHilos;
+            nuTamColaMen.Value = config.colas.TamColasMen;
+
+            /*Procesos*/            
+            nuHilos.Value = config.confProceso.numProcesos;
+            nuHilos_ValueChanged(nuHilos, new EventArgs());
+            if (habilitarGridPuertosEst()) {                
+                for (int i = 0; i < config.confProceso.puertosEmisor.Count; i++)
+                {
+                    Grid.Rows[i].Cells[1].Value = config.confProceso.puertosEmisor[i];
+                    Grid.Rows[i].Cells[2].Value = config.confProceso.puertosReceptor[i];
+                }
+            }            
+
         }
         private void rbDirDi_Click(object sender, EventArgs e)
         {            
@@ -90,6 +112,8 @@ namespace proyecto1SO
             cbDirec.Items.AddRange(itemsCbD);
             cbDirec.SelectedIndex = 0;
             ((RadioButton)sender).Checked = true;
+            habilitarGridPuertosEst();
+            habilitarGridPuertosDin();
         }
 
         private void rbDirIn_Click(object sender, EventArgs e)
@@ -99,6 +123,8 @@ namespace proyecto1SO
             cbDirec.Items.AddRange(itemsCbI);
             cbDirec.SelectedIndex = 0;
             ((RadioButton)sender).Checked = true;
+            habilitarGridPuertosEst();
+            habilitarGridPuertosDin();
         }
         private void actualizar_config()
         {
@@ -116,7 +142,7 @@ namespace proyecto1SO
             /* direccionamiento */
             if (rbDirDi.Checked) {
                 config.direccionamiento.tipo = 0;
-                config.direccionamiento.Directo=true;
+                config.direccionamiento.directo.Send=true;
                 switch (cbDirec.SelectedIndex){
                     case 0: config.direccionamiento.directo.receive.explicito = true; break;
                     case 1: config.direccionamiento.directo.receive.implicito = true; break;
@@ -124,11 +150,18 @@ namespace proyecto1SO
             }
             else{
                 config.direccionamiento.tipo = 1;
-                config.direccionamiento.Indirecto = true;
                 switch (cbDirec.SelectedIndex){
                     case 0: config.direccionamiento.indirecto.estatico = true; break;
                     case 1: config.direccionamiento.indirecto.dinamico = true; break;
                 }
+            }
+            if (pnPuerto.Visible)
+            {
+                int nPuertos = (int)nuPuertos.Value;
+                config.direccionamiento.indirecto.Puertos.Clear();
+                nuPuertos.Value = nPuertos;
+                for (int i = 0; i < nPuertos; i++)
+                    config.direccionamiento.indirecto.Puertos.Add(Convert.ToInt32(GridPuertos.Rows[i].Cells[0].FormattedValue));
             }
 
             /* formato */
@@ -149,7 +182,20 @@ namespace proyecto1SO
                 case 0: config.colas.FIFO = true; break;
                 case 1: config.colas.Prioridad = true; break;
             }
-            config.numHilos = (int)NHilos.Value;
+            config.colas.TamColasMen = (int)nuTamColaMen.Value;
+            /* Procesos */
+            config.confProceso.numProcesos = (int)nuHilos.Value;
+            if (Grid.Visible)
+            {
+                config.confProceso.puertosEmisor.Clear();
+                config.confProceso.puertosReceptor.Clear();
+                for (int i = 0; i < config.confProceso.numProcesos; i++)
+                {
+                    config.confProceso.puertosEmisor.Add(Convert.ToInt32(Grid.Rows[i].Cells[1].FormattedValue));
+                    config.confProceso.puertosReceptor.Add(Convert.ToInt32(Grid.Rows[i].Cells[2].FormattedValue));
+                }
+            }
+
         }
         private void btAplicar_Click(object sender, EventArgs e)
         {
@@ -162,10 +208,40 @@ namespace proyecto1SO
         {
             pnTamFijo.Visible = (cbFomtL.SelectedIndex == 0);
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private bool habilitarGridPuertosEst()
         {
+            bool mostrar = ((rbDirIn.Checked) && (cbDirec.SelectedIndex == 0));
+            Grid.Visible = mostrar;
+            return mostrar;
+        }
+        private bool habilitarGridPuertosDin()
+        {
+            bool mostrar = ((rbDirIn.Checked) && (cbDirec.SelectedIndex == 1));
+            pnPuerto.Visible = mostrar;
+            if (mostrar)
+                nuPuertos_ValueChanged(nuPuertos, new EventArgs());
+            return mostrar;
+        }
 
+        private void nuHilos_ValueChanged(object sender, EventArgs e)
+        {
+            //if (Grid.Visible)
+            //{
+                Grid.RowCount = (int)nuHilos.Value;
+                for (int i = 0; i < Grid.RowCount; i++)
+                    Grid.Rows[i].Cells[0].Value = i + 1;
+            //}
+        }
+
+        private void cbDirec_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            habilitarGridPuertosEst();
+            habilitarGridPuertosDin();
+        }
+
+        private void nuPuertos_ValueChanged(object sender, EventArgs e)
+        {
+            GridPuertos.RowCount = (int)nuPuertos.Value;
         }
     }
 }

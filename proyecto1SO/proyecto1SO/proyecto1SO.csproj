@@ -53,8 +53,8 @@
     <Compile Include="FParamConfig.Designer.cs">
       <DependentUpon>FParamConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="utilidades\hilo.cs" />
     <Compile Include="utilidades\config.cs" />
+    <Compile Include="utilidades\ConfProceso.cs" />
     <Compile Include="utilidades\controlBlock.cs" />
     <Compile Include="utilidades\Direccionamiento.cs" />
     <Compile Include="utilidades\Directo.cs" />
@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="utilidades\DisciplinaColas.cs" />
     <Compile Include="utilidades\Formato.cs" />
+    <Compile Include="utilidades\hilo.cs" />
     <Compile Include="utilidades\Indirecto.cs" />
     <Compile Include="utilidades\Largo.cs" />
     <Compile Include="Program.cs" />
