@@ -107,6 +107,18 @@ namespace proyecto1SO
             else
                 tbMens.MaxLength = 0;
             pnPrio.Visible = configuracion.colas.Prioridad;
+            if (configuracion.modo == Modo.Interactivo)
+            {
+                pninteractivo.Visible = true;
+                Size = new Size(778, 536);                
+            }
+            else
+            {
+                pninteractivo.Visible = false;
+                //Cargar send y receibe desde archivo batch.txt
+                Size = new Size(778, 215);
+            }
+
         }
         private Thread crear_Hilo(int i)
         {

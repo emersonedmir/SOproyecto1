@@ -28,14 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbModoI = new System.Windows.Forms.RadioButton();
+            this.rbModoB = new System.Windows.Forms.RadioButton();
+            this.label9 = new System.Windows.Forms.Label();
+            this.pnPuerto = new System.Windows.Forms.Panel();
+            this.GridPuertos = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nuPuertos = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
             this.Grid = new System.Windows.Forms.DataGridView();
             this.cNuProc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cPuertoE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,13 +83,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbSincr = new System.Windows.Forms.Label();
             this.btAplicar = new System.Windows.Forms.Button();
-            this.pnPuerto = new System.Windows.Forms.Panel();
-            this.nuPuertos = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.GridPuertos = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.pnPuerto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridPuertos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nuPuertos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuHilos)).BeginInit();
@@ -90,14 +100,12 @@
             this.pnDirec.SuspendLayout();
             this.rgDirec.SuspendLayout();
             this.pnSincr.SuspendLayout();
-            this.pnPuerto.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nuPuertos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridPuertos)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.pnPuerto);
             this.panel1.Controls.Add(this.Grid);
             this.panel1.Controls.Add(this.panel2);
@@ -106,10 +114,191 @@
             this.panel1.Controls.Add(this.pnDirec);
             this.panel1.Controls.Add(this.pnSincr);
             this.panel1.Controls.Add(this.btAplicar);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(16, 15);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(694, 315);
+            this.panel1.Size = new System.Drawing.Size(924, 488);
             this.panel1.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.groupBox1);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Location = new System.Drawing.Point(20, 332);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(887, 110);
+            this.panel3.TabIndex = 14;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbModoI);
+            this.groupBox1.Controls.Add(this.rbModoB);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox1.Location = new System.Drawing.Point(297, 0);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(487, 108);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            // 
+            // rbModoI
+            // 
+            this.rbModoI.AutoSize = true;
+            this.rbModoI.Checked = true;
+            this.rbModoI.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rbModoI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbModoI.Location = new System.Drawing.Point(4, 19);
+            this.rbModoI.Margin = new System.Windows.Forms.Padding(4);
+            this.rbModoI.Name = "rbModoI";
+            this.rbModoI.Size = new System.Drawing.Size(122, 85);
+            this.rbModoI.TabIndex = 3;
+            this.rbModoI.TabStop = true;
+            this.rbModoI.Text = "Interactivo";
+            this.rbModoI.UseVisualStyleBackColor = true;
+            // 
+            // rbModoB
+            // 
+            this.rbModoB.AutoSize = true;
+            this.rbModoB.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rbModoB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbModoB.Location = new System.Drawing.Point(320, 19);
+            this.rbModoB.Margin = new System.Windows.Forms.Padding(4);
+            this.rbModoB.Name = "rbModoB";
+            this.rbModoB.Size = new System.Drawing.Size(163, 85);
+            this.rbModoB.TabIndex = 4;
+            this.rbModoB.Text = "Lote (batch.txt)";
+            this.rbModoB.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(0, 0);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(289, 108);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "MODO:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnPuerto
+            // 
+            this.pnPuerto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnPuerto.Controls.Add(this.GridPuertos);
+            this.pnPuerto.Controls.Add(this.label6);
+            this.pnPuerto.Controls.Add(this.nuPuertos);
+            this.pnPuerto.Controls.Add(this.label7);
+            this.pnPuerto.Location = new System.Drawing.Point(617, 175);
+            this.pnPuerto.Margin = new System.Windows.Forms.Padding(4);
+            this.pnPuerto.Name = "pnPuerto";
+            this.pnPuerto.Size = new System.Drawing.Size(290, 152);
+            this.pnPuerto.TabIndex = 13;
+            this.pnPuerto.Visible = false;
+            // 
+            // GridPuertos
+            // 
+            this.GridPuertos.AllowUserToAddRows = false;
+            this.GridPuertos.AllowUserToDeleteRows = false;
+            this.GridPuertos.AllowUserToResizeColumns = false;
+            this.GridPuertos.AllowUserToResizeRows = false;
+            this.GridPuertos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = "0";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridPuertos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.GridPuertos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridPuertos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = "0";
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridPuertos.DefaultCellStyle = dataGridViewCellStyle3;
+            this.GridPuertos.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.GridPuertos.Location = new System.Drawing.Point(132, 11);
+            this.GridPuertos.Margin = new System.Windows.Forms.Padding(4);
+            this.GridPuertos.MultiSelect = false;
+            this.GridPuertos.Name = "GridPuertos";
+            this.GridPuertos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = "0";
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Gray;
+            this.GridPuertos.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.GridPuertos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.GridPuertos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.GridPuertos.ShowCellToolTips = false;
+            this.GridPuertos.Size = new System.Drawing.Size(143, 135);
+            this.GridPuertos.TabIndex = 13;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = "0";
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Puertos";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(24, 16);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 17);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Puertos";
+            // 
+            // nuPuertos
+            // 
+            this.nuPuertos.Location = new System.Drawing.Point(28, 63);
+            this.nuPuertos.Margin = new System.Windows.Forms.Padding(4);
+            this.nuPuertos.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nuPuertos.Name = "nuPuertos";
+            this.nuPuertos.Size = new System.Drawing.Size(48, 22);
+            this.nuPuertos.TabIndex = 9;
+            this.nuPuertos.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nuPuertos.ValueChanged += new System.EventHandler(this.nuPuertos_ValueChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(27, 43);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(97, 17);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Num. puertos:";
             // 
             // Grid
             // 
@@ -144,7 +333,8 @@
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.Grid.DefaultCellStyle = dataGridViewCellStyle6;
             this.Grid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Grid.Location = new System.Drawing.Point(463, 142);
+            this.Grid.Location = new System.Drawing.Point(617, 175);
+            this.Grid.Margin = new System.Windows.Forms.Padding(4);
             this.Grid.MultiSelect = false;
             this.Grid.Name = "Grid";
             this.Grid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -155,7 +345,7 @@
             this.Grid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.Grid.ShowCellToolTips = false;
-            this.Grid.Size = new System.Drawing.Size(207, 124);
+            this.Grid.Size = new System.Drawing.Size(276, 153);
             this.Grid.TabIndex = 12;
             this.Grid.Visible = false;
             // 
@@ -188,31 +378,34 @@
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.nuHilos);
             this.panel2.Controls.Add(this.lbNHilos);
-            this.panel2.Location = new System.Drawing.Point(463, 12);
+            this.panel2.Location = new System.Drawing.Point(617, 15);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(218, 124);
+            this.panel2.Size = new System.Drawing.Size(290, 152);
             this.panel2.TabIndex = 11;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(18, 13);
+            this.label8.Location = new System.Drawing.Point(24, 16);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(59, 13);
+            this.label8.Size = new System.Drawing.Size(75, 17);
             this.label8.TabIndex = 1;
             this.label8.Text = "Procesos";
             // 
             // nuHilos
             // 
-            this.nuHilos.Location = new System.Drawing.Point(104, 35);
+            this.nuHilos.Location = new System.Drawing.Point(139, 43);
+            this.nuHilos.Margin = new System.Windows.Forms.Padding(4);
             this.nuHilos.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nuHilos.Name = "nuHilos";
-            this.nuHilos.Size = new System.Drawing.Size(36, 20);
+            this.nuHilos.Size = new System.Drawing.Size(48, 22);
             this.nuHilos.TabIndex = 9;
             this.nuHilos.Value = new decimal(new int[] {
             2,
@@ -224,9 +417,10 @@
             // lbNHilos
             // 
             this.lbNHilos.AutoSize = true;
-            this.lbNHilos.Location = new System.Drawing.Point(20, 35);
+            this.lbNHilos.Location = new System.Drawing.Point(27, 43);
+            this.lbNHilos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNHilos.Name = "lbNHilos";
-            this.lbNHilos.Size = new System.Drawing.Size(81, 13);
+            this.lbNHilos.Size = new System.Drawing.Size(107, 17);
             this.lbNHilos.TabIndex = 5;
             this.lbNHilos.Text = "Num. procesos:";
             // 
@@ -237,21 +431,23 @@
             this.pnColas.Controls.Add(this.label3);
             this.pnColas.Controls.Add(this.cbColas);
             this.pnColas.Controls.Add(this.lbColas);
-            this.pnColas.Location = new System.Drawing.Point(239, 142);
+            this.pnColas.Location = new System.Drawing.Point(319, 175);
+            this.pnColas.Margin = new System.Windows.Forms.Padding(4);
             this.pnColas.Name = "pnColas";
-            this.pnColas.Size = new System.Drawing.Size(218, 124);
+            this.pnColas.Size = new System.Drawing.Size(290, 152);
             this.pnColas.TabIndex = 4;
             // 
             // nuTamColaMen
             // 
-            this.nuTamColaMen.Location = new System.Drawing.Point(159, 80);
+            this.nuTamColaMen.Location = new System.Drawing.Point(212, 98);
+            this.nuTamColaMen.Margin = new System.Windows.Forms.Padding(4);
             this.nuTamColaMen.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nuTamColaMen.Name = "nuTamColaMen";
-            this.nuTamColaMen.Size = new System.Drawing.Size(36, 20);
+            this.nuTamColaMen.Size = new System.Drawing.Size(48, 22);
             this.nuTamColaMen.TabIndex = 11;
             this.nuTamColaMen.Value = new decimal(new int[] {
             10,
@@ -262,9 +458,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 82);
+            this.label3.Location = new System.Drawing.Point(24, 101);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(134, 13);
+            this.label3.Size = new System.Drawing.Size(178, 17);
             this.label3.TabIndex = 10;
             this.label3.Text = "Tamaño cola de mensajes:";
             // 
@@ -275,18 +472,20 @@
             this.cbColas.Items.AddRange(new object[] {
             "FIFO",
             "Prioridad"});
-            this.cbColas.Location = new System.Drawing.Point(21, 29);
+            this.cbColas.Location = new System.Drawing.Point(28, 36);
+            this.cbColas.Margin = new System.Windows.Forms.Padding(4);
             this.cbColas.Name = "cbColas";
-            this.cbColas.Size = new System.Drawing.Size(173, 21);
+            this.cbColas.Size = new System.Drawing.Size(229, 24);
             this.cbColas.TabIndex = 8;
             // 
             // lbColas
             // 
             this.lbColas.AutoSize = true;
             this.lbColas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbColas.Location = new System.Drawing.Point(18, 13);
+            this.lbColas.Location = new System.Drawing.Point(24, 16);
+            this.lbColas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbColas.Name = "lbColas";
-            this.lbColas.Size = new System.Drawing.Size(176, 13);
+            this.lbColas.Size = new System.Drawing.Size(224, 17);
             this.lbColas.TabIndex = 1;
             this.lbColas.Text = "Disciplina de manejo de colas";
             // 
@@ -299,26 +498,28 @@
             this.pnFormt.Controls.Add(this.label5);
             this.pnFormt.Controls.Add(this.label4);
             this.pnFormt.Controls.Add(this.lbFormt);
-            this.pnFormt.Location = new System.Drawing.Point(239, 12);
+            this.pnFormt.Location = new System.Drawing.Point(319, 15);
+            this.pnFormt.Margin = new System.Windows.Forms.Padding(4);
             this.pnFormt.Name = "pnFormt";
-            this.pnFormt.Size = new System.Drawing.Size(218, 124);
+            this.pnFormt.Size = new System.Drawing.Size(290, 152);
             this.pnFormt.TabIndex = 3;
             // 
             // pnTamFijo
             // 
             this.pnTamFijo.Controls.Add(this.nuTamMax);
             this.pnTamFijo.Controls.Add(this.lbMaxTam);
-            this.pnTamFijo.Location = new System.Drawing.Point(2, 92);
-            this.pnTamFijo.Margin = new System.Windows.Forms.Padding(2);
+            this.pnTamFijo.Location = new System.Drawing.Point(3, 113);
+            this.pnTamFijo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnTamFijo.Name = "pnTamFijo";
-            this.pnTamFijo.Size = new System.Drawing.Size(212, 24);
+            this.pnTamFijo.Size = new System.Drawing.Size(283, 30);
             this.pnTamFijo.TabIndex = 12;
             // 
             // nuTamMax
             // 
-            this.nuTamMax.Location = new System.Drawing.Point(72, 3);
+            this.nuTamMax.Location = new System.Drawing.Point(96, 4);
+            this.nuTamMax.Margin = new System.Windows.Forms.Padding(4);
             this.nuTamMax.Name = "nuTamMax";
-            this.nuTamMax.Size = new System.Drawing.Size(36, 20);
+            this.nuTamMax.Size = new System.Drawing.Size(48, 22);
             this.nuTamMax.TabIndex = 13;
             this.nuTamMax.Value = new decimal(new int[] {
             10,
@@ -329,9 +530,10 @@
             // lbMaxTam
             // 
             this.lbMaxTam.AutoSize = true;
-            this.lbMaxTam.Location = new System.Drawing.Point(16, 5);
+            this.lbMaxTam.Location = new System.Drawing.Point(21, 6);
+            this.lbMaxTam.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMaxTam.Name = "lbMaxTam";
-            this.lbMaxTam.Size = new System.Drawing.Size(46, 13);
+            this.lbMaxTam.Size = new System.Drawing.Size(59, 17);
             this.lbMaxTam.TabIndex = 12;
             this.lbMaxTam.Text = "Máximo:";
             // 
@@ -342,9 +544,10 @@
             this.cbFomtL.Items.AddRange(new object[] {
             "Fijo",
             "Variable"});
-            this.cbFomtL.Location = new System.Drawing.Point(74, 68);
+            this.cbFomtL.Location = new System.Drawing.Point(99, 84);
+            this.cbFomtL.Margin = new System.Windows.Forms.Padding(4);
             this.cbFomtL.Name = "cbFomtL";
-            this.cbFomtL.Size = new System.Drawing.Size(121, 21);
+            this.cbFomtL.Size = new System.Drawing.Size(160, 24);
             this.cbFomtL.TabIndex = 7;
             this.cbFomtL.SelectedIndexChanged += new System.EventHandler(this.cbFomtL_SelectedIndexChanged);
             // 
@@ -356,26 +559,29 @@
             "Texto",
             "Archivo",
             "Multimedia"});
-            this.cbFomtC.Location = new System.Drawing.Point(74, 34);
+            this.cbFomtC.Location = new System.Drawing.Point(99, 42);
+            this.cbFomtC.Margin = new System.Windows.Forms.Padding(4);
             this.cbFomtC.Name = "cbFomtC";
-            this.cbFomtC.Size = new System.Drawing.Size(121, 21);
+            this.cbFomtC.Size = new System.Drawing.Size(160, 24);
             this.cbFomtC.TabIndex = 6;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 68);
+            this.label5.Location = new System.Drawing.Point(24, 84);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.Size = new System.Drawing.Size(49, 17);
             this.label5.TabIndex = 3;
             this.label5.Text = "Largo:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 34);
+            this.label4.Location = new System.Drawing.Point(24, 42);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 13);
+            this.label4.Size = new System.Drawing.Size(76, 17);
             this.label4.TabIndex = 2;
             this.label4.Text = "Contenido:";
             // 
@@ -383,9 +589,10 @@
             // 
             this.lbFormt.AutoSize = true;
             this.lbFormt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFormt.Location = new System.Drawing.Point(18, 11);
+            this.lbFormt.Location = new System.Drawing.Point(24, 14);
+            this.lbFormt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbFormt.Name = "lbFormt";
-            this.lbFormt.Size = new System.Drawing.Size(52, 13);
+            this.lbFormt.Size = new System.Drawing.Size(67, 17);
             this.lbFormt.TabIndex = 1;
             this.lbFormt.Text = "Formato";
             // 
@@ -396,27 +603,30 @@
             this.pnDirec.Controls.Add(this.lbDire2);
             this.pnDirec.Controls.Add(this.rgDirec);
             this.pnDirec.Controls.Add(this.lbDirec);
-            this.pnDirec.Location = new System.Drawing.Point(15, 142);
+            this.pnDirec.Location = new System.Drawing.Point(20, 175);
+            this.pnDirec.Margin = new System.Windows.Forms.Padding(4);
             this.pnDirec.Name = "pnDirec";
-            this.pnDirec.Size = new System.Drawing.Size(218, 124);
+            this.pnDirec.Size = new System.Drawing.Size(290, 152);
             this.pnDirec.TabIndex = 2;
             // 
             // cbDirec
             // 
             this.cbDirec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDirec.FormattingEnabled = true;
-            this.cbDirec.Location = new System.Drawing.Point(74, 70);
+            this.cbDirec.Location = new System.Drawing.Point(99, 86);
+            this.cbDirec.Margin = new System.Windows.Forms.Padding(4);
             this.cbDirec.Name = "cbDirec";
-            this.cbDirec.Size = new System.Drawing.Size(121, 21);
+            this.cbDirec.Size = new System.Drawing.Size(160, 24);
             this.cbDirec.TabIndex = 5;
             this.cbDirec.SelectedIndexChanged += new System.EventHandler(this.cbDirec_SelectedIndexChanged);
             // 
             // lbDire2
             // 
             this.lbDire2.AutoSize = true;
-            this.lbDire2.Location = new System.Drawing.Point(16, 70);
+            this.lbDire2.Location = new System.Drawing.Point(21, 86);
+            this.lbDire2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDire2.Name = "lbDire2";
-            this.lbDire2.Size = new System.Drawing.Size(35, 13);
+            this.lbDire2.Size = new System.Drawing.Size(46, 17);
             this.lbDire2.TabIndex = 3;
             this.lbDire2.Text = "label3";
             // 
@@ -425,9 +635,11 @@
             this.rgDirec.Controls.Add(this.rbDirDi);
             this.rgDirec.Controls.Add(this.rbDirIn);
             this.rgDirec.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.rgDirec.Location = new System.Drawing.Point(16, 29);
+            this.rgDirec.Location = new System.Drawing.Point(21, 36);
+            this.rgDirec.Margin = new System.Windows.Forms.Padding(4);
             this.rgDirec.Name = "rgDirec";
-            this.rgDirec.Size = new System.Drawing.Size(192, 38);
+            this.rgDirec.Padding = new System.Windows.Forms.Padding(4);
+            this.rgDirec.Size = new System.Drawing.Size(256, 47);
             this.rgDirec.TabIndex = 2;
             this.rgDirec.TabStop = false;
             // 
@@ -435,9 +647,10 @@
             // 
             this.rbDirDi.AutoSize = true;
             this.rbDirDi.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rbDirDi.Location = new System.Drawing.Point(3, 16);
+            this.rbDirDi.Location = new System.Drawing.Point(4, 19);
+            this.rbDirDi.Margin = new System.Windows.Forms.Padding(4);
             this.rbDirDi.Name = "rbDirDi";
-            this.rbDirDi.Size = new System.Drawing.Size(59, 19);
+            this.rbDirDi.Size = new System.Drawing.Size(74, 24);
             this.rbDirDi.TabIndex = 3;
             this.rbDirDi.TabStop = true;
             this.rbDirDi.Text = "Directo";
@@ -448,9 +661,10 @@
             // 
             this.rbDirIn.AutoSize = true;
             this.rbDirIn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rbDirIn.Location = new System.Drawing.Point(123, 16);
+            this.rbDirIn.Location = new System.Drawing.Point(169, 19);
+            this.rbDirIn.Margin = new System.Windows.Forms.Padding(4);
             this.rbDirIn.Name = "rbDirIn";
-            this.rbDirIn.Size = new System.Drawing.Size(66, 19);
+            this.rbDirIn.Size = new System.Drawing.Size(83, 24);
             this.rbDirIn.TabIndex = 4;
             this.rbDirIn.TabStop = true;
             this.rbDirIn.Text = "Indirecto";
@@ -461,9 +675,10 @@
             // 
             this.lbDirec.AutoSize = true;
             this.lbDirec.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDirec.Location = new System.Drawing.Point(13, 13);
+            this.lbDirec.Location = new System.Drawing.Point(17, 16);
+            this.lbDirec.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDirec.Name = "lbDirec";
-            this.lbDirec.Size = new System.Drawing.Size(109, 13);
+            this.lbDirec.Size = new System.Drawing.Size(138, 17);
             this.lbDirec.TabIndex = 1;
             this.lbDirec.Text = "Direccionamiento ";
             // 
@@ -475,9 +690,10 @@
             this.pnSincr.Controls.Add(this.label2);
             this.pnSincr.Controls.Add(this.label1);
             this.pnSincr.Controls.Add(this.lbSincr);
-            this.pnSincr.Location = new System.Drawing.Point(15, 12);
+            this.pnSincr.Location = new System.Drawing.Point(20, 15);
+            this.pnSincr.Margin = new System.Windows.Forms.Padding(4);
             this.pnSincr.Name = "pnSincr";
-            this.pnSincr.Size = new System.Drawing.Size(218, 124);
+            this.pnSincr.Size = new System.Drawing.Size(290, 152);
             this.pnSincr.TabIndex = 1;
             // 
             // cbSincR
@@ -488,9 +704,10 @@
             "Blocking",
             "Nonblocking",
             "Prueba de llegada"});
-            this.cbSincR.Location = new System.Drawing.Point(74, 68);
+            this.cbSincR.Location = new System.Drawing.Point(99, 84);
+            this.cbSincR.Margin = new System.Windows.Forms.Padding(4);
             this.cbSincR.Name = "cbSincR";
-            this.cbSincR.Size = new System.Drawing.Size(121, 21);
+            this.cbSincR.Size = new System.Drawing.Size(160, 24);
             this.cbSincR.TabIndex = 2;
             // 
             // cbSincS
@@ -500,26 +717,29 @@
             this.cbSincS.Items.AddRange(new object[] {
             "Blocking",
             "Nonblocking"});
-            this.cbSincS.Location = new System.Drawing.Point(74, 34);
+            this.cbSincS.Location = new System.Drawing.Point(99, 42);
+            this.cbSincS.Margin = new System.Windows.Forms.Padding(4);
             this.cbSincS.Name = "cbSincS";
-            this.cbSincS.Size = new System.Drawing.Size(121, 21);
+            this.cbSincS.Size = new System.Drawing.Size(160, 24);
             this.cbSincS.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 68);
+            this.label2.Location = new System.Drawing.Point(21, 84);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 13);
+            this.label2.Size = new System.Drawing.Size(63, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Receive:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 34);
+            this.label1.Location = new System.Drawing.Point(21, 42);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(45, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Send:";
             // 
@@ -527,141 +747,34 @@
             // 
             this.lbSincr.AutoSize = true;
             this.lbSincr.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSincr.Location = new System.Drawing.Point(13, 11);
+            this.lbSincr.Location = new System.Drawing.Point(17, 14);
+            this.lbSincr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbSincr.Name = "lbSincr";
-            this.lbSincr.Size = new System.Drawing.Size(90, 13);
+            this.lbSincr.Size = new System.Drawing.Size(114, 17);
             this.lbSincr.TabIndex = 0;
             this.lbSincr.Text = "Sincronización";
             // 
             // btAplicar
             // 
             this.btAplicar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btAplicar.Location = new System.Drawing.Point(0, 283);
+            this.btAplicar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAplicar.Location = new System.Drawing.Point(0, 450);
+            this.btAplicar.Margin = new System.Windows.Forms.Padding(4);
             this.btAplicar.Name = "btAplicar";
-            this.btAplicar.Size = new System.Drawing.Size(690, 28);
+            this.btAplicar.Size = new System.Drawing.Size(920, 34);
             this.btAplicar.TabIndex = 10;
             this.btAplicar.Text = "Aplicar";
             this.btAplicar.UseVisualStyleBackColor = true;
             this.btAplicar.Click += new System.EventHandler(this.btAplicar_Click);
             // 
-            // pnPuerto
-            // 
-            this.pnPuerto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnPuerto.Controls.Add(this.GridPuertos);
-            this.pnPuerto.Controls.Add(this.label6);
-            this.pnPuerto.Controls.Add(this.nuPuertos);
-            this.pnPuerto.Controls.Add(this.label7);
-            this.pnPuerto.Location = new System.Drawing.Point(463, 142);
-            this.pnPuerto.Name = "pnPuerto";
-            this.pnPuerto.Size = new System.Drawing.Size(218, 124);
-            this.pnPuerto.TabIndex = 13;
-            this.pnPuerto.Visible = false;
-            // 
-            // nuPuertos
-            // 
-            this.nuPuertos.Location = new System.Drawing.Point(21, 51);
-            this.nuPuertos.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nuPuertos.Name = "nuPuertos";
-            this.nuPuertos.Size = new System.Drawing.Size(36, 20);
-            this.nuPuertos.TabIndex = 9;
-            this.nuPuertos.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.nuPuertos.ValueChanged += new System.EventHandler(this.nuPuertos_ValueChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 35);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 13);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Num. puertos:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(18, 13);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Puertos";
-            // 
-            // GridPuertos
-            // 
-            this.GridPuertos.AllowUserToAddRows = false;
-            this.GridPuertos.AllowUserToDeleteRows = false;
-            this.GridPuertos.AllowUserToResizeColumns = false;
-            this.GridPuertos.AllowUserToResizeRows = false;
-            this.GridPuertos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = "0";
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridPuertos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.GridPuertos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridPuertos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = "0";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridPuertos.DefaultCellStyle = dataGridViewCellStyle3;
-            this.GridPuertos.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.GridPuertos.Location = new System.Drawing.Point(99, 9);
-            this.GridPuertos.MultiSelect = false;
-            this.GridPuertos.Name = "GridPuertos";
-            this.GridPuertos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = "0";
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Gray;
-            this.GridPuertos.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.GridPuertos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.GridPuertos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.GridPuertos.ShowCellToolTips = false;
-            this.GridPuertos.Size = new System.Drawing.Size(107, 110);
-            this.GridPuertos.TabIndex = 13;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = "0";
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Puertos";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
             // FParamConfig
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(713, 335);
+            this.ClientSize = new System.Drawing.Size(951, 516);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FParamConfig";
@@ -670,6 +783,13 @@
             this.Text = "Configuración";
             this.TopMost = true;
             this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.pnPuerto.ResumeLayout(false);
+            this.pnPuerto.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridPuertos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nuPuertos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -688,10 +808,6 @@
             this.rgDirec.PerformLayout();
             this.pnSincr.ResumeLayout(false);
             this.pnSincr.PerformLayout();
-            this.pnPuerto.ResumeLayout(false);
-            this.pnPuerto.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nuPuertos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridPuertos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -741,5 +857,10 @@
         private System.Windows.Forms.NumericUpDown nuPuertos;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbModoI;
+        private System.Windows.Forms.RadioButton rbModoB;
+        private System.Windows.Forms.Label label9;
     }
 }

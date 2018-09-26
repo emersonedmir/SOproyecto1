@@ -29,8 +29,8 @@ namespace proyecto1SO
             despl_config(pConfig);
         }
         private void despl_config(Config pConfig)
-            {
-                config = pConfig;
+        {
+            config = pConfig;
             /* sincronizacion */
             if (config.sincronizacion.send.blocking)
                 cbSincS.SelectedIndex = 0;
@@ -60,31 +60,35 @@ namespace proyecto1SO
                 else
                     cbDirec.SelectedIndex = 1;
             }
-            if (habilitarGridPuertosDin()) {
+            if (habilitarGridPuertosDin())
+            {
                 nuPuertos_ValueChanged(nuPuertos, new EventArgs());
                 int nPuertos = config.direccionamiento.indirecto.Puertos.Count();
-                if (nPuertos > 0) {                    
+                if (nPuertos > 0)
+                {
                     nuPuertos.Value = nPuertos;
                     for (int i = 0; i < nPuertos; i++)
                         GridPuertos.Rows[i].Cells[0].Value = config.direccionamiento.indirecto.Puertos[i];
                 }
                 else
-                    nuPuertos.Value = 1;                
+                    nuPuertos.Value = 1;
             }
             /* formato */
             cbFomtC.SelectedIndex = cbFomtC.Items.IndexOf(config.formato.contenido);
             if (cbFomtC.SelectedIndex == -1)
                 cbFomtC.SelectedIndex = 0;
-            if (config.formato.largo.fijo){
+            if (config.formato.largo.fijo)
+            {
                 cbFomtL.SelectedIndex = 0;
                 pnTamFijo.Visible = true;
                 nuTamMax.Value = config.formato.largo.tamMax;
-            }             
-            else{
+            }
+            else
+            {
                 cbFomtL.SelectedIndex = 1;
                 pnTamFijo.Visible = false;
                 nuTamMax.Value = 0;
-            }               
+            }
 
             /* colas */
             if (config.colas.FIFO)
@@ -93,17 +97,23 @@ namespace proyecto1SO
                 cbColas.SelectedIndex = 1;
             nuTamColaMen.Value = config.colas.TamColasMen;
 
-            /*Procesos*/            
+            /*Procesos*/
             nuHilos.Value = config.confProceso.numProcesos;
             nuHilos_ValueChanged(nuHilos, new EventArgs());
-            if (habilitarGridPuertosEst()) {                
+            if (habilitarGridPuertosEst())
+            {
                 for (int i = 0; i < config.confProceso.puertosEmisor.Count; i++)
                 {
                     Grid.Rows[i].Cells[1].Value = config.confProceso.puertosEmisor[i];
                     Grid.Rows[i].Cells[2].Value = config.confProceso.puertosReceptor[i];
                 }
-            }            
+            }
 
+            switch (config.modo)
+            {
+                case Modo.Interactivo   : rbModoI.Checked = true; break;
+                case Modo.Batch         : rbModoB.Checked = true; break;
+            }
         }
         private void rbDirDi_Click(object sender, EventArgs e)
         {            
@@ -195,7 +205,10 @@ namespace proyecto1SO
                     config.confProceso.puertosReceptor.Add(Convert.ToInt32(Grid.Rows[i].Cells[2].FormattedValue));
                 }
             }
-
+            if (rbModoI.Checked)
+                config.modo = Modo.Interactivo;
+            else
+                config.modo = Modo.Batch;            
         }
         private void btAplicar_Click(object sender, EventArgs e)
         {
