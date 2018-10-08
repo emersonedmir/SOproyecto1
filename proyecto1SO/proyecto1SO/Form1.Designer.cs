@@ -28,18 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btConfig = new System.Windows.Forms.Button();
             this.listPids = new System.Windows.Forms.ListBox();
             this.lbPids = new System.Windows.Forms.Label();
-            this.pninteractivo = new System.Windows.Forms.Panel();
+            this.pnProcesar = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.Grid = new System.Windows.Forms.DataGridView();
             this.cNuProc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cPuertoE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cPuertoR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btSalir = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnMen = new System.Windows.Forms.Panel();
             this.tbTamanio = new System.Windows.Forms.TextBox();
@@ -58,12 +57,21 @@
             this.pnPrio = new System.Windows.Forms.Panel();
             this.nuPrio = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btSalir = new System.Windows.Forms.Button();
             this.btProcesar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.btDisplay = new System.Windows.Forms.Button();
-            this.pninteractivo.SuspendLayout();
+            this.gbModo = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.rbBatch = new System.Windows.Forms.RadioButton();
+            this.rbInter = new System.Windows.Forms.RadioButton();
+            this.pnBotones = new System.Windows.Forms.Panel();
+            this.pnBatchCmd = new System.Windows.Forms.Panel();
+            this.nuCmd = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.pnProcesar.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.panel1.SuspendLayout();
             this.pnMen.SuspendLayout();
@@ -73,7 +81,10 @@
             this.pnPrio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuPrio)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.gbModo.SuspendLayout();
+            this.pnBotones.SuspendLayout();
+            this.pnBatchCmd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nuCmd)).BeginInit();
             this.SuspendLayout();
             // 
             // btConfig
@@ -81,10 +92,10 @@
             this.btConfig.BackgroundImage = global::proyecto1SO.Properties.Resources.config2;
             this.btConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btConfig.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btConfig.Location = new System.Drawing.Point(610, 13);
-            this.btConfig.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btConfig.Location = new System.Drawing.Point(654, 15);
+            this.btConfig.Margin = new System.Windows.Forms.Padding(4);
             this.btConfig.Name = "btConfig";
-            this.btConfig.Size = new System.Drawing.Size(121, 49);
+            this.btConfig.Size = new System.Drawing.Size(96, 42);
             this.btConfig.TabIndex = 0;
             this.btConfig.Text = "Configurar";
             this.btConfig.UseVisualStyleBackColor = true;
@@ -94,8 +105,8 @@
             // 
             this.listPids.FormattingEnabled = true;
             this.listPids.ItemHeight = 16;
-            this.listPids.Location = new System.Drawing.Point(589, 27);
-            this.listPids.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listPids.Location = new System.Drawing.Point(170, 27);
+            this.listPids.Margin = new System.Windows.Forms.Padding(4);
             this.listPids.Name = "listPids";
             this.listPids.ScrollAlwaysVisible = true;
             this.listPids.Size = new System.Drawing.Size(159, 132);
@@ -104,27 +115,35 @@
             // lbPids
             // 
             this.lbPids.AutoSize = true;
-            this.lbPids.Location = new System.Drawing.Point(681, 10);
+            this.lbPids.Location = new System.Drawing.Point(239, 6);
             this.lbPids.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbPids.Name = "lbPids";
             this.lbPids.Size = new System.Drawing.Size(67, 17);
             this.lbPids.TabIndex = 2;
             this.lbPids.Text = "Procesos";
             // 
-            // pninteractivo
+            // pnProcesar
             // 
-            this.pninteractivo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pninteractivo.Controls.Add(this.listPids);
-            this.pninteractivo.Controls.Add(this.Grid);
-            this.pninteractivo.Controls.Add(this.panel1);
-            this.pninteractivo.Controls.Add(this.btProcesar);
-            this.pninteractivo.Controls.Add(this.lbPids);
-            this.pninteractivo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pninteractivo.Location = new System.Drawing.Point(0, 77);
-            this.pninteractivo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pninteractivo.Name = "pninteractivo";
-            this.pninteractivo.Size = new System.Drawing.Size(760, 320);
-            this.pninteractivo.TabIndex = 7;
+            this.pnProcesar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnProcesar.Controls.Add(this.panel4);
+            this.pnProcesar.Controls.Add(this.panel1);
+            this.pnProcesar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnProcesar.Location = new System.Drawing.Point(0, 77);
+            this.pnProcesar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnProcesar.Name = "pnProcesar";
+            this.pnProcesar.Size = new System.Drawing.Size(780, 269);
+            this.pnProcesar.TabIndex = 7;
+            this.pnProcesar.Visible = false;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.listPids);
+            this.panel4.Controls.Add(this.lbPids);
+            this.panel4.Controls.Add(this.Grid);
+            this.panel4.Location = new System.Drawing.Point(456, 10);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(310, 223);
+            this.panel4.TabIndex = 17;
             // 
             // Grid
             // 
@@ -133,41 +152,40 @@
             this.Grid.AllowUserToResizeColumns = false;
             this.Grid.AllowUserToResizeRows = false;
             this.Grid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = "0";
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = "0";
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cNuProc,
-            this.cPuertoE,
-            this.cPuertoR});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = "0";
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Grid.DefaultCellStyle = dataGridViewCellStyle8;
+            this.cPuertoE});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = "0";
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Grid.DefaultCellStyle = dataGridViewCellStyle5;
             this.Grid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Grid.Location = new System.Drawing.Point(473, 27);
-            this.Grid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Grid.Location = new System.Drawing.Point(54, 27);
+            this.Grid.Margin = new System.Windows.Forms.Padding(4);
             this.Grid.MultiSelect = false;
             this.Grid.Name = "Grid";
             this.Grid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle9.Format = "N0";
-            dataGridViewCellStyle9.NullValue = "0";
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Gray;
-            this.Grid.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = "0";
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Gray;
+            this.Grid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.Grid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.Grid.ShowCellToolTips = false;
@@ -193,27 +211,6 @@
             this.cPuertoE.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.cPuertoE.Width = 50;
             // 
-            // cPuertoR
-            // 
-            this.cPuertoR.Frozen = true;
-            this.cPuertoR.HeaderText = "Puerto receptor";
-            this.cPuertoR.Name = "cPuertoR";
-            this.cPuertoR.ReadOnly = true;
-            this.cPuertoR.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cPuertoR.Width = 50;
-            // 
-            // btSalir
-            // 
-            this.btSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSalir.Location = new System.Drawing.Point(610, 14);
-            this.btSalir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btSalir.Name = "btSalir";
-            this.btSalir.Size = new System.Drawing.Size(121, 49);
-            this.btSalir.TabIndex = 13;
-            this.btSalir.Text = "Salir";
-            this.btSalir.UseVisualStyleBackColor = true;
-            this.btSalir.Click += new System.EventHandler(this.btSalir_Click);
-            // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -225,7 +222,7 @@
             this.panel1.Location = new System.Drawing.Point(12, 10);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(424, 232);
+            this.panel1.Size = new System.Drawing.Size(438, 251);
             this.panel1.TabIndex = 11;
             // 
             // pnMen
@@ -235,7 +232,7 @@
             this.pnMen.Controls.Add(this.label4);
             this.pnMen.Controls.Add(this.tbMens);
             this.pnMen.Controls.Add(this.lbMens);
-            this.pnMen.Location = new System.Drawing.Point(9, 129);
+            this.pnMen.Location = new System.Drawing.Point(4, 147);
             this.pnMen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnMen.Name = "pnMen";
             this.pnMen.Size = new System.Drawing.Size(401, 92);
@@ -284,10 +281,10 @@
             this.rgOperaciones.Controls.Add(this.rbSend);
             this.rgOperaciones.Controls.Add(this.rbReceive);
             this.rgOperaciones.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.rgOperaciones.Location = new System.Drawing.Point(20, 7);
-            this.rgOperaciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rgOperaciones.Location = new System.Drawing.Point(15, 25);
+            this.rgOperaciones.Margin = new System.Windows.Forms.Padding(4);
             this.rgOperaciones.Name = "rgOperaciones";
-            this.rgOperaciones.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rgOperaciones.Padding = new System.Windows.Forms.Padding(4);
             this.rgOperaciones.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.rgOperaciones.Size = new System.Drawing.Size(221, 47);
             this.rgOperaciones.TabIndex = 14;
@@ -299,32 +296,34 @@
             this.rbSend.Checked = true;
             this.rbSend.Dock = System.Windows.Forms.DockStyle.Left;
             this.rbSend.Location = new System.Drawing.Point(4, 19);
-            this.rbSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbSend.Margin = new System.Windows.Forms.Padding(4);
             this.rbSend.Name = "rbSend";
             this.rbSend.Size = new System.Drawing.Size(62, 24);
             this.rbSend.TabIndex = 1;
             this.rbSend.TabStop = true;
             this.rbSend.Text = "Send";
             this.rbSend.UseVisualStyleBackColor = true;
+            this.rbSend.Click += new System.EventHandler(this.rbSend_Click);
             // 
             // rbReceive
             // 
             this.rbReceive.AutoSize = true;
             this.rbReceive.Dock = System.Windows.Forms.DockStyle.Right;
             this.rbReceive.Location = new System.Drawing.Point(137, 19);
-            this.rbReceive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbReceive.Margin = new System.Windows.Forms.Padding(4);
             this.rbReceive.Name = "rbReceive";
             this.rbReceive.Size = new System.Drawing.Size(80, 24);
             this.rbReceive.TabIndex = 2;
             this.rbReceive.Text = "Receive";
             this.rbReceive.UseVisualStyleBackColor = true;
+            this.rbReceive.Click += new System.EventHandler(this.rbSend_Click);
             // 
             // cnRece
             // 
             this.cnRece.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cnRece.Controls.Add(this.tbRece);
             this.cnRece.Controls.Add(this.label2);
-            this.cnRece.Location = new System.Drawing.Point(217, 60);
+            this.cnRece.Location = new System.Drawing.Point(212, 78);
             this.cnRece.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cnRece.Name = "cnRece";
             this.cnRece.Size = new System.Drawing.Size(193, 65);
@@ -337,23 +336,23 @@
             this.tbRece.Name = "tbRece";
             this.tbRece.Size = new System.Drawing.Size(159, 22);
             this.tbRece.TabIndex = 5;
-            this.tbRece.Validating += new System.ComponentModel.CancelEventHandler(this.tbRece_Validating);
+            this.tbRece.Validating += new System.ComponentModel.CancelEventHandler(this.tbEmis_Validating);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(-1, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 17);
+            this.label2.Size = new System.Drawing.Size(56, 17);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Receptor";
+            this.label2.Text = "Destino";
             // 
             // cnEmis
             // 
             this.cnEmis.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cnEmis.Controls.Add(this.tbEmis);
             this.cnEmis.Controls.Add(this.label1);
-            this.cnEmis.Location = new System.Drawing.Point(9, 60);
+            this.cnEmis.Location = new System.Drawing.Point(4, 78);
             this.cnEmis.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cnEmis.Name = "cnEmis";
             this.cnEmis.Size = new System.Drawing.Size(193, 65);
@@ -366,7 +365,7 @@
             this.tbEmis.Name = "tbEmis";
             this.tbEmis.Size = new System.Drawing.Size(159, 22);
             this.tbEmis.TabIndex = 5;
-            this.tbEmis.Validating += new System.ComponentModel.CancelEventHandler(this.tbRece_Validating);
+            this.tbEmis.Validating += new System.ComponentModel.CancelEventHandler(this.tbEmis_Validating);
             // 
             // label1
             // 
@@ -375,14 +374,14 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 17);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Emisor";
+            this.label1.Text = "Origen";
             // 
             // pnPrio
             // 
             this.pnPrio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnPrio.Controls.Add(this.nuPrio);
             this.pnPrio.Controls.Add(this.label5);
-            this.pnPrio.Location = new System.Drawing.Point(275, 18);
+            this.pnPrio.Location = new System.Drawing.Point(270, 36);
             this.pnPrio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnPrio.Name = "pnPrio";
             this.pnPrio.Size = new System.Drawing.Size(137, 38);
@@ -391,7 +390,7 @@
             // nuPrio
             // 
             this.nuPrio.Location = new System.Drawing.Point(77, 7);
-            this.nuPrio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nuPrio.Margin = new System.Windows.Forms.Padding(4);
             this.nuPrio.Name = "nuPrio";
             this.nuPrio.Size = new System.Drawing.Size(48, 22);
             this.nuPrio.TabIndex = 11;
@@ -405,10 +404,34 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Prioridad";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(481, 5);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(121, 49);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Display";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btSalir
+            // 
+            this.btSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSalir.Location = new System.Drawing.Point(608, 5);
+            this.btSalir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btSalir.Name = "btSalir";
+            this.btSalir.Size = new System.Drawing.Size(121, 49);
+            this.btSalir.TabIndex = 13;
+            this.btSalir.Text = "Salir";
+            this.btSalir.UseVisualStyleBackColor = true;
+            this.btSalir.Click += new System.EventHandler(this.btSalir_Click);
+            // 
             // btProcesar
             // 
             this.btProcesar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btProcesar.Location = new System.Drawing.Point(12, 258);
+            this.btProcesar.Location = new System.Drawing.Point(7, 5);
             this.btProcesar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btProcesar.Name = "btProcesar";
             this.btProcesar.Size = new System.Drawing.Size(121, 49);
@@ -419,65 +442,146 @@
             // 
             // label3
             // 
-            this.label3.AutoEllipsis = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Location = new System.Drawing.Point(70, 15);
             this.label3.Name = "label3";
-            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label3.Size = new System.Drawing.Size(760, 77);
+            this.label3.Size = new System.Drawing.Size(256, 29);
             this.label3.TabIndex = 8;
             this.label3.Text = "MESSAGE PASSING";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btDisplay);
-            this.panel2.Controls.Add(this.btSalir);
+            this.panel2.Controls.Add(this.gbModo);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.btConfig);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 397);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(760, 76);
+            this.panel2.Size = new System.Drawing.Size(780, 77);
             this.panel2.TabIndex = 9;
             // 
-            // panel4
+            // gbModo
             // 
-            this.panel4.Controls.Add(this.btConfig);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(760, 77);
-            this.panel4.TabIndex = 10;
+            this.gbModo.Controls.Add(this.label6);
+            this.gbModo.Controls.Add(this.rbBatch);
+            this.gbModo.Controls.Add(this.rbInter);
+            this.gbModo.Location = new System.Drawing.Point(392, 3);
+            this.gbModo.Name = "gbModo";
+            this.gbModo.Size = new System.Drawing.Size(238, 57);
+            this.gbModo.TabIndex = 9;
+            this.gbModo.TabStop = false;
             // 
-            // btDisplay
+            // label6
             // 
-            this.btDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btDisplay.Location = new System.Drawing.Point(14, 14);
-            this.btDisplay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btDisplay.Name = "btDisplay";
-            this.btDisplay.Size = new System.Drawing.Size(121, 49);
-            this.btDisplay.TabIndex = 14;
-            this.btDisplay.Text = "Display";
-            this.btDisplay.UseVisualStyleBackColor = true;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(16, 20);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 17);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Modo: ";
+            // 
+            // rbBatch
+            // 
+            this.rbBatch.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbBatch.AutoSize = true;
+            this.rbBatch.BackColor = System.Drawing.SystemColors.Control;
+            this.rbBatch.FlatAppearance.CheckedBackColor = System.Drawing.Color.DimGray;
+            this.rbBatch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.rbBatch.Location = new System.Drawing.Point(168, 15);
+            this.rbBatch.Name = "rbBatch";
+            this.rbBatch.Size = new System.Drawing.Size(54, 27);
+            this.rbBatch.TabIndex = 1;
+            this.rbBatch.Text = "Batch";
+            this.rbBatch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbBatch.UseVisualStyleBackColor = false;
+            this.rbBatch.Click += new System.EventHandler(this.rbBatch_Click);
+            // 
+            // rbInter
+            // 
+            this.rbInter.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbInter.AutoSize = true;
+            this.rbInter.BackColor = System.Drawing.SystemColors.Control;
+            this.rbInter.FlatAppearance.CheckedBackColor = System.Drawing.Color.DimGray;
+            this.rbInter.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.rbInter.Location = new System.Drawing.Point(79, 15);
+            this.rbInter.Name = "rbInter";
+            this.rbInter.Size = new System.Drawing.Size(83, 27);
+            this.rbInter.TabIndex = 0;
+            this.rbInter.Text = "Interactivo";
+            this.rbInter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbInter.UseVisualStyleBackColor = false;
+            this.rbInter.Click += new System.EventHandler(this.rbInter_Click);
+            // 
+            // pnBotones
+            // 
+            this.pnBotones.Controls.Add(this.pnBatchCmd);
+            this.pnBotones.Controls.Add(this.button1);
+            this.pnBotones.Controls.Add(this.btSalir);
+            this.pnBotones.Controls.Add(this.btProcesar);
+            this.pnBotones.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnBotones.Location = new System.Drawing.Point(0, 346);
+            this.pnBotones.Name = "pnBotones";
+            this.pnBotones.Size = new System.Drawing.Size(780, 71);
+            this.pnBotones.TabIndex = 17;
+            this.pnBotones.Visible = false;
+            // 
+            // pnBatchCmd
+            // 
+            this.pnBatchCmd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnBatchCmd.Controls.Add(this.nuCmd);
+            this.pnBatchCmd.Controls.Add(this.label7);
+            this.pnBatchCmd.Location = new System.Drawing.Point(147, 5);
+            this.pnBatchCmd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnBatchCmd.Name = "pnBatchCmd";
+            this.pnBatchCmd.Size = new System.Drawing.Size(160, 47);
+            this.pnBatchCmd.TabIndex = 17;
+            // 
+            // nuCmd
+            // 
+            this.nuCmd.Location = new System.Drawing.Point(98, 13);
+            this.nuCmd.Margin = new System.Windows.Forms.Padding(4);
+            this.nuCmd.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nuCmd.Name = "nuCmd";
+            this.nuCmd.Size = new System.Drawing.Size(48, 22);
+            this.nuCmd.TabIndex = 11;
+            this.nuCmd.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 15);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(75, 17);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Comandos";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(760, 489);
+            this.ClientSize = new System.Drawing.Size(780, 409);
+            this.Controls.Add(this.pnBotones);
+            this.Controls.Add(this.pnProcesar);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.pninteractivo);
-            this.Controls.Add(this.panel4);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SO_Pr1_MESSAGE PASSING";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.pninteractivo.ResumeLayout(false);
-            this.pninteractivo.PerformLayout();
+            this.pnProcesar.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.pnMen.ResumeLayout(false);
@@ -492,7 +596,13 @@
             this.pnPrio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuPrio)).EndInit();
             this.panel2.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.gbModo.ResumeLayout(false);
+            this.gbModo.PerformLayout();
+            this.pnBotones.ResumeLayout(false);
+            this.pnBatchCmd.ResumeLayout(false);
+            this.pnBatchCmd.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nuCmd)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -502,7 +612,7 @@
         private System.Windows.Forms.Button btConfig;
         private System.Windows.Forms.ListBox listPids;
         private System.Windows.Forms.Label lbPids;
-        private System.Windows.Forms.Panel pninteractivo;
+        private System.Windows.Forms.Panel pnProcesar;
         private System.Windows.Forms.Button btProcesar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
@@ -525,12 +635,19 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btSalir;
         private System.Windows.Forms.DataGridView Grid;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pnBotones;
+        private System.Windows.Forms.GroupBox gbModo;
+        private System.Windows.Forms.RadioButton rbBatch;
+        private System.Windows.Forms.RadioButton rbInter;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel pnBatchCmd;
+        private System.Windows.Forms.NumericUpDown nuCmd;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridViewTextBoxColumn cNuProc;
         private System.Windows.Forms.DataGridViewTextBoxColumn cPuertoE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cPuertoR;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btDisplay;
-        private System.Windows.Forms.Panel panel4;
     }
 }
 
