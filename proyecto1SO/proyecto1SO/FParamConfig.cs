@@ -151,14 +151,23 @@ namespace proyecto1SO
                     case 0: config.direccionamiento.indirecto.estatico = true; break;
                     case 1: config.direccionamiento.indirecto.dinamico = true; break;
                 }
-            }
-            if (pnPuerto.Visible)
-            {
-                int nPuertos = (int)nuPuertos.Value;
-                config.direccionamiento.indirecto.Puertos.Clear();
-                nuPuertos.Value = nPuertos;
-                for (int i = 0; i < nPuertos; i++)
-                    config.direccionamiento.indirecto.Puertos.Add(Convert.ToInt32(GridPuertos.Rows[i].Cells[0].FormattedValue));
+                if (pnPuerto.Visible)  // direccionamiento indirecto dinamico
+                {
+                    int nPuertos = (int)nuPuertos.Value;
+                    config.direccionamiento.indirecto.Puertos.Clear();
+                    nuPuertos.Value = nPuertos;
+                    for (int i = 0; i < nPuertos; i++)
+                        config.direccionamiento.indirecto.Puertos.Add(Convert.ToInt32(GridPuertos.Rows[i].Cells[0].FormattedValue));
+                }
+                else
+                {
+                    int nPuertos = Grid.RowCount-1;
+                    for (int i = 1; i < nPuertos; i++) {
+                        int puerto = Convert.ToInt32(Grid.Rows[i].Cells[1].FormattedValue);
+                        if (config.direccionamiento.indirecto.Puertos.IndexOf(puerto)>=0)
+                            config.direccionamiento.indirecto.Puertos.Add(puerto);
+                    }                        
+                }
             }
 
             /* formato */
@@ -182,7 +191,7 @@ namespace proyecto1SO
             config.colas.TamColasMen = (int)nuTamColaMen.Value;
             /* Procesos */
             config.confProceso.numProcesos = (int)nuHilos.Value;
-            if (Grid.Visible)
+            if (Grid.Visible) // direccionamiento indirecto estatico
             {
                 config.confProceso.puertosEmisor.Clear();
                 for (int i = 0; i < config.confProceso.numProcesos; i++)

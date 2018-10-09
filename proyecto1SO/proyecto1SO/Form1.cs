@@ -94,7 +94,7 @@ namespace proyecto1SO
                 hilos[i].Abort();
             }
             procesos.lstProcesos.Clear();
-            procesos.MailBox.Clear();
+            puertos.lstMailBox.Clear();
             hilos.Clear();
             //operaciones.Clear();
 
@@ -151,16 +151,21 @@ namespace proyecto1SO
             else
                 tbMens.MaxLength = 0;
             pnPrio.Visible = configuracion.colas.Prioridad;
+            if (configuracion.direccionamiento.tipo == 1)
+            {
+                foreach (var id in configuracion.direccionamiento.indirecto.Puertos)
+                {
+                    MailBox puerto = new MailBox(id);
+                    puertos.lstMailBox.Add(puerto);
+                }
+            }
+                            
         }
         private Thread crear_Hilo(int i)
-        {
-           
-            mailBox buzon;
-            buzon = new mailBox();
+        {                      
             hilo newProceso;
             newProceso = new hilo(i, configuracion);
             procesos.lstProcesos.Add(newProceso);
-            procesos.MailBox.Add(buzon);
 
  
             Thread newThread = new Thread(new ParameterizedThreadStart(newProceso.ejecutar));
