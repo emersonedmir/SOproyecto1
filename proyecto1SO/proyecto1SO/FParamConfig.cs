@@ -97,8 +97,8 @@ namespace proyecto1SO
             nuHilos.Value = config.confProceso.numProcesos;
             nuHilos_ValueChanged(nuHilos, new EventArgs());
             if (habilitarGridPuertosEst()) {                
-                for (int i = 0; i < config.confProceso.puertosEmisor.Count; i++)
-                    Grid.Rows[i].Cells[1].Value = config.confProceso.puertosEmisor[i];                    
+                for (int i = 0; i < config.confProceso.puertosReceptor.Count; i++)
+                    Grid.Rows[i].Cells[1].Value = config.confProceso.puertosReceptor[i];                    
             }            
 
         }
@@ -156,20 +156,22 @@ namespace proyecto1SO
                     int nPuertos = (int)nuPuertos.Value;
                     config.direccionamiento.indirecto.Puertos.Clear();
                     nuPuertos.Value = nPuertos;
-                    for (int i = 0; i < nPuertos; i++)
-                        config.direccionamiento.indirecto.Puertos.Add(Convert.ToInt32(GridPuertos.Rows[i].Cells[0].FormattedValue));
+                    for (int i = 0; i < nPuertos; i++) {
+                        int puerto = Convert.ToInt32(GridPuertos.Rows[i].Cells[0].FormattedValue);
+                        if (config.direccionamiento.indirecto.Puertos.IndexOf(puerto) < 0)
+                            config.direccionamiento.indirecto.Puertos.Add(puerto);
+                    }                        
                 }
                 else
                 {
-                    int nPuertos = Grid.RowCount-1;
-                    for (int i = 1; i < nPuertos; i++) {
+                    int nPuertos = Grid.RowCount;
+                    for (int i = 0; i < nPuertos; i++) {
                         int puerto = Convert.ToInt32(Grid.Rows[i].Cells[1].FormattedValue);
-                        if (config.direccionamiento.indirecto.Puertos.IndexOf(puerto)>=0)
+                        if (config.direccionamiento.indirecto.Puertos.IndexOf(puerto)<0)
                             config.direccionamiento.indirecto.Puertos.Add(puerto);
                     }                        
                 }
             }
-
             /* formato */
             if (cbFomtC.SelectedIndex >=0)
                 config.formato.contenido = (string)cbFomtC.SelectedItem;
@@ -193,9 +195,9 @@ namespace proyecto1SO
             config.confProceso.numProcesos = (int)nuHilos.Value;
             if (Grid.Visible) // direccionamiento indirecto estatico
             {
-                config.confProceso.puertosEmisor.Clear();
+                config.confProceso.puertosReceptor.Clear();
                 for (int i = 0; i < config.confProceso.numProcesos; i++)
-                    config.confProceso.puertosEmisor.Add(Convert.ToInt32(Grid.Rows[i].Cells[1].FormattedValue));
+                    config.confProceso.puertosReceptor.Add(Convert.ToInt32(Grid.Rows[i].Cells[1].FormattedValue));
             }
 
         }
@@ -231,7 +233,7 @@ namespace proyecto1SO
             //{
                 Grid.RowCount = (int)nuHilos.Value;
                 for (int i = 0; i < Grid.RowCount; i++)
-                    Grid.Rows[i].Cells[0].Value = i + 1;
+                    Grid.Rows[i].Cells[0].Value = i;
             //}
         }
 
@@ -244,6 +246,11 @@ namespace proyecto1SO
         private void nuPuertos_ValueChanged(object sender, EventArgs e)
         {
             GridPuertos.RowCount = (int)nuPuertos.Value;
+        }
+
+        private void Grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -126,39 +126,61 @@ namespace proyecto1SO.utilidades
             int aux;
             aux = -1;
             Mensaje msg = null;
-
-            foreach (var item in lstMensajesRecibidos)
+            if (configuracion.direccionamiento.tipo == 0)
             {
-                if ((item.idOrigen == origen) || (-1 == origen))
+                foreach (var item in lstMensajesRecibidos)
                 {
-                    if (configuracion.colas.Prioridad)
+                    if ((item.idOrigen == origen) || (-1 == origen))
                     {
-                        if (aux < item.prioridad)
+                        if (configuracion.colas.Prioridad)
                         {
-                            aux = item.prioridad;
+                            if (aux < item.prioridad)
+                            {
+                                aux = item.prioridad;
+                                msg = item;
+                            }
+                        }
+                        else //FIFO
+                        {
                             msg = item;
+                            break;
                         }
                     }
-                    else //FIFO
+                }
+                if (msg != null)
+                    lstMensajes.Remove(msg);
+            }
+            else
+            {
+                int puerto = configuracion.confProceso.puertosReceptor[idProceso];
+                int idx = puertos.Get_IdxMailBox(puerto);
+                Mensaje msgAux = null;
+                foreach (var item in puertos.lstMailBox[idx].lstMensajes)
+                {
+                    if ((item.idDestino == puerto) || (item.idOrigen != puerto))
                     {
-                        msg = item;
-                        break;
+                        if (configuracion.colas.Prioridad)
+                        {
+                            if (aux < item.prioridad)
+                            {
+                                aux = item.prioridad;
+                                msgAux = item;
+                            }
+                        }
+                        else //FIFO
+                        {
+                            msgAux = item;
+                            break;
+                        }
                     }
                 }
+                msg = msgAux;
+                if (msg != null)
+                    puertos.lstMailBox[idx].lstMensajes.Remove(msg);
             }
-            if (msg != null)
-                lstMensajes.Remove(msg);
             mutexOper.ReleaseMutex();
             return msg;
-        }
-        private int Get_IdxMailBox(int pPuerto)
-        {
-            int i;
-            for (i = 0; i < puertos.lstMailBox.Count; i++)
-                if (puertos.lstMailBox[i].puerto == pPuerto)
-                    return i;
-            return -1;
-        }
+        }        
 
         public void documentar(Mensaje msg)
         {
@@ -191,37 +213,69 @@ namespace proyecto1SO.utilidades
         //    }
         //    mutexOper.ReleaseMutex();
         //}
-        private Mensaje Get_mensaje()
+        private Mensaje Get_mensaje_proceso()
         {
             Mensaje mensaje = null;
-            if ((configuracion.direccionamiento.tipo == 0) || (configuracion.direccionamiento.indirecto.dinamico))
+            if (configuracion.direccionamiento.tipo == 0)
             {
-                mutexGetMen.WaitOne();
-                //Los procesos se seleccionan siempre en FIFO -> mensaje:{send|receive}
-                mensaje = lstMensajes[0];
-                lstMensajes.Remove(mensaje);
-                mutexGetMen.ReleaseMutex();
+                if (lstMensajes.Count > 0) {
+                    mutexGetMen.WaitOne();
+                    //Los procesos se seleccionan siempre en FIFO -> mensaje:{send|receive}
+                    mensaje = lstMensajes[0];
+                    lstMensajes.Remove(mensaje);
+                    mutexGetMen.ReleaseMutex();
+                }                
+            }
+            else if ((configuracion.direccionamiento.tipo == 1) && (configuracion.direccionamiento.indirecto.dinamico))
+            {
+                if (procesosDDin.lstProcesosDDin.Count > 0)
+                {
+                    mutexGetMen.WaitOne();
+                    //Los procesos se seleccionan siempre en FIFO -> mensaje:{send|receive}
+                    mensaje = procesosDDin.lstProcesosDDin[0];
+                    procesosDDin.lstProcesosDDin.Remove(mensaje);
+                    mutexGetMen.ReleaseMutex();
+                }
             }
             else
             {
-                MessageBox.Show("Pendiente seleccionar el mensaje-> si es recibe debende del puerto del proceso.");
+                if (procesosDDin.lstProcesosDDin.Count > 0)
+                {
+                    int puertoR = configuracion.confProceso.puertosReceptor[idProceso];
+                    mutexGetMen.WaitOne();
+                    //Los procesos se seleccionan siempre en FIFO -> mensaje:{send|receive}                    
+                    for (int i = 0; i < procesosDDin.lstProcesosDDin.Count; i++) {
+                        if (procesosDDin.lstProcesosDDin[i].TipoMsg == tipoMensaje.send)
+                        {
+                            mensaje = procesosDDin.lstProcesosDDin[i];
+                            break;
+                        }
+                        else if (procesosDDin.lstProcesosDDin[i].idDestino == puertoR)
+                        {
+                            mensaje = procesosDDin.lstProcesosDDin[i];
+                            break;
+                        }
+                    }
+                    if (mensaje != null)
+                        procesosDDin.lstProcesosDDin.Remove(mensaje);
+                    mutexGetMen.ReleaseMutex();
+                }
             }
             return mensaje;
         }
         public void ejecutar(object pParametros)
         {
+            Mensaje mensaje = null;
             while (true)
             {
                 Thread.Sleep(1000);
                 if (this.estado == estadoProceso.noBloqueado)
                 {
-                    if (lstMensajes.Count > 0)
-                    {
-                        Mensaje mensaje = Get_mensaje();
+                    mensaje = Get_mensaje_proceso();
+                    if (mensaje != null)
+                    {                        
                         if (configuracion.direccionamiento.tipo == 0) // tipo: 0=directo, 1=indirecto
                         {//direccionamiento directo                            
-
-
                             if (mensaje.TipoMsg == tipoMensaje.send)
                             {//direccionamiento directo, disciplina fifo, send
                                 if (configuracion.sincronizacion.send.blocking)
@@ -242,7 +296,7 @@ namespace proyecto1SO.utilidades
                                 }
                             }
                             else // Receive
-                            {
+                            {// del buffer de entrada obtener mensaje de un emisor en especifico o emisor -1
                                 bool encontrado = false;
                                 Mensaje mensajeRecibido = null;
                                 if (configuracion.sincronizacion.receive.blocking)
@@ -302,7 +356,7 @@ namespace proyecto1SO.utilidades
                                 {// blocking
                                     bloquear();
                                     mutexOper.WaitOne();
-                                    int idx = Get_IdxMailBox(mensaje.idDestino);
+                                    int idx = puertos.Get_IdxMailBox(mensaje.idDestino);
                                     puertos.lstMailBox[idx].lstMensajes.Add(mensaje);
                                     mutexOper.ReleaseMutex();
                                     documentar(mensaje);
@@ -310,7 +364,7 @@ namespace proyecto1SO.utilidades
                                     while (!respuesta)
                                     {
                                         mutexOper.WaitOne();
-                                        idx = Get_IdxMailBox(mensaje.idOrigen);
+                                        idx = puertos.Get_IdxMailBox(mensaje.idOrigen);
                                         if (puertos.lstMailBox[idx].lstMensajes.IndexOf(mensaje) >= 0)
                                         {
                                             respuesta = true;
@@ -323,40 +377,68 @@ namespace proyecto1SO.utilidades
                                 else if (configuracion.sincronizacion.send.nonblocking)
                                 {//no blocking
                                     mutexOper.WaitOne();
-                                    int idx = Get_IdxMailBox(mensaje.idDestino);
+                                    int idx = puertos.Get_IdxMailBox(mensaje.idDestino);
                                     puertos.lstMailBox[idx].lstMensajes.Add(mensaje);
                                     mutexOper.ReleaseMutex();
                                     documentar(mensaje);
+                                }                                
+                            }
+                            // Receive
+                            else
+                            {// obtener algun mensaje dejado en puerto receptor
+                                bool encontrado = false;
+                                Mensaje mensajeRecibido = null;                               
+                                if (configuracion.sincronizacion.receive.blocking)
+                                {
+                                    bloquear();
+                                    while (!encontrado)
+                                    {
+                                        mensajeRecibido = obtenerMenRecibido(mensaje.idDestino);  //Origen=-1 -> recibe implisito
+                                        encontrado = (mensajeRecibido != null);
+                                        if (!encontrado)
+                                        {
+                                            Thread.Sleep(500);
+                                        }
+                                    }
+                                    desbloquear();
+                                }
+                                else if (configuracion.sincronizacion.receive.nonblocking)
+                                {
+                                    mensajeRecibido = obtenerMenRecibido(mensaje.idDestino);  //Origen=-1 -> recibe implisito
+                                    encontrado = (mensajeRecibido != null);
+                                }
+                                else
+                                {//prueba de llegada                                       
+                                    bloquearBW();
+                                    while (!encontrado)
+                                    {
+                                        mensajeRecibido = obtenerMenRecibido(mensaje.idDestino);  //Origen=-1 -> recibe implisito
+                                        encontrado = (mensajeRecibido != null);
+                                        if (!encontrado)
+                                        {
+                                            Thread.Sleep(500);
+                                        }
+                                    }
+                                    desbloquear();
+                                }
+                                if (encontrado)
+                                {
+                                    documentar(mensajeRecibido);
+                                    if (configuracion.sincronizacion.send.blocking)
+                                    {
+                                        int idx = puertos.Get_IdxMailBox(mensajeRecibido.idOrigen);
+                                        puertos.lstMailBox[idx].lstMensajes.Add(mensajeRecibido);
+                                    }
+                                        
                                 }
                                 else
                                 {
-                                    bloquearBW();
-                                    mutexOper.WaitOne();
-                                    int idx = Get_IdxMailBox(mensaje.idDestino);
-                                    puertos.lstMailBox[idx].lstMensajes.Add(mensaje);
-                                    mutexOper.ReleaseMutex();
-                                    documentar(mensaje);
-                                    bool respuesta = false;
-                                    while (!respuesta)
-                                    {
-                                        mutexOper.WaitOne();
-                                        idx = Get_IdxMailBox(mensaje.idOrigen);
-                                        if (puertos.lstMailBox[idx].lstMensajes.IndexOf(mensaje) >= 0)
-                                        {
-                                            respuesta = true;
-                                            puertos.lstMailBox[idx].lstMensajes.Remove(mensaje);
-                                            desbloquear();
-                                        }
-                                        mutexOper.ReleaseMutex();
-                                    }
+                                    StreamWriter WriteReportFile2 = File.AppendText("Prueba.txt");
+                                    string historia = "Mensaje no encontrado";
+                                    WriteReportFile2.WriteLine(historia);
+                                    WriteReportFile2.Close();
                                 }
-                            }
-                            else // Receive
-                            {
-                                if (mensaje != null)
-                                {
-                                    MessageBox.Show("Receive direccionamiento indirecto");
-                                }
+                                //log recibido | no recibido
                             }
                             //verificarBuzon();
 

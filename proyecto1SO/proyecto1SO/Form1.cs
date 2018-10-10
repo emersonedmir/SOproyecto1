@@ -95,6 +95,7 @@ namespace proyecto1SO
             }
             procesos.lstProcesos.Clear();
             puertos.lstMailBox.Clear();
+            procesosDDin.lstProcesosDDin.Clear();
             hilos.Clear();
             //operaciones.Clear();
 
@@ -131,7 +132,8 @@ namespace proyecto1SO
                     lbPids.Text = "Puertos";
                     if (configuracion.direccionamiento.indirecto.estatico) {                        
                         Grid.Visible = true;
-                        Grid.Rows[i].Cells[1].Value = configuracion.confProceso.puertosEmisor[i];                        
+                        Grid.Rows[i].Cells[0].Value = i;
+                        Grid.Rows[i].Cells[1].Value = configuracion.confProceso.puertosReceptor[i];                        
                     }
                 }
                 else {
@@ -233,12 +235,25 @@ namespace proyecto1SO
                     msg.Tamanio = float.Parse(tbTamanio.Text);
             }
             if (valido)
-            {
+            {                
                 mutexOper.WaitOne();
-                if (msg.TipoMsg == tipoMensaje.send)
-                    procesos.lstProcesos[msg.idOrigen].lstMensajes.Add(msg);
+                if (configuracion.direccionamiento.tipo == 0)
+                {
+                    // Los mensajes [Send|receive] se mandan a al buffer del proceso
+                    // Send: este se encarga de enviarlo a un buffer de entrada del otro proceso
+                    //receive: procesa y notifica su cola de entrada.
+                    if (msg.TipoMsg == tipoMensaje.send)
+                        procesos.lstProcesos[msg.idOrigen].lstMensajes.Add(msg);
+                    else
+                        procesos.lstProcesos[msg.idDestino].lstMensajes.Add(msg);
+                }
                 else
-                    procesos.lstProcesos[msg.idDestino].lstMensajes.Add(msg);
+                {
+                    // Los mensajes [Send|receive] se mandan a al buffer global.
+                    // Send: este se encarga de mover del buffer global al puerto de entrada del receive
+                    // receive: procesa y notifica su cola de entrada de su puerto.
+                    procesosDDin.lstProcesosDDin.Add(msg);
+                }                
                 mutexOper.ReleaseMutex();
                 MessageBox.Show("Operación enviada.");
             }            

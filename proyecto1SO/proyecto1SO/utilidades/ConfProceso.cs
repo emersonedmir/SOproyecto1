@@ -9,12 +9,12 @@ namespace proyecto1SO.utilidades
     public class ConfProceso
     {
         public int numProcesos;
-        public List<int> puertosEmisor;
+        public List<int> puertosReceptor;
 
         public ConfProceso()
         {
-            numProcesos = 1;            
-            puertosEmisor = new List<int>();
+            numProcesos = 1;
+            puertosReceptor = new List<int>();
         }
     }
 }

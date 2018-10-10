@@ -1,0 +1,10 @@
+Proceso 0 no bloqueado
+Proceso 1 no bloqueado (busy waiting)
+Proceso 0 no bloqueado
+Proceso 1 no bloqueado
+Proceso 0 bloqueado
+Proceso 1 no bloqueado
+Proceso 0 bloqueado
+Proceso 1 bloqueado
+Proceso 0 no bloqueado
+Proceso 1 no bloqueado

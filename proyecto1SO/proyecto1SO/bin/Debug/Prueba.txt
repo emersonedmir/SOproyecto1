@@ -1,2 +1,7 @@
 direccionamiento: directo , Tipo mensaje: send Tipo cola: FIFO , Origen:1 destino 0 contenido: , procesado
 direccionamiento: directo , Tipo mensaje: send Tipo cola: FIFO , Origen:0 destino 1 contenido: , procesado
+direccionamiento: indirecto , Tipo mensaje: send Tipo cola: FIFO , Origen:5 destino 10 contenido: hola, procesado
+direccionamiento: indirecto , Tipo mensaje: send Tipo cola: FIFO , Origen:5 destino 10 contenido: hola, procesado
+direccionamiento: indirecto , Tipo mensaje: send Tipo cola: FIFO , Origen:5 destino 10 contenido: hola, procesado
+direccionamiento: indirecto , Tipo mensaje: send Tipo cola: FIFO , Origen:10 destino 5 contenido: hola, procesado
+direccionamiento: indirecto , Tipo mensaje: send Tipo cola: FIFO , Origen:10 destino 5 contenido: hola, procesado

@@ -9,8 +9,20 @@ namespace proyecto1SO.utilidades
     {
         public static List<hilo> lstProcesos = new List<hilo>();    //contiene las referencias de la direccion de memoria de los procesos
     }
+    public static class procesosDDin
+    {
+        public static List<Mensaje> lstProcesosDDin = new List<Mensaje>();    //contiene las referencias de la direccion de memoria de los procesos
+    }
     public static class puertos
     {
         public static List<MailBox> lstMailBox = new List<MailBox>();  //buzon compartido para direccionamiento send indirecto
+        public static int Get_IdxMailBox(int pPuerto)
+        {
+            int i;
+            for (i = 0; i < puertos.lstMailBox.Count; i++)
+                if (puertos.lstMailBox[i].puerto == pPuerto)
+                    return i;
+            return -1;
+        }
     }
 }

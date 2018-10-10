@@ -28,21 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnPuerto = new System.Windows.Forms.Panel();
+            this.Grid = new System.Windows.Forms.DataGridView();
+            this.cNuProc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cPuertoR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GridPuertos = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.nuPuertos = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.Grid = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.nuHilos = new System.Windows.Forms.NumericUpDown();
@@ -75,13 +77,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbSincr = new System.Windows.Forms.Label();
             this.btAplicar = new System.Windows.Forms.Button();
-            this.cNuProc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cPuertoE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.pnPuerto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridPuertos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuPuertos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuHilos)).BeginInit();
             this.pnColas.SuspendLayout();
@@ -98,15 +98,15 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.pnPuerto);
-            this.panel1.Controls.Add(this.Grid);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.pnColas);
             this.panel1.Controls.Add(this.pnFormt);
             this.panel1.Controls.Add(this.pnDirec);
             this.panel1.Controls.Add(this.pnSincr);
             this.panel1.Controls.Add(this.btAplicar);
+            this.panel1.Controls.Add(this.Grid);
             this.panel1.Location = new System.Drawing.Point(16, 15);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(924, 387);
             this.panel1.TabIndex = 0;
@@ -118,12 +118,77 @@
             this.pnPuerto.Controls.Add(this.label6);
             this.pnPuerto.Controls.Add(this.nuPuertos);
             this.pnPuerto.Controls.Add(this.label7);
-            this.pnPuerto.Location = new System.Drawing.Point(617, 176);
-            this.pnPuerto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnPuerto.Location = new System.Drawing.Point(619, 175);
+            this.pnPuerto.Margin = new System.Windows.Forms.Padding(4);
             this.pnPuerto.Name = "pnPuerto";
             this.pnPuerto.Size = new System.Drawing.Size(290, 152);
             this.pnPuerto.TabIndex = 13;
             this.pnPuerto.Visible = false;
+            // 
+            // Grid
+            // 
+            this.Grid.AllowUserToAddRows = false;
+            this.Grid.AllowUserToDeleteRows = false;
+            this.Grid.AllowUserToResizeColumns = false;
+            this.Grid.AllowUserToResizeRows = false;
+            this.Grid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = "0";
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cNuProc,
+            this.cPuertoR});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = "0";
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Grid.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Grid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Grid.Location = new System.Drawing.Point(619, 175);
+            this.Grid.Margin = new System.Windows.Forms.Padding(4);
+            this.Grid.MultiSelect = false;
+            this.Grid.Name = "Grid";
+            this.Grid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.NullValue = "0";
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Gray;
+            this.Grid.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            this.Grid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.Grid.ShowCellToolTips = false;
+            this.Grid.Size = new System.Drawing.Size(143, 121);
+            this.Grid.TabIndex = 12;
+            this.Grid.Visible = false;
+            this.Grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grid_CellContentClick);
+            // 
+            // cNuProc
+            // 
+            this.cNuProc.Frozen = true;
+            this.cNuProc.HeaderText = "Num. Proc";
+            this.cNuProc.Name = "cNuProc";
+            this.cNuProc.ReadOnly = true;
+            this.cNuProc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cNuProc.Width = 50;
+            // 
+            // cPuertoR
+            // 
+            this.cPuertoR.HeaderText = "Puerto recep.";
+            this.cPuertoR.Name = "cPuertoR";
+            this.cPuertoR.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cPuertoR.Width = 50;
             // 
             // GridPuertos
             // 
@@ -157,7 +222,7 @@
             this.GridPuertos.DefaultCellStyle = dataGridViewCellStyle3;
             this.GridPuertos.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.GridPuertos.Location = new System.Drawing.Point(132, 11);
-            this.GridPuertos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridPuertos.Margin = new System.Windows.Forms.Padding(4);
             this.GridPuertos.MultiSelect = false;
             this.GridPuertos.Name = "GridPuertos";
             this.GridPuertos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -201,7 +266,7 @@
             // nuPuertos
             // 
             this.nuPuertos.Location = new System.Drawing.Point(28, 63);
-            this.nuPuertos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nuPuertos.Margin = new System.Windows.Forms.Padding(4);
             this.nuPuertos.Minimum = new decimal(new int[] {
             1,
             0,
@@ -227,54 +292,6 @@
             this.label7.TabIndex = 5;
             this.label7.Text = "Num. puertos:";
             // 
-            // Grid
-            // 
-            this.Grid.AllowUserToAddRows = false;
-            this.Grid.AllowUserToDeleteRows = false;
-            this.Grid.AllowUserToResizeColumns = false;
-            this.Grid.AllowUserToResizeRows = false;
-            this.Grid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cNuProc,
-            this.cPuertoE});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = "0";
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Grid.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Grid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Grid.Location = new System.Drawing.Point(617, 175);
-            this.Grid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Grid.MultiSelect = false;
-            this.Grid.Name = "Grid";
-            this.Grid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = "0";
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Gray;
-            this.Grid.RowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.Grid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.Grid.ShowCellToolTips = false;
-            this.Grid.Size = new System.Drawing.Size(276, 153);
-            this.Grid.TabIndex = 12;
-            this.Grid.Visible = false;
-            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -282,7 +299,7 @@
             this.panel2.Controls.Add(this.nuHilos);
             this.panel2.Controls.Add(this.lbNHilos);
             this.panel2.Location = new System.Drawing.Point(617, 15);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(290, 152);
             this.panel2.TabIndex = 11;
@@ -301,7 +318,7 @@
             // nuHilos
             // 
             this.nuHilos.Location = new System.Drawing.Point(139, 43);
-            this.nuHilos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nuHilos.Margin = new System.Windows.Forms.Padding(4);
             this.nuHilos.Minimum = new decimal(new int[] {
             1,
             0,
@@ -335,7 +352,7 @@
             this.pnColas.Controls.Add(this.cbColas);
             this.pnColas.Controls.Add(this.lbColas);
             this.pnColas.Location = new System.Drawing.Point(319, 175);
-            this.pnColas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnColas.Margin = new System.Windows.Forms.Padding(4);
             this.pnColas.Name = "pnColas";
             this.pnColas.Size = new System.Drawing.Size(290, 152);
             this.pnColas.TabIndex = 4;
@@ -343,7 +360,7 @@
             // nuTamColaMen
             // 
             this.nuTamColaMen.Location = new System.Drawing.Point(212, 98);
-            this.nuTamColaMen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nuTamColaMen.Margin = new System.Windows.Forms.Padding(4);
             this.nuTamColaMen.Minimum = new decimal(new int[] {
             1,
             0,
@@ -376,7 +393,7 @@
             "FIFO",
             "Prioridad"});
             this.cbColas.Location = new System.Drawing.Point(28, 36);
-            this.cbColas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbColas.Margin = new System.Windows.Forms.Padding(4);
             this.cbColas.Name = "cbColas";
             this.cbColas.Size = new System.Drawing.Size(229, 24);
             this.cbColas.TabIndex = 8;
@@ -402,7 +419,7 @@
             this.pnFormt.Controls.Add(this.label4);
             this.pnFormt.Controls.Add(this.lbFormt);
             this.pnFormt.Location = new System.Drawing.Point(319, 15);
-            this.pnFormt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnFormt.Margin = new System.Windows.Forms.Padding(4);
             this.pnFormt.Name = "pnFormt";
             this.pnFormt.Size = new System.Drawing.Size(290, 152);
             this.pnFormt.TabIndex = 3;
@@ -420,7 +437,7 @@
             // nuTamMax
             // 
             this.nuTamMax.Location = new System.Drawing.Point(96, 4);
-            this.nuTamMax.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nuTamMax.Margin = new System.Windows.Forms.Padding(4);
             this.nuTamMax.Name = "nuTamMax";
             this.nuTamMax.Size = new System.Drawing.Size(48, 22);
             this.nuTamMax.TabIndex = 13;
@@ -448,7 +465,7 @@
             "Fijo",
             "Variable"});
             this.cbFomtL.Location = new System.Drawing.Point(99, 84);
-            this.cbFomtL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbFomtL.Margin = new System.Windows.Forms.Padding(4);
             this.cbFomtL.Name = "cbFomtL";
             this.cbFomtL.Size = new System.Drawing.Size(160, 24);
             this.cbFomtL.TabIndex = 7;
@@ -463,7 +480,7 @@
             "Archivo",
             "Multimedia"});
             this.cbFomtC.Location = new System.Drawing.Point(99, 42);
-            this.cbFomtC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbFomtC.Margin = new System.Windows.Forms.Padding(4);
             this.cbFomtC.Name = "cbFomtC";
             this.cbFomtC.Size = new System.Drawing.Size(160, 24);
             this.cbFomtC.TabIndex = 6;
@@ -507,7 +524,7 @@
             this.pnDirec.Controls.Add(this.rgDirec);
             this.pnDirec.Controls.Add(this.lbDirec);
             this.pnDirec.Location = new System.Drawing.Point(20, 175);
-            this.pnDirec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnDirec.Margin = new System.Windows.Forms.Padding(4);
             this.pnDirec.Name = "pnDirec";
             this.pnDirec.Size = new System.Drawing.Size(290, 152);
             this.pnDirec.TabIndex = 2;
@@ -517,7 +534,7 @@
             this.cbDirec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDirec.FormattingEnabled = true;
             this.cbDirec.Location = new System.Drawing.Point(99, 86);
-            this.cbDirec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbDirec.Margin = new System.Windows.Forms.Padding(4);
             this.cbDirec.Name = "cbDirec";
             this.cbDirec.Size = new System.Drawing.Size(160, 24);
             this.cbDirec.TabIndex = 5;
@@ -539,9 +556,9 @@
             this.rgDirec.Controls.Add(this.rbDirIn);
             this.rgDirec.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.rgDirec.Location = new System.Drawing.Point(21, 36);
-            this.rgDirec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rgDirec.Margin = new System.Windows.Forms.Padding(4);
             this.rgDirec.Name = "rgDirec";
-            this.rgDirec.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rgDirec.Padding = new System.Windows.Forms.Padding(4);
             this.rgDirec.Size = new System.Drawing.Size(256, 47);
             this.rgDirec.TabIndex = 2;
             this.rgDirec.TabStop = false;
@@ -551,7 +568,7 @@
             this.rbDirDi.AutoSize = true;
             this.rbDirDi.Dock = System.Windows.Forms.DockStyle.Left;
             this.rbDirDi.Location = new System.Drawing.Point(4, 19);
-            this.rbDirDi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbDirDi.Margin = new System.Windows.Forms.Padding(4);
             this.rbDirDi.Name = "rbDirDi";
             this.rbDirDi.Size = new System.Drawing.Size(74, 24);
             this.rbDirDi.TabIndex = 3;
@@ -565,7 +582,7 @@
             this.rbDirIn.AutoSize = true;
             this.rbDirIn.Dock = System.Windows.Forms.DockStyle.Right;
             this.rbDirIn.Location = new System.Drawing.Point(169, 19);
-            this.rbDirIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbDirIn.Margin = new System.Windows.Forms.Padding(4);
             this.rbDirIn.Name = "rbDirIn";
             this.rbDirIn.Size = new System.Drawing.Size(83, 24);
             this.rbDirIn.TabIndex = 4;
@@ -594,7 +611,7 @@
             this.pnSincr.Controls.Add(this.label1);
             this.pnSincr.Controls.Add(this.lbSincr);
             this.pnSincr.Location = new System.Drawing.Point(20, 15);
-            this.pnSincr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnSincr.Margin = new System.Windows.Forms.Padding(4);
             this.pnSincr.Name = "pnSincr";
             this.pnSincr.Size = new System.Drawing.Size(290, 152);
             this.pnSincr.TabIndex = 1;
@@ -608,7 +625,7 @@
             "Nonblocking",
             "Prueba de llegada"});
             this.cbSincR.Location = new System.Drawing.Point(99, 84);
-            this.cbSincR.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbSincR.Margin = new System.Windows.Forms.Padding(4);
             this.cbSincR.Name = "cbSincR";
             this.cbSincR.Size = new System.Drawing.Size(160, 24);
             this.cbSincR.TabIndex = 2;
@@ -621,7 +638,7 @@
             "Blocking",
             "Nonblocking"});
             this.cbSincS.Location = new System.Drawing.Point(99, 42);
-            this.cbSincS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbSincS.Margin = new System.Windows.Forms.Padding(4);
             this.cbSincS.Name = "cbSincS";
             this.cbSincS.Size = new System.Drawing.Size(160, 24);
             this.cbSincS.TabIndex = 1;
@@ -661,29 +678,13 @@
             // 
             this.btAplicar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btAplicar.Location = new System.Drawing.Point(0, 349);
-            this.btAplicar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btAplicar.Margin = new System.Windows.Forms.Padding(4);
             this.btAplicar.Name = "btAplicar";
             this.btAplicar.Size = new System.Drawing.Size(920, 34);
             this.btAplicar.TabIndex = 10;
             this.btAplicar.Text = "Aplicar";
             this.btAplicar.UseVisualStyleBackColor = true;
             this.btAplicar.Click += new System.EventHandler(this.btAplicar_Click);
-            // 
-            // cNuProc
-            // 
-            this.cNuProc.Frozen = true;
-            this.cNuProc.HeaderText = "Num. Proc";
-            this.cNuProc.Name = "cNuProc";
-            this.cNuProc.ReadOnly = true;
-            this.cNuProc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cNuProc.Width = 50;
-            // 
-            // cPuertoE
-            // 
-            this.cPuertoE.HeaderText = "Puerto emisor";
-            this.cPuertoE.Name = "cPuertoE";
-            this.cPuertoE.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cPuertoE.Width = 50;
             // 
             // FParamConfig
             // 
@@ -692,7 +693,7 @@
             this.ClientSize = new System.Drawing.Size(951, 412);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FParamConfig";
@@ -703,9 +704,9 @@
             this.panel1.ResumeLayout(false);
             this.pnPuerto.ResumeLayout(false);
             this.pnPuerto.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridPuertos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuPuertos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuHilos)).EndInit();
@@ -770,6 +771,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn cNuProc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cPuertoE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cPuertoR;
     }
 }
