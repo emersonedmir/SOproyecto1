@@ -152,7 +152,11 @@ namespace proyecto1SO.utilidades
             }
             else
             {
-                int puerto = configuracion.confProceso.puertosReceptor[idProceso];
+                int puerto;
+                if (configuracion.direccionamiento.indirecto.estatico)
+                    puerto = configuracion.confProceso.puertosReceptor[idProceso];
+                else
+                    puerto = origen;
                 int idx = puertos.Get_IdxMailBox(puerto);
                 Mensaje msgAux = null;
                 foreach (var item in puertos.lstMailBox[idx].lstMensajes)
