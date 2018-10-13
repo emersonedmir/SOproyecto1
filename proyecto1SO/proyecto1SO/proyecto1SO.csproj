@@ -47,6 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FBatch.Designer.cs">
+      <DependentUpon>FBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FGenerarTxt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FGenerarTxt.Designer.cs">
+      <DependentUpon>FGenerarTxt.cs</DependentUpon>
+    </Compile>
     <Compile Include="FParamConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +91,12 @@
     <Compile Include="utilidades\Receive.cs" />
     <Compile Include="utilidades\Send.cs" />
     <Compile Include="utilidades\Sincronizacion.cs" />
+    <EmbeddedResource Include="FBatch.resx">
+      <DependentUpon>FBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FGenerarTxt.resx">
+      <DependentUpon>FGenerarTxt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

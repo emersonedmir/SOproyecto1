@@ -41,3 +41,17 @@ D:\TEC\2018\Semestre II\SO\proyecto1\final\proyecto 1\codigo\proyecto1SO\proyect
 D:\TEC\2018\Semestre II\SO\proyecto1\final\proyecto 1\codigo\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.csproj.CoreCompileInputs.cache
 D:\TEC\2018\Semestre II\SO\proyecto1\final\proyecto 1\codigo\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.exe
 D:\TEC\2018\Semestre II\SO\proyecto1\final\proyecto 1\codigo\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.pdb
+C:\Users\Emerson\Desktop\SOproyecto1\master\SOproyecto1-master (1)\SOproyecto1-master\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.exe.config
+C:\Users\Emerson\Desktop\SOproyecto1\master\SOproyecto1-master (1)\SOproyecto1-master\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.exe
+C:\Users\Emerson\Desktop\SOproyecto1\master\SOproyecto1-master (1)\SOproyecto1-master\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.pdb
+C:\Users\Emerson\Desktop\SOproyecto1\master\SOproyecto1-master (1)\SOproyecto1-master\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.csprojResolveAssemblyReference.cache
+C:\Users\Emerson\Desktop\SOproyecto1\master\SOproyecto1-master (1)\SOproyecto1-master\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.FBatch.resources
+C:\Users\Emerson\Desktop\SOproyecto1\master\SOproyecto1-master (1)\SOproyecto1-master\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.MainForm.resources
+C:\Users\Emerson\Desktop\SOproyecto1\master\SOproyecto1-master (1)\SOproyecto1-master\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.FParamConfig.resources
+C:\Users\Emerson\Desktop\SOproyecto1\master\SOproyecto1-master (1)\SOproyecto1-master\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.Properties.Resources.resources
+C:\Users\Emerson\Desktop\SOproyecto1\master\SOproyecto1-master (1)\SOproyecto1-master\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.csproj.GenerateResource.Cache
+C:\Users\Emerson\Desktop\SOproyecto1\master\SOproyecto1-master (1)\SOproyecto1-master\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.exe
+C:\Users\Emerson\Desktop\SOproyecto1\master\SOproyecto1-master (1)\SOproyecto1-master\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.pdb
+C:\Users\Emerson\Desktop\SOproyecto1\master\SOproyecto1-master (1)\SOproyecto1-master\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.FGenerarTxt.resources
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.FBatch.resources
+D:\Users\Gerardo\Documents\GitHub\SOproyecto1\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.FGenerarTxt.resources

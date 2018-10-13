@@ -20,7 +20,7 @@ namespace proyecto1SO
         Ninguno
     }
     public partial class MainForm : Form
-    {        
+    {
         private string[] estados = new string[] { "bloqueado", "no bloqueado", "busy waiting" };
 
         private Modo modo = Modo.Ninguno;
@@ -49,7 +49,19 @@ namespace proyecto1SO
                 configuracion = fConfig.config;                        
             fConfig = null;
             return actualizado;
-        }        
+        }
+
+        private bool modificar_configBatch(Config pConfig)
+        {
+            FBatch fConfig = new FBatch();
+            fConfig.ShowDialog();
+            bool actualizado = fConfig.actualizado;
+            if (actualizado)
+                configuracion = fConfig.config;
+            fConfig = null;
+            return actualizado;
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -109,11 +121,14 @@ namespace proyecto1SO
             pnBatchCmd.Visible = !modoInte;
         }
         private void mostrar_camposEmiRecep() {
+            tbEmis.Text = "";
+            tbRece.Text = "";
             pnMen.Visible = (rbSend.Checked);
             if (rbSend.Checked) {
                 cnEmis.Visible = true;
             }
             else {
+                tbMens.Text = "";
                 cnEmis.Visible = true;                
                 if (configuracion.direccionamiento.tipo == 0)
                     cnEmis.Visible = (configuracion.direccionamiento.directo.receive.explicito);
@@ -294,7 +309,7 @@ namespace proyecto1SO
             {
                 item.estadoBloqueo();
             }
-            
+
             string contenido = "";
             string estados = "Procesos: ";
             foreach (var item in procesos.lstProcesos)
@@ -309,6 +324,7 @@ namespace proyecto1SO
             WriteReportFile.Flush();
             WriteReportFile.Write(contenido);
             WriteReportFile.Close();
+            MessageBox.Show("archivo log.txt generado");
         }
 
         private void rbSend_Click(object sender, EventArgs e)
@@ -320,6 +336,18 @@ namespace proyecto1SO
         {
             if (tbEmis.Text.Trim() == tbRece.Text.Trim())
                 ((TextBox)sender).Text = "";
+        }
+
+        private void rbBatch_CheckedChanged(object sender, EventArgs e)
+        {
+            bool actualizado = modificar_configBatch(configuracion);
+            if (actualizado)
+                reiniciar();
+        }
+
+        private void rbInter_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -145,7 +145,7 @@ namespace proyecto1SO
                     case 1: config.direccionamiento.directo.receive.implicito = true; break;
                 }
             }
-            else{
+            else {
                 config.direccionamiento.tipo = 1;
                 switch (cbDirec.SelectedIndex){
                     case 0: config.direccionamiento.indirecto.estatico = true; break;
@@ -249,6 +249,11 @@ namespace proyecto1SO
         }
 
         private void Grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void FParamConfig_Load(object sender, EventArgs e)
         {
 
         }
