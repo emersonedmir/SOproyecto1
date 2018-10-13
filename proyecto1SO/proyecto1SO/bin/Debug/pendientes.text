@@ -1,0 +1,24 @@
+Ya subi al master la nueva version entre algunos cambios:
+- Se Modifican los parametros indirectos a lo especificado por el profe.
+- Se revisa el Send y Receive, ajustes de priodidad. (directo).
+- Se elimina la prioridad de la cola de mensajes, solo la cola de mensajes recibidos debe tener priodidad.
+- Ajustes de ayudas visuales. visible de algunos componenes del main
+- se prepara para aplicar el modo BATCH.
+- se agrega el estado busywating
+- Se detecta que se habia perdido el evento que validaba que origen y destino si sean validos. se agrega pero por ahota solo se valida que sean diferentes.
+- Completar mensaje con "X,-, o lo que sea" al ser mensaje tamaño fijo
+
+
+Para evitar algunos problemas use el proyecto del master y no copie y peque componentes a otro proyecto para evitar perder eventos asi como el orden de los paneles de main.
+
+Pendientes:
+- un list<Log> logs por proceso
+- Una estructuta log más detallada.
+- Que el Display limpie la txt al usar, y lo llene con: 
+	+ la configuracion empleada.
+	+ el historial por proceso(desplegar el contenido de los mesnsajes empleados).
+	+ el estado actual del proceso (id, estado, tipo de mensaje, Contenido(si es send bloqueddo) + toda otra informacion detallada).
++ Direccionamiento indirecto
+- MODO BATCH:
+	+ Leer archivo, debe contener toda la configutacion(operacion create).
+	+ Leer un numero fijo de operaciones del archivo y encolarlas.

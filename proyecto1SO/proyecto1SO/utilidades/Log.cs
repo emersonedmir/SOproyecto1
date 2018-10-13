@@ -8,14 +8,37 @@ namespace proyecto1SO.utilidades
 {
     public class Log
     {
+        const string sep = " ,";
+        public string logStr;
+
         public String idProceso;
         public DateTime fecha;
-        public String descripcionEvento;
+        public Mensaje mensaje;
 
-        public Log()
+        public Log(string pIdProceso, string pDesEvento)
         {
-            idProceso = string.Empty;
-            descripcionEvento = string.Empty;
+            idProceso = pIdProceso;
+            mensaje = null;
+            fecha = DateTime.Now;
+            logStr = fecha.ToShortDateString() +" "+ fecha.ToLongTimeString() + sep + "Proceso: " + idProceso;
+            logStr += sep + "evento: " + pDesEvento;
+        }
+
+        public Log(string pIdProceso, Mensaje pMen)
+        {
+            idProceso = pIdProceso;
+            mensaje = pMen;
+            fecha = DateTime.Now;            
+            logStr = fecha.ToShortDateString() + " " + fecha.ToLongTimeString() + sep + "Proceso: " + idProceso;
+            if (mensaje.TipoMsg == tipoMensaje.receive)
+                logStr += sep + "evento: " + tipoMensaje.receive.ToString() + sep + "de: " + mensaje.idOrigen;
+            else
+                logStr += sep + "evento: " + tipoMensaje.send.ToString() + sep + "de: " + mensaje.idDestino;
+            logStr += sep + "Mensaje["+mensaje.Tamanio.ToString()+"]: " + "\""+ mensaje.Contenido + "\"";
+        }
+        public override string ToString()
+        {
+            return logStr + '\n';
         }
     }
 }

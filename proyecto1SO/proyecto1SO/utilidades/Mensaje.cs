@@ -37,5 +37,9 @@ namespace proyecto1SO.utilidades
             idOrigen = origen;
             idDestino = destino;
         }
+        public override string ToString()
+        {
+            return "Tipo: " + TipoMsg.ToString() + "; Origen: " + idOrigen.ToString() + "; Contenido[" + Tamanio.ToString() + "]" + Contenido;
+        }
     }
 }

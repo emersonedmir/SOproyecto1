@@ -27,6 +27,7 @@ namespace proyecto1SO.utilidades
         public int idProceso;
         public bool send;
         public bool receive;
+        public List<Log> ltsLog; //para guardar los logs
         public List<string> log; //para guardar los logs
         public hilo(int idProceso, Config configuracion)
         {
@@ -37,7 +38,29 @@ namespace proyecto1SO.utilidades
             send = true;
             receive = false;
             this.configuracion = configuracion;
+            ltsLog = new List<Log>();
             log = new List<string>();
+        }
+        public override String ToString()
+        {
+            string procStr = "Proceso: " + idProceso.ToString() + '\n';
+            foreach (var item in ltsLog)
+            {
+                procStr += '\t' + item.ToString() + '\n';
+            }
+            if (configuracion.direccionamiento.tipo == 0)
+                procStr += BufferToString();
+            return procStr;
+        }
+        public String BufferToString()
+        {
+            string strBuffer = "Buffer de proceso " + idProceso.ToString() + "\n";
+            strBuffer += "\tLargo: " + lstMensajes.Count.ToString() + '\n';
+            strBuffer += "\tCola de recibidos:\n";
+            strBuffer += "\tLargo: " + lstMensajesRecibidos.Count.ToString() + '\n';
+            foreach (var item in lstMensajesRecibidos)
+                strBuffer += "\t\t" + item.ToString() + "\n";
+            return strBuffer;
         }
 
         public void estadoBloqueo()
@@ -282,14 +305,17 @@ namespace proyecto1SO.utilidades
                         {//direccionamiento directo                            
                             if (mensaje.TipoMsg == tipoMensaje.send)
                             {//direccionamiento directo, disciplina fifo, send
+                                ltsLog.Add(new Log(idProceso.ToString(), "recibe solicitud de realizar send al proceso " + mensaje.idDestino.ToString()));                                
                                 if (configuracion.sincronizacion.send.blocking)
-                                {// blocking
+                                {// blocking                                                                        
                                     bloquear();
                                     mutexOper.WaitOne();
                                     procesos.lstProcesos[mensaje.idDestino].lstMensajesRecibidos.Add(mensaje);
                                     documentar(mensaje);
                                     //desbloquear(); no desbloquear hasta obtener respuesta
                                     mutexOper.ReleaseMutex();
+                                    ltsLog.Add(new Log(idProceso.ToString(), mensaje));
+                                    ltsLog.Add(new Log(idProceso.ToString(), "proceso bloqueado en espera de confirmación"));
                                 }
                                 else
                                 {//no blocking
@@ -297,15 +323,18 @@ namespace proyecto1SO.utilidades
                                     procesos.lstProcesos[mensaje.idDestino].lstMensajesRecibidos.Add(mensaje);
                                     documentar(mensaje);
                                     mutexOper.ReleaseMutex();
+                                    ltsLog.Add(new Log(idProceso.ToString(), mensaje));                                    
                                 }
                             }
                             else // Receive
                             {// del buffer de entrada obtener mensaje de un emisor en especifico o emisor -1
+                                ltsLog.Add(new Log(idProceso.ToString(), "recibe solicitud de realizar receive al proceso " + mensaje.idDestino.ToString()));
                                 bool encontrado = false;
                                 Mensaje mensajeRecibido = null;
                                 if (configuracion.sincronizacion.receive.blocking)
                                 {
-                                    bloquear();
+                                    bloquear();                                    
+                                    ltsLog.Add(new Log(idProceso.ToString(), "proceso bloqueado en espera de recepción"));
                                     while (!encontrado)
                                     {
                                         mensajeRecibido = obtenerMenRecibido(mensaje.idOrigen);  //Origen=-1 -> recibe implisito
@@ -314,17 +343,24 @@ namespace proyecto1SO.utilidades
                                         {
                                             Thread.Sleep(500);
                                         }
-                                    }
+                                    }                                    
                                     desbloquear();
+                                    ltsLog.Add(new Log(idProceso.ToString(), "proceso desbloqueado"));
+                                    ltsLog.Add(new Log(idProceso.ToString(), mensajeRecibido));
                                 }
                                 else if (configuracion.sincronizacion.receive.nonblocking)
                                 {
                                     mensajeRecibido = obtenerMenRecibido(mensaje.idOrigen);  //Origen=-1 -> recibe implisito
                                     encontrado = (mensajeRecibido != null);
+                                    if (encontrado)
+                                        ltsLog.Add(new Log(idProceso.ToString(), mensajeRecibido));
+                                    else
+                                        ltsLog.Add(new Log(idProceso.ToString(), "no hay mensajes por recibir"));
                                 }
                                 else
                                 {//prueba de llegada                                       
                                     bloquearBW();
+                                    ltsLog.Add(new Log(idProceso.ToString(), "proceso en estado busyWating en espera de recepción"));
                                     while (!encontrado)
                                     {
                                         mensajeRecibido = obtenerMenRecibido(mensaje.idOrigen);  //Origen=-1 -> recibe implisito
@@ -334,13 +370,17 @@ namespace proyecto1SO.utilidades
                                             Thread.Sleep(500);
                                         }
                                     }
-                                    desbloquear();
+                                    ltsLog.Add(new Log(idProceso.ToString(), mensajeRecibido));
+                                    desbloquear();                                    
                                 }
                                 if (encontrado)
                                 {
                                     documentar(mensajeRecibido);
                                     if (configuracion.sincronizacion.send.blocking)
+                                    {
                                         procesos.lstProcesos[mensajeRecibido.idOrigen].desbloquear();
+                                        procesos.lstProcesos[mensajeRecibido.idOrigen].ltsLog.Add(new Log(mensajeRecibido.idOrigen.ToString(), "proceso desbloqueado, se obtuvo confirmación"));
+                                    }                                        
                                 }
                                 else
                                 {
@@ -356,6 +396,7 @@ namespace proyecto1SO.utilidades
                         {//direccionamiento indirecto
                             if (mensaje.TipoMsg == tipoMensaje.send)
                             {//direccionamiento directo, disciplina fifo, send
+                                ltsLog.Add(new Log(idProceso.ToString(), "recibe solicitud de realizar send al puerto: " + mensaje.idDestino));
                                 if (configuracion.sincronizacion.send.blocking)
                                 {// blocking
                                     bloquear();
@@ -365,6 +406,8 @@ namespace proyecto1SO.utilidades
                                     mutexOper.ReleaseMutex();
                                     documentar(mensaje);
                                     bool respuesta = false;
+                                    ltsLog.Add(new Log(idProceso.ToString(), mensaje));
+                                    ltsLog.Add(new Log(idProceso.ToString(), "proceso bloqueado en espera de confirmación del mensaje"));
                                     while (!respuesta)
                                     {
                                         mutexOper.WaitOne();
@@ -377,12 +420,14 @@ namespace proyecto1SO.utilidades
                                         }
                                         mutexOper.ReleaseMutex();
                                     }
+                                    ltsLog.Add(new Log(idProceso.ToString(), "proceso desbloqueado, se obtuvo confirmación en puerto: " + mensaje.idOrigen.ToString()));
                                 }
                                 else if (configuracion.sincronizacion.send.nonblocking)
                                 {//no blocking
                                     mutexOper.WaitOne();
                                     int idx = puertos.Get_IdxMailBox(mensaje.idDestino);
                                     puertos.lstMailBox[idx].lstMensajes.Add(mensaje);
+                                    ltsLog.Add(new Log(idProceso.ToString(), mensaje));
                                     mutexOper.ReleaseMutex();
                                     documentar(mensaje);
                                 }                                
@@ -390,11 +435,19 @@ namespace proyecto1SO.utilidades
                             // Receive
                             else
                             {// obtener algun mensaje dejado en puerto receptor
+                                ltsLog.Add(new Log(idProceso.ToString(), "recibe solicitud de realizar receive al puerto " + mensaje.idDestino.ToString()));
                                 bool encontrado = false;
                                 Mensaje mensajeRecibido = null;                               
                                 if (configuracion.sincronizacion.receive.blocking)
                                 {
                                     bloquear();
+                                    if (configuracion.direccionamiento.indirecto.estatico)
+                                    {
+                                        int puer = configuracion.confProceso.puertosReceptor[idProceso];
+                                        ltsLog.Add(new Log(idProceso.ToString(), "proceso bloqueado en espera de recepción en puerto: " + puer.ToString()));
+                                    }
+                                    else
+                                        ltsLog.Add(new Log(idProceso.ToString(), "proceso bloqueado en espera de recepción"));
                                     while (!encontrado)
                                     {
                                         mensajeRecibido = obtenerMenRecibido(mensaje.idDestino);  //Origen=-1 -> recibe implisito
@@ -403,17 +456,30 @@ namespace proyecto1SO.utilidades
                                         {
                                             Thread.Sleep(500);
                                         }
-                                    }
+                                    }                                    
+                                    ltsLog.Add(new Log(idProceso.ToString(), mensajeRecibido));
+                                    ltsLog.Add(new Log(idProceso.ToString(), "proceso desbloqueado"));
                                     desbloquear();
                                 }
                                 else if (configuracion.sincronizacion.receive.nonblocking)
                                 {
                                     mensajeRecibido = obtenerMenRecibido(mensaje.idDestino);  //Origen=-1 -> recibe implisito
                                     encontrado = (mensajeRecibido != null);
+                                    if (encontrado)
+                                        ltsLog.Add(new Log(idProceso.ToString(), mensajeRecibido));
+                                    else
+                                        ltsLog.Add(new Log(idProceso.ToString(), "no hay mensajes por recibir en puerto: " + mensaje.idDestino.ToString()));
                                 }
                                 else
                                 {//prueba de llegada                                       
                                     bloquearBW();
+                                    if (configuracion.direccionamiento.indirecto.estatico)
+                                    {
+                                        int puer = configuracion.confProceso.puertosReceptor[idProceso];
+                                        ltsLog.Add(new Log(idProceso.ToString(), "proceso ejecitando busyWating en espera de recepción en puerto: " + puer.ToString()));
+                                    }
+                                    else
+                                        ltsLog.Add(new Log(idProceso.ToString(), "proceso ejecitando busyWating en espera de recepción"));
                                     while (!encontrado)
                                     {
                                         mensajeRecibido = obtenerMenRecibido(mensaje.idDestino);  //Origen=-1 -> recibe implisito
@@ -423,6 +489,8 @@ namespace proyecto1SO.utilidades
                                             Thread.Sleep(500);
                                         }
                                     }
+                                    ltsLog.Add(new Log(idProceso.ToString(), mensajeRecibido));
+                                    ltsLog.Add(new Log(idProceso.ToString(), "proceso desbloqueado"));
                                     desbloquear();
                                 }
                                 if (encontrado)
@@ -441,101 +509,9 @@ namespace proyecto1SO.utilidades
                                     string historia = "Mensaje no encontrado";
                                     WriteReportFile2.WriteLine(historia);
                                     WriteReportFile2.Close();
+                                    ltsLog.Add(new Log(idProceso.ToString(), "no hay mensajes por recibir"));
                                 }
-                                //log recibido | no recibido
                             }
-                            //verificarBuzon();
-
-                            //if (configuracion.colas.FIFO && lstMensajes.Count>0)
-                            //{//direccionamiento indirecto, disciplina fifo                             
-                            //    Mensaje msg = lstMensajes[0];
-                            //    if (msg.TipoMsg == tipoMensaje.send)
-                            //        {//direccionamiento indirecto, disciplina fifo, tipo send
-                            //            if (configuracion.sincronizacion.send.blocking)
-                            //            {//direcionamiento indirecto, disciplina fifo, blocking
-                            //                bloquear();
-                            //                lstMensajes.Remove(msg);
-                            //                mutexOper.WaitOne();
-                            //                procesos.MailBox[msg.idDestino].lstMensajes.Add(msg);
-                            //                mutexOper.ReleaseMutex();
-                            //                bool esperar = true;
-                            //                while(esperar)
-                            //                {
-                            //                    mutexOper.WaitOne();
-                            //                    if (procesos.MailBox[msg.idDestino].lstMensajes.Count == 0) { esperar = false; }
-                            //                    mutexOper.ReleaseMutex();
-                            //                }
-                            //                desbloquear();
-                            //                documentar(msg);                                         
-                            //            }
-                            //            else
-                            //            {
-                            //                mutexOper.WaitOne();
-                            //                documentar(msg);
-                            //                mutexOper.ReleaseMutex();
-                            //            }
-                            //        }
-                            //        else
-                            //        {//direccionamiento indirecto, disciplina fifo, tipo receive
-
-                            //        }
-                            //    }
-
-                            //else
-                            //{//direccionamiento indirecto, disciplina prioridad
-
-                            //    if (lstMensajes.Count>0)
-                            //    {
-
-                            //        Mensaje msg = obtenerPrioridad();
-
-                            //            if (msg.TipoMsg == tipoMensaje.send)
-                            //            {//direccionamiento indirecto, tipo prioridad, send
-                            //                if (configuracion.sincronizacion.send.blocking)
-                            //                {//blocking
-                            //                    bloquear();
-                            //                    mutexOper.WaitOne();
-                            //                    procesos.MailBox[msg.idDestino].lstMensajes.Add(msg);//se envia al buzon
-                            //                    mutexOper.ReleaseMutex();
-                            //                    bool esperar = true;
-                            //                    while (esperar)
-                            //                    {
-                            //                        mutexOper.WaitOne();
-                            //                        if (procesos.MailBox[msg.idDestino].lstMensajes.Count == 0)
-                            //                            esperar = false;
-                            //                        mutexOper.ReleaseMutex();
-                            //                    }
-                            //                    desbloquear();
-                            //                documentar(msg);
-                            //                }
-                            //                else
-                            //                {//no blocking
-                            //                    mutexOper.WaitOne();
-                            //                    procesos.MailBox[msg.idDestino].lstMensajes.Add(msg);//se envia al buzon
-                            //                    mutexOper.ReleaseMutex();
-                            //                documentar(msg);
-                            //            }
-                            //            }
-                            //            else
-                            //            {//direccionamiento indirecto, tipo prioridad, receive
-                            //                if (configuracion.sincronizacion.send.blocking)
-                            //                {//blocking
-                            //                    bloquear();
-
-                            //                    desbloquear();
-                            //                }
-                            //                else
-                            //                {//no blocking
-
-                            //                }
-                            //            }
-                            //        }
-
-
-
-                            //    }
-
-                            //}
                         }
                     }
                 }

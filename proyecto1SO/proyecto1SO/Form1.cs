@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -19,7 +20,7 @@ namespace proyecto1SO
         Ninguno
     }
     public partial class MainForm : Form
-    {
+    {        
         private string[] estados = new string[] { "bloqueado", "no bloqueado", "busy waiting" };
 
         private Modo modo = Modo.Ninguno;
@@ -288,10 +289,26 @@ namespace proyecto1SO
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach(var item in procesos.lstProcesos)
+            const string archivoLog = "log.txt";
+            foreach (var item in procesos.lstProcesos)
             {
                 item.estadoBloqueo();
             }
+            
+            string contenido = "";
+            string estados = "Procesos: ";
+            foreach (var item in procesos.lstProcesos)
+            {
+                estados += "\tProceso " + item.idProceso.ToString() + item.estado.ToString() + '\n';
+                contenido += item.ToString();
+                contenido += '\n';
+            }
+            contenido += "Estado actual:\n" + estados;
+            System.IO.File.Delete(@archivoLog);
+            StreamWriter WriteReportFile = File.AppendText(archivoLog);
+            WriteReportFile.Flush();
+            WriteReportFile.Write(contenido);
+            WriteReportFile.Close();
         }
 
         private void rbSend_Click(object sender, EventArgs e)
