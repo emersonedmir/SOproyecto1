@@ -1,0 +1,34 @@
+Proceso: 0
+	Buffer de comandos:
+	Largo: 0
+	Cola de recibidos:
+	Largo: 1
+		Tipo: send; Origen: 1; Contenido[10]holaXXXXXX
+
+Proceso: 1
+	10/12/2018 11:43:07 PM; Proceso: 1; evento: recibe solicitud de realizar send al proceso 0
+
+	10/12/2018 11:43:07 PM; Proceso: 1; evento: send; destino: 0; Mensaje[10]: "holaXXXXXX"
+
+	Buffer de comandos:
+	Largo: 0
+	Cola de recibidos:
+	Largo: 0
+
+Proceso: 2
+	Buffer de comandos:
+	Largo: 0
+	Cola de recibidos:
+	Largo: 0
+
+Proceso: 3
+	Buffer de comandos:
+	Largo: 0
+	Cola de recibidos:
+	Largo: 0
+
+Estado actual:
+Procesos: 	Proceso 0noBloqueado
+	Proceso 1noBloqueado
+	Proceso 2noBloqueado
+	Proceso 3noBloqueado

@@ -8,7 +8,7 @@ namespace proyecto1SO.utilidades
 {
     public class Log
     {
-        const string sep = " ,";
+        const string sep = "; ";
         public string logStr;
 
         public String idProceso;
@@ -31,9 +31,9 @@ namespace proyecto1SO.utilidades
             fecha = DateTime.Now;            
             logStr = fecha.ToShortDateString() + " " + fecha.ToLongTimeString() + sep + "Proceso: " + idProceso;
             if (mensaje.TipoMsg == tipoMensaje.receive)
-                logStr += sep + "evento: " + tipoMensaje.receive.ToString() + sep + "de: " + mensaje.idOrigen;
+                logStr += sep + "evento: " + tipoMensaje.receive.ToString() + sep + "origen: " + mensaje.idOrigen;
             else
-                logStr += sep + "evento: " + tipoMensaje.send.ToString() + sep + "de: " + mensaje.idDestino;
+                logStr += sep + "evento: " + tipoMensaje.send.ToString() + sep + "destino: " + mensaje.idDestino;
             logStr += sep + "Mensaje["+mensaje.Tamanio.ToString()+"]: " + "\""+ mensaje.Contenido + "\"";
         }
         public override string ToString()

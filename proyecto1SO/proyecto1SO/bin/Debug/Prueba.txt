@@ -1,2 +1,4 @@
 direccionamiento: directo , Tipo mensaje: send Tipo cola: FIFO , Origen:0 destino 1 contenido: hjhk, procesado
 direccionamiento: directo , Tipo mensaje: send Tipo cola: FIFO , Origen:1 destino 2 contenido: hjhk, procesado
+direccionamiento: directo , Tipo mensaje: send Tipo cola: FIFO , Origen:1 destino 0 contenido: holaXXXXXX, procesado
+direccionamiento: directo , Tipo mensaje: send Tipo cola: FIFO , Origen:1 destino 0 contenido: holaXXXXXX, procesado

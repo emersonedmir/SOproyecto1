@@ -245,7 +245,9 @@ namespace proyecto1SO
                     msg.Tamanio = configuracion.formato.largo.tamMax;
                     if (tbTamanio.Text.Trim() == "")
                         tbTamanio.Text = "0";
-                    msg.Contenido.PadRight((int)msg.Tamanio - int.Parse(tbTamanio.Text), 'X');
+                    int faltante = (int)msg.Tamanio - int.Parse(tbTamanio.Text);
+                    if (faltante>0)
+                        msg.Contenido = msg.Contenido.PadRight((int)msg.Tamanio, 'X');
                 }
                 else
                     msg.Tamanio = float.Parse(tbTamanio.Text);

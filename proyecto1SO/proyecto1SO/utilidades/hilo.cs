@@ -54,7 +54,7 @@ namespace proyecto1SO.utilidades
         }
         public String BufferToString()
         {
-            string strBuffer = "Buffer de proceso " + idProceso.ToString() + "\n";
+            string strBuffer = "\tBuffer de comandos:\n";
             strBuffer += "\tLargo: " + lstMensajes.Count.ToString() + '\n';
             strBuffer += "\tCola de recibidos:\n";
             strBuffer += "\tLargo: " + lstMensajesRecibidos.Count.ToString() + '\n';
