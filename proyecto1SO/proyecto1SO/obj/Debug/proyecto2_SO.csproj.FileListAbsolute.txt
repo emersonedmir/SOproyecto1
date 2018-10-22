@@ -1,0 +1,12 @@
+D:\Users\Gerardo\Documents\GitHub\SOproyecto2\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.exe.config
+D:\Users\Gerardo\Documents\GitHub\SOproyecto2\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.exe
+D:\Users\Gerardo\Documents\GitHub\SOproyecto2\proyecto1SO\proyecto1SO\bin\Debug\proyecto1SO.pdb
+D:\Users\Gerardo\Documents\GitHub\SOproyecto2\proyecto1SO\proyecto1SO\obj\Debug\proyecto2_SO.csprojAssemblyReference.cache
+D:\Users\Gerardo\Documents\GitHub\SOproyecto2\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.FBatch.resources
+D:\Users\Gerardo\Documents\GitHub\SOproyecto2\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.FGenerarTxt.resources
+D:\Users\Gerardo\Documents\GitHub\SOproyecto2\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.Properties.Resources.resources
+D:\Users\Gerardo\Documents\GitHub\SOproyecto2\proyecto1SO\proyecto1SO\obj\Debug\proyecto2_SO.csproj.GenerateResource.cache
+D:\Users\Gerardo\Documents\GitHub\SOproyecto2\proyecto1SO\proyecto1SO\obj\Debug\proyecto2_SO.csproj.CoreCompileInputs.cache
+D:\Users\Gerardo\Documents\GitHub\SOproyecto2\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.exe
+D:\Users\Gerardo\Documents\GitHub\SOproyecto2\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.pdb
+D:\Users\Gerardo\Documents\GitHub\SOproyecto2\proyecto1SO\proyecto1SO\obj\Debug\proyecto1SO.FSpooler.resources

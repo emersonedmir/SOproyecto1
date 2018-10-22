@@ -9,9 +9,16 @@ namespace proyecto1SO.utilidades
     {
         public List<Mensaje> lstMensajes;
         public int puerto;
+        public string nombre;
         public MailBox(int pPuerto)
         {
             puerto = pPuerto;
+            lstMensajes = new List<Mensaje>();
+        }
+
+        public MailBox(string pNombre)
+        {
+            this.nombre = pNombre;
             lstMensajes = new List<Mensaje>();
         }
     }

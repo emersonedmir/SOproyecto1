@@ -31,9 +31,9 @@ namespace proyecto1SO.utilidades
             fecha = DateTime.Now;            
             logStr = fecha.ToShortDateString() + " " + fecha.ToLongTimeString() + sep + "Proceso: " + idProceso;
             if (mensaje.TipoMsg == tipoMensaje.receive)
-                logStr += sep + "evento: " + tipoMensaje.receive.ToString() + sep + "origen: " + mensaje.idOrigen;
+                logStr += sep + "evento: " + tipoMensaje.receive.ToString() + sep + "origen: " + mensaje.strOrigen;
             else
-                logStr += sep + "evento: " + tipoMensaje.send.ToString() + sep + "destino: " + mensaje.idDestino;
+                logStr += sep + "evento: " + tipoMensaje.send.ToString() + sep + "destino: " + mensaje.strDestino;
             logStr += sep + "Mensaje["+mensaje.Tamanio.ToString()+"]: " + "\""+ mensaje.Contenido + "\"";
         }
         public override string ToString()
