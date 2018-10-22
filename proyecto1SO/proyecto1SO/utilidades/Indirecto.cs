@@ -11,13 +11,13 @@ namespace proyecto1SO.utilidades
         private bool Estatico;
         private bool Dinamico;
         private bool Propiedad;
-        //public List<int> Puertos;
+        public List<int> Puertos;
 
         public Indirecto()
         {
             Estatico = true;
             Dinamico = false;
-            //Puertos = new List<int>();
+            Puertos = new List<int>();
         }
 
         public bool propiedad

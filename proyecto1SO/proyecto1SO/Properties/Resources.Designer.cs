@@ -63,26 +63,6 @@ namespace proyecto1SO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _142336 {
-            get {
-                object obj = ResourceManager.GetObject("142336", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _25274 {
-            get {
-                object obj = ResourceManager.GetObject("25274", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap config1 {
             get {
                 object obj = ResourceManager.GetObject("config1", resourceCulture);

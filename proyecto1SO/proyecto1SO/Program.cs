@@ -16,9 +16,7 @@ namespace proyecto1SO
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MainForm());
-            Application.Run(new FSpooler());
+            Application.Run(new MainForm());
         }
     }
 }
-
